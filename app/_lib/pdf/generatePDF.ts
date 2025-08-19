@@ -7,7 +7,6 @@ export async function generatePDF(url: string) {
     const page = await browser.newPage();
 
     await page.goto(url, { waitUntil: "networkidle" });
-
     await page.emulateMedia({ media: "print" });
 
     const pdf = await page.pdf({
