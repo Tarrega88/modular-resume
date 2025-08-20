@@ -2,26 +2,60 @@ import Dexie, { type EntityTable } from 'dexie';
 
 //scaffolding - will of course change the Friend interface and declarations later
 
-interface Friend {
-    bulletPoints: string[];
-    id: number;
-    name: string;
-    age: number;
+/*
+basically will need to have two types of data: permanent data and render data
+permanent data are things like a bullet and a prevJob.
+
+render data is whatever will be rendered to the screen.
+At some point, that render data can become a saved permanent resume
+*/
+
+type UserLink = {
+    label: string;
+    url: string;
+}
+
+type User = {
+    id: string; // use crypto.randomUUID()
+    fullName: string;
+    email: string;
+    phoneNumber: string;
+    location: string;
+    links: UserLink[];
+}
+
+type Bullet = {
+    id: string; // uuid
+    text: string;
+}
+
+type PrevJob = {
+    id: string; //uuid
+    companyName: string;
+    jobTitle: string;
+    monthStarted: number;
+    yearStarted: number;
+    monthEnded: number;
+    yearEnded: number;
+}
+
+type PrevJobWithBullet = {
+    id: string; //uuid
+    prevJobId: string;
+    bullets: string[];
 }
 
 const db = new Dexie('FriendsDatabase') as Dexie & {
-    friends: EntityTable<
-        Friend,
-        'id' // primary key "id" (for the typings only)
+    bullets: EntityTable<Bullet, "id"
     >;
 };
 
 // Schema declaration:
 db.version(1).stores({
-    friends: '++id, name, age' // primary key "id" (for the runtime!)
+    bullets: 'id' // primary key "id" (for the runtime!)
 });
 
-export type { Friend };
+export type { Bullet };
 export { db };
 
 
@@ -37,10 +71,7 @@ export { db };
 
     PREVIOUS JOBS
     array of objects
-    
-    [
-        { id: 0(crypto.randomUUID()), companyName: "ABC Inc.", jobTitle: "Software Developer" monthStarted: 2, yearStarted: 2020, monthEnded: 3, yearEnded: 2022 }
-    ]
+
 
 
         PREVIOUS JOBS WITH BULLETS

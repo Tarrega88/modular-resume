@@ -13,7 +13,6 @@ export async function generatePDF(url: string) {
         format: "A4",
         preferCSSPageSize: true,
         printBackground: true,
-        // margin: { top: "20mm", bottom: "20mm" },
     });
 
     await browser.close();
