@@ -10,9 +10,10 @@ export async function generatePDF(url: string) {
     await page.emulateMedia({ media: "print" });
 
     const pdf = await page.pdf({
-        format: "A4",
-        preferCSSPageSize: true,
+        format: "Letter",
         printBackground: true,
+        // margin: { top: "0.5in", right: "0.5in", bottom: "0.5in", left: "0.5in" },
+        preferCSSPageSize: true, // for CSS @page { size: Letter }
     });
 
     await browser.close();
