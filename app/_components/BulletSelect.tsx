@@ -3,16 +3,18 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/app/_lib/dexie/db";
 
-export default function BulletList() {
+export default function BulletSelect() {
   const bullets = useLiveQuery(() => db.bullets.toArray(), []);
 
   if (!bullets) return null;
 
   return (
-    <ul>
+    <select>
       {bullets.map((b) => (
-        <li key={b.id}>{b.text}</li>
+        <option key={b.id} value={b.text}>
+          {b.text}
+        </option>
       ))}
-    </ul>
+    </select>
   );
 }

@@ -1,7 +1,5 @@
 "use client";
 
-import BulletPoint from "./BulletPoint";
-
 function SideResume() {
   //80 dpi pixel sizes:
   const width = "w-[680px]";

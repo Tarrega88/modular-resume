@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function BulletPoint({ id }) {
-  const [text, setText] = useState("Enter Bullet Text...");
+function BulletPoint({ id, text }: { id: string; text: string }) {
+  const [tempText, setTempText] = useState(text);
   const [isInput, setIsInput] = useState(false);
 
   function handleTurnOnInput() {
@@ -14,16 +14,16 @@ function BulletPoint({ id }) {
 
   return isInput ? (
     <input
-      value={text}
+      value={tempText}
       autoFocus
-      onChange={(e) => setText(e.target.value)}
+      onChange={(e) => setTempText(e.target.value)}
       onKeyDown={(e) => {
         if (e.key === "Enter") handleTurnOffInput();
       }}
       onBlur={handleTurnOffInput}
     />
   ) : (
-    <div onClick={handleTurnOnInput}>{text}</div>
+    <div onClick={handleTurnOnInput}>{tempText}</div>
   );
 }
 
