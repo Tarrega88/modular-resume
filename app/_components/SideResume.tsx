@@ -9,7 +9,6 @@ function SideResume() {
 
   return (
     <div className={`bg-white overflow-auto ${height} ${width}`}>
-      <BulletPoint />
       <div className="text-3xl">Test</div>
       <div className="text-3xl">Test</div>
       <div className="text-3xl">Test</div>

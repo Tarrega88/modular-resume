@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function BulletPoint() {
+function BulletPoint({ id }) {
   const [text, setText] = useState("Enter Bullet Text...");
   const [isInput, setIsInput] = useState(false);
 
