@@ -1,8 +1,20 @@
 import { useState } from "react";
 
-function BulletPoint({ id, text }: { id: string; text: string }) {
+function BulletPoint({
+  id,
+  text,
+  scale,
+}: {
+  id: string;
+  text: string;
+  scale: number;
+}) {
   const [tempText, setTempText] = useState(text);
   const [isInput, setIsInput] = useState(false);
+
+  const fullFontSize = 16;
+
+  const displayFontSize = fullFontSize * scale;
 
   function handleTurnOnInput() {
     setIsInput(true);
@@ -12,8 +24,11 @@ function BulletPoint({ id, text }: { id: string; text: string }) {
     setIsInput(false);
   }
 
+  console.log(displayFontSize);
+
   return isInput ? (
     <input
+      style={{ fontSize: `${displayFontSize}px` }}
       value={tempText}
       autoFocus
       onChange={(e) => setTempText(e.target.value)}
@@ -23,7 +38,12 @@ function BulletPoint({ id, text }: { id: string; text: string }) {
       onBlur={handleTurnOffInput}
     />
   ) : (
-    <div onClick={handleTurnOnInput}>{tempText}</div>
+    <div
+      onClick={handleTurnOnInput}
+      style={{ fontSize: `${displayFontSize}px` }}
+    >
+      {tempText}
+    </div>
   );
 }
 

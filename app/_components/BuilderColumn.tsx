@@ -29,6 +29,7 @@ function BuilderColumn() {
         >
           - Scale
         </button>
+        <div>{scale * 100}%</div>
         <button
           className="bg-emerald-500 cursor-pointer"
           onClick={() => handleSetScale(1)}
