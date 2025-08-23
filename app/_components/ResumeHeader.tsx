@@ -1,3 +1,6 @@
+import DynamicInput from "./DynamicInput";
+//TODO 8/23/2025: Consider using a separate component for the header instead of DynamicInput,
+//since this info is generally more consistent.
 function ResumeHeader() {
   return (
     <div>
@@ -8,6 +11,11 @@ function ResumeHeader() {
         <div>City, ST</div>
         <div>Link</div>
         <div>Link</div>
+        {/* <DynamicInput>email@email.com</DynamicInput>
+        <DynamicInput>(123) 123-4567</DynamicInput>
+        <DynamicInput>City, ST</DynamicInput>
+        <DynamicInput>Link</DynamicInput>
+        <DynamicInput>Link</DynamicInput> */}
       </div>
     </div>
   );

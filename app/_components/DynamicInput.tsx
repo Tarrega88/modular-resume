@@ -10,25 +10,22 @@ type Props = {
   options?: any[];
 };
 
-//TODO 8/23/2025: won't need the select option here since that's off to the side now
 function DynamicInput({ text, id, onCommit, options, children }: Props) {
   const [tempText, setTempText] = useState<string>(text ?? "");
-  const [displayMode, setDisplayMode] = useState<"div" | "input" | "select">(
-    "div"
-  );
+  const [displayMode, setDisplayMode] = useState<"div" | "input">("div");
 
   return displayMode === "div" ? (
     <div className="relative hover:bg-gray-200 transition-all duration-150 cursor-pointer w-full">
       <div className="wrap-break-word">{children}</div>
-      <div className="absolute top-0 flex justify-end w-full hover:opacity-100 h-full pr-1 items-center gap-2 opacity-0">
-        <DropdownElement options={options} />
-        <DeleteElementButton />
+      <div className="absolute top-0 flex justify-end w-full hover:opacity-100 h-full opacity-0">
+        <div className="flex items-center bg-white gap-2 rounded-md w-14 justify-center border">
+          <DropdownElement options={options} />
+          <DeleteElementButton />
+        </div>
       </div>
     </div>
-  ) : displayMode === "input" ? (
-    <input />
   ) : (
-    <select></select>
+    <input />
   );
 }
 

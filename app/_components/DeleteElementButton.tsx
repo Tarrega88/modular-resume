@@ -4,7 +4,7 @@ import { IoIosRemoveCircle } from "react-icons/io";
 
 function DeleteElementButton() {
   return (
-    <button className="text-red-600 text-xl cursor-pointer hover:text-red-900">
+    <button className="text-red-600 text-xl cursor-pointer hover:text-red-800">
       <TiDelete />
     </button>
   );
