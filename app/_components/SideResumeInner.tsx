@@ -1,7 +1,11 @@
 export default function SideResumeInner() {
+  const PAGE_HEIGHT = 1100;
+  const LINE_THICKNESS = 2;
+
   return (
     <div
       style={{
+        position: "relative",
         backgroundColor: "white",
         width: "850px",
         minHeight: "1100px",
@@ -16,6 +20,23 @@ export default function SideResumeInner() {
           ABCDEFGHIJKLNOPQRSTUVWXYZ ABDEF
         </div>
       ))}
+
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 10,
+          backgroundImage: `repeating-linear-gradient(
+            to bottom,
+            transparent,
+            transparent ${PAGE_HEIGHT - LINE_THICKNESS}px,
+            rgba(0,0,0,0.35) ${PAGE_HEIGHT - LINE_THICKNESS}px,
+            rgba(0,0,0,0.35) ${PAGE_HEIGHT}px
+          )`,
+        }}
+      />
     </div>
   );
 }
