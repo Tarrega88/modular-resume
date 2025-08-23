@@ -1,3 +1,5 @@
+import BulletPoint from "./BulletPoint";
+
 export default function SideResumeInner() {
   const PAGE_HEIGHT = 1100;
   const LINE_THICKNESS = 2;
@@ -14,12 +16,13 @@ export default function SideResumeInner() {
         // overflowY: "auto",
       }}
     >
-      {Array.from({ length: 52 }, (_, i) => (
+      <BulletPoint id="32b166b8-4243-473d-b98c-1f5ceba95160" text="1" />
+      {/* {Array.from({ length: 52 }, (_, i) => (
         <div key={i}>
           ABCDEFGHIJKLNOPQRSTUVWXYZ ABCDEFGHIJKLNOPQRSTUVWXYZ
           ABCDEFGHIJKLNOPQRSTUVWXYZ ABDEF
         </div>
-      ))}
+      ))} */}
 
       <div
         aria-hidden
