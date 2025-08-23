@@ -1,5 +1,6 @@
 import { TiDelete } from "react-icons/ti";
 import { TiDeleteOutline } from "react-icons/ti";
+import { IoIosRemoveCircle } from "react-icons/io";
 
 function DeleteElementButton() {
   return (
