@@ -1,18 +1,26 @@
 import { useState } from "react";
+import DeleteElementButton from "./DeleteElementButton";
 
 type Props = {
   text?: string;
   id?: string;
+  onCommit?: (value: string) => Promise<void> | void;
+  children: React.ReactNode;
 };
 
-function DynamicInput({ text, id }: Props) {
+function DynamicInput({ text, id, onCommit, children }: Props) {
   const [tempText, setTempText] = useState<string>(text ?? "");
   const [displayMode, setDisplayMode] = useState<"div" | "input" | "select">(
     "div"
   );
 
   return displayMode === "div" ? (
-    <div></div>
+    <div className="relative hover:bg-gray-200 transition-all duration-150 cursor-pointer w-full">
+      <div>{children}</div>
+      <div className="absolute top-0 flex justify-end w-full hover:opacity-100 h-full pr-1 opacity-0">
+        <DeleteElementButton />
+      </div>
+    </div>
   ) : displayMode === "input" ? (
     <input />
   ) : (

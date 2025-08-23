@@ -16,7 +16,9 @@ export default function SideResumeInner() {
         // overflowY: "auto",
       }}
     >
-      <BulletPoint id="32b166b8-4243-473d-b98c-1f5ceba95160" text="1" />
+      <BulletPoint />
+      <BulletPoint />
+      {/* <BulletPoint id="32b166b8-4243-473d-b98c-1f5ceba95160" text="1" /> */}
       {/* {Array.from({ length: 52 }, (_, i) => (
         <div key={i}>
           ABCDEFGHIJKLNOPQRSTUVWXYZ ABCDEFGHIJKLNOPQRSTUVWXYZ
