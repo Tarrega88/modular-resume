@@ -1,7 +1,10 @@
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from "../_lib/dexie/db";
 import DynamicInput from "./DynamicInput";
 
 function BulletPoint() {
-  return <DynamicInput>Test</DynamicInput>;
+  const bullets = useLiveQuery(() => db.bullets.toArray(), []);
+  return <DynamicInput options={bullets}>Test</DynamicInput>;
 }
 
 export default BulletPoint;

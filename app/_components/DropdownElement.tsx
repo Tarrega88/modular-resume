@@ -1,19 +1,33 @@
 import { useState } from "react";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 
-function DropdownElement() {
-  const [isActive, setIsActive] = useState(false);
+type TempProps = {
+  options?: any[];
+};
 
-  return isActive ? (
-    <select className="bg-emerald-500">
-      <option>A</option>
-      <option>B</option>
+function DropdownElement({ options }: TempProps) {
+  return (
+    <select className="w-4 focus:outline-none hover:bg-gray-900 text-white bg-gray-600 h-4 rounded-lg cursor-pointer">
+      {options?.map((option) => (
+        <option key={option.id}>{option.text}</option>
+      ))}
     </select>
-  ) : (
-    <div className="text-lg text-gray-500 hover:text-gray-800">
-      <IoIosArrowDropdownCircle />
-    </div>
   );
 }
 
 export default DropdownElement;
+
+/*
+    <div
+      className="text-lg text-gray-500 hover:text-gray-800"
+      onClick={() => setIsActive(true)}
+    >
+      <IoIosArrowDropdownCircle />
+    </div>
+*/
+
+// <ul className="absolute top-0 bg-gray-500">
+//   {options?.map((option) => (
+//     <li key={option.id}>{option.text}</li>
+//   ))}
+// </ul>
