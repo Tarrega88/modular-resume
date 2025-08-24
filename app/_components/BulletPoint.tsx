@@ -7,7 +7,12 @@ function BulletPoint() {
   //either a new component or SideResume.
   // The text will be a placeholder OR the text from the db bulletpoint
   const bullets = useLiveQuery(() => db.bullets.toArray(), []);
-  return <DynamicInput options={bullets}>ABCDEFGHIJKLMNOP</DynamicInput>;
+  return (
+    <DynamicInput options={bullets}>
+      It was a cold, rainy day in August, and all the woodland creatures were
+      stowing away their gatherings for the long winter ahead.
+    </DynamicInput>
+  );
 }
 
 export default BulletPoint;

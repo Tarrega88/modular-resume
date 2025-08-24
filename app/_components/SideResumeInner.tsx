@@ -36,10 +36,13 @@ export default function SideResumeInner() {
         height: "1100px",
         fontSize: "16px",
         lineHeight: 1.4,
-        padding: "48px", //TODO: will set to 48 when I'm done testing page breaks
+        paddingLeft: "48px", //TODO: will set to 48 when I'm done testing page breaks
+        paddingRight: "48px",
+        overflow: "hidden",
         // overflowY: "auto",
       }}
     >
+      <div className="h-[48px]"></div>
       <ResumeHeader />
       <JobSection />
       <BulletPoint />
@@ -61,12 +64,8 @@ export default function SideResumeInner() {
       <BulletPoint />
       <BulletPoint />
       <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
 
+      {/* <div className=" bg-white absolute bottom-0 h-[48px] text-center w-[802px]"></div> */}
       <div
         aria-hidden
         style={{
