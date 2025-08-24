@@ -2,6 +2,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../_lib/dexie/db";
 import BulletPoint from "./BulletPoint";
 import ResumeHeader from "./ResumeHeader";
+import JobSection from "./JobSection";
 
 export default function SideResumeInner() {
   const bullets = useLiveQuery(() => db.bullets.toArray(), []);
@@ -23,10 +24,12 @@ export default function SideResumeInner() {
         fontSize: "16px",
         lineHeight: 1.4,
         padding: "48px", //TODO: will set to 48 when I'm done testing page breaks
-        // overflowY: "auto",
+        overflowY: "auto",
       }}
     >
       <ResumeHeader />
+      <JobSection />
+      <BulletPoint />
       <BulletPoint />
       <BulletPoint />
       <BulletPoint />
