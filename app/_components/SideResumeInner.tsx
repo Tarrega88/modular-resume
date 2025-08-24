@@ -3,7 +3,7 @@ import { db } from "../_lib/dexie/db";
 import BulletPoint from "./BulletPoint";
 import ResumeHeader from "./ResumeHeader";
 import JobSection from "./JobSection";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 export default function SideResumeInner() {
   const bullets = useLiveQuery(() => db.bullets.toArray(), []);
@@ -24,7 +24,7 @@ export default function SideResumeInner() {
     // console.log("offsetHeight:", ref.current.offsetHeight); // integer, includes borders
     console.log("clientHeight:", ref.current.clientHeight); // excludes borders/scrollbar
     // console.log("rect height:", ref.current.getBoundingClientRect().height); // precise, decimals
-  }, []);
+  });
 
   return (
     <div
@@ -33,12 +33,13 @@ export default function SideResumeInner() {
         position: "relative",
         backgroundColor: "white",
         width: "850px",
-        height: "1100px",
+        minHeight: "1100px",
         fontSize: "16px",
         lineHeight: 1.4,
         paddingLeft: "48px", //TODO: will set to 48 when I'm done testing page breaks
         paddingRight: "48px",
         overflow: "hidden",
+
         // overflowY: "auto",
       }}
     >
@@ -64,6 +65,15 @@ export default function SideResumeInner() {
       <BulletPoint />
       <BulletPoint />
       <BulletPoint />
+      <BulletPoint />
+      <BulletPoint />
+
+      {/* <BulletPoint />
+      <BulletPoint />
+      <BulletPoint />
+      <BulletPoint />
+      <BulletPoint />
+      <BulletPoint /> */}
 
       {/* <div className=" bg-white absolute bottom-0 h-[48px] text-center w-[802px]"></div> */}
       <div
