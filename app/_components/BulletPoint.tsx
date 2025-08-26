@@ -3,7 +3,7 @@ import DynamicInput from "./DynamicInput";
 import { BulletPointProps, ResumeItemProps } from "@/state/resumeSlice";
 import { RootState } from "@/state/store";
 
-function BulletPoint({ id, kind, text }: BulletPointProps) {
+function BulletPoint({ id, text }: BulletPointProps) {
   //  const bullets = useSelector(
   //   (state: RootState) => state.resume.data.bulletPoints
   // );

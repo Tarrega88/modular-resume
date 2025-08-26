@@ -20,6 +20,8 @@ type ResumeState = {
     data: {
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
+        personalInfo: Record<ID, PersonalInfoProps>;
+        education: Record<ID, EducationProps>;
     };
     resumes: Record<ID, ResumeItemProps[]>;
 }
@@ -81,7 +83,9 @@ const initialState: ResumeState = {
         bulletPoints: {
             0: { id: "0", kind: "bulletPoints", text: "ABC" },
             1: { id: "1", kind: "bulletPoints", text: "DEF" }
-        }
+        },
+        personalInfo: {},
+        education: {},
     },
     resumes: {
         0: [{ id: "0", kind: "bulletPoints", elementId: "0" }, { id: "1", kind: "bulletPoints", elementId: "0" }],
