@@ -2,11 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type ID = string;
 
-export type ResumeItem = {
+export type Kinds = "personalInfo" | "prevJobs" | "education" | "bulletPoints";
+
+export type ResumeItemProps = {
     id: ID;
-    kind: string;
-    elementId: string;
+    kind: Kinds;
+    elementId: ID;
 }
+
 
 // type ResumeItem =
 //     | { id: ID; kind: "bulletPoint"; elementId: ID }
@@ -15,33 +18,33 @@ export type ResumeItem = {
 type ResumeState = {
     currentResume: ID;
     data: {
-        prevJobs: Record<ID, PrevJob>;
-        bulletPoints: Record<ID, BulletPoint>;
+        prevJobs: Record<ID, PrevJobProps>;
+        bulletPoints: Record<ID, BulletPointProps>;
     };
-    resumes: Record<ID, ResumeItem[]>;
+    resumes: Record<ID, ResumeItemProps[]>;
 }
 
-type Link = {
+type LinkProps = {
     id: string;
     text: string;
     url: string;
 }
 
-type PersonalInfo = {
+export type PersonalInfoProps = {
     id: string;
     kind: "personalInfo";
     fullName: string;
     email: string;
     phoneNumber: string;
     location: string;
-    link1?: Link;
-    link2?: Link;
-    link3?: Link;
+    link1?: LinkProps;
+    link2?: LinkProps;
+    link3?: LinkProps;
 }
 
-type PrevJob = {
+type PrevJobProps = {
     id: string;
-    kind: "prevJob";
+    kind: "prevJobs";
     companyName: string;
     jobTitle: string;
     location: string;
@@ -51,9 +54,9 @@ type PrevJob = {
     yearEnded: number;
 };
 
-type BulletPoint = { id: string; kind: "bulletPoint"; text: string; };
+export type BulletPointProps = { id: string; kind: "bulletPoints"; text: string; };
 
-type Education = {
+type EducationProps = {
     id: string;
     kind: "education";
     schoolName: string;
@@ -76,16 +79,18 @@ const initialState: ResumeState = {
     data: {
         prevJobs: {},
         bulletPoints: {
-            1: { id: "0", kind: "bulletPoint", text: "ABC" },
-            2: { id: "1", kind: "bulletPoint", text: "DEF" }
+            0: { id: "0", kind: "bulletPoints", text: "ABC" },
+            1: { id: "1", kind: "bulletPoints", text: "DEF" }
         }
     },
     resumes: {
-        0: [{ id: "0", kind: "bulletPoint", elementId: "0" }, { id: "1", kind: "bulletPoint", elementId: "0" }],
+        0: [{ id: "0", kind: "bulletPoints", elementId: "0" }, { id: "1", kind: "bulletPoints", elementId: "0" }],
         1: [], //the render order for resume1,
         2: [], //the render order of resume2
     }, //a series of objects each with a "type"
 };
+
+//.data.bulletPoints
 
 const resumeSlice = createSlice({
     name: "resume",
@@ -93,7 +98,7 @@ const resumeSlice = createSlice({
     reducers: {
         addBulletPoint(state, action: PayloadAction<string>) {
             const id = crypto.randomUUID();
-            state.data.bulletPoints[id] = { id, kind: "bulletPoint", text: action.payload };
+            state.data.bulletPoints[id] = { id, kind: "bulletPoints", text: action.payload };
         }
     },
 });
