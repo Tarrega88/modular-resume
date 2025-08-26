@@ -1,10 +1,12 @@
 "use client";
 
-import { useLiveQuery } from "dexie-react-hooks";
-import { db } from "@/app/_lib/dexie/db";
+import { RootState } from "@/state/store";
+import { useSelector } from "react-redux";
 
 export default function BulletSelect() {
-  const bullets = useLiveQuery(() => db.bullets.toArray(), []);
+  const bullets = useSelector(
+    (state: RootState) => state.resume.data.bulletPoints
+  );
 
   if (!bullets) return null;
 

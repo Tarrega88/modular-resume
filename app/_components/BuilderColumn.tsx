@@ -1,6 +1,5 @@
 import { MAX, MIN, useScale } from "../_context/ScaleContext";
 import BulletSelect from "./BulletSelect";
-import SeedBullets from "./SeedBullets";
 
 function BuilderColumn() {
   const { scale, setScale } = useScale();
@@ -38,7 +37,6 @@ function BuilderColumn() {
         </button>
       </div>
 
-      <SeedBullets />
       <BulletSelect />
     </div>
   );

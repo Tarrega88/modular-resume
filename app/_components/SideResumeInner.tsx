@@ -9,7 +9,9 @@ export default function SideResumeInner() {
   const PAGE_HEIGHT = 1100;
   const LINE_THICKNESS = 2;
 
-  const bullets = useSelector((state: RootState) => state.db.data.bulletPoints);
+  const bullets = useSelector(
+    (state: RootState) => state.resume.data.bulletPoints
+  );
 
   // const [bullets, setBullets] = useState([
   //   { id: "123", text: "123" },

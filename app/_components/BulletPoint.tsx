@@ -1,5 +1,3 @@
-import { useLiveQuery } from "dexie-react-hooks";
-import { db } from "../_lib/dexie/db";
 import DynamicInput from "./DynamicInput";
 
 function BulletPoint({ id, text }: { id: string; text: string }) {

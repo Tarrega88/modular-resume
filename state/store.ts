@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import dbReducer from "@/state/dbSlice";
+import resumeReducer from "@/state/resumeSlice";
 
 const store = configureStore({
     reducer: {
-        db: dbReducer,
+        resume: resumeReducer,
     }
 });
 

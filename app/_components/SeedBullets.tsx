@@ -1,5 +1,7 @@
 "use client";
 
+//NOTE 8/25/2025: going to remove this from the column for a while since it's not needed until the indexedDB is hooked back up
+
 import { db } from "@/app/_lib/dexie/db";
 
 export default function SeedBullets() {
