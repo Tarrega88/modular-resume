@@ -9,7 +9,7 @@ function JobSection() {
         <div>Job Title</div>
         <div>City, ST</div>
       </div>
-      <div>Bullet Points would go here</div>
+      {/* <div>Bullet Points would go here</div> */}
     </div>
   );
 }

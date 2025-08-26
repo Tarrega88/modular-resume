@@ -1,6 +1,12 @@
+import { useSelector } from "react-redux";
 import DynamicInput from "./DynamicInput";
+import { ResumeItem } from "@/state/resumeSlice";
+import { RootState } from "@/state/store";
 
-function BulletPoint({ id, text }: { id: string; text: string }) {
+function BulletPoint({ id, kind, elementId }: ResumeItem) {
+  //  const bullets = useSelector(
+  //   (state: RootState) => state.resume.data.bulletPoints
+  // );
   //TODO 8/23/2025: bullets should probably be passed in as a prop from higher up,
   //either a new component or SideResume.
   // The text will be a placeholder OR the text from the db bulletpoint

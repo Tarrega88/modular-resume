@@ -8,12 +8,13 @@ export default function BulletSelect() {
     (state: RootState) => state.resume.data.bulletPoints
   );
 
-  if (!bullets) return null;
+  const renderBullets = Object.values(bullets);
+  if (renderBullets.length === 0) return null;
 
   return (
     <select>
-      {bullets.map((b) => (
-        <option key={b.id} value={b.text}>
+      {renderBullets.map((b) => (
+        <option key={b.id} value={b.id}>
           {b.text}
         </option>
       ))}
