@@ -1,10 +1,10 @@
-import BulletPoint from "./BulletPoint";
 import ResumeHeader from "./ResumeHeader";
 import JobSection from "./JobSection";
 import { useLayoutEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import ResumeItemRenderer from "./ResumeItemRenderer";
+import { useParams } from "next/navigation";
 
 export default function SideResumeInner() {
   const PAGE_HEIGHT = 1100;
@@ -16,7 +16,8 @@ export default function SideResumeInner() {
 
   const resumeState = useSelector((state: RootState) => state.resume);
 
-  const currentResume = resumeState.currentResume;
+  const params = useParams();
+  const currentResume = params.resumeId as string;
   const allData = resumeState.data;
   const renderOrder = resumeState.resumes[currentResume];
 
@@ -56,7 +57,6 @@ export default function SideResumeInner() {
     >
       <div className="h-[48px]"></div>
       <ResumeHeader />
-      <JobSection />
       {renderOrder.map((e) => (
         <ResumeItemRenderer
           key={e.id}

@@ -2,6 +2,7 @@ import { ResumeItemProps, Kinds } from "@/state/resumeSlice";
 import BulletPoint from "./BulletPoint";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
+import JobSection from "./JobSection";
 
 function ResumeItemRenderer({ id, kind, elementId }: ResumeItemProps) {
   const { data } = useSelector((state: RootState) => state.resume);
@@ -23,7 +24,31 @@ function ResumeItemRenderer({ id, kind, elementId }: ResumeItemProps) {
     case "education":
       return;
     case "prevJobs":
-      return;
+      const {
+        companyName,
+        id,
+        jobTitle,
+        kind,
+        location,
+        monthStarted,
+        yearStarted,
+        monthEnded,
+        yearEnded,
+      } = data.prevJobs[elementId];
+
+      return (
+        <JobSection
+          id={id}
+          companyName={companyName}
+          jobTitle={jobTitle}
+          kind={kind}
+          location={location}
+          monthStarted={monthStarted}
+          yearStarted={yearStarted}
+          monthEnded={monthEnded}
+          yearEnded={yearEnded}
+        />
+      );
   }
 }
 

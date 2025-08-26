@@ -16,7 +16,6 @@ export type ResumeItemProps = {
 //     | { id: ID; kind: "prevJob"; elementId: ID };
 
 type ResumeState = {
-    currentResume: ID;
     data: {
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
@@ -44,29 +43,29 @@ export type PersonalInfoProps = {
     link3?: LinkProps;
 }
 
-type PrevJobProps = {
+export type PrevJobProps = {
     id: string;
     kind: "prevJobs";
     companyName: string;
     jobTitle: string;
     location: string;
-    monthStarted: number;
+    monthStarted: string;
     yearStarted: number;
-    monthEnded: number;
+    monthEnded: string;
     yearEnded: number;
 };
 
 export type BulletPointProps = { id: string; kind: "bulletPoints"; text: string; };
 
-type EducationProps = {
+export type EducationProps = {
     id: string;
     kind: "education";
     schoolName: string;
     degree: string;
     fieldOfStudy: string;
-    monthStarted?: number;
-    yearStarted: number;
-    monthEnded?: number;
+    monthStarted?: string;
+    yearStarted?: number;
+    monthEnded?: string;
     yearEnded?: number;
     location?: string;
     gpa?: string;
@@ -76,10 +75,23 @@ type EducationProps = {
 
 //data will store all data across multiple resumes - might add a "hidden" boolean to everything,
 //which would start as false, but the user could mark anything to be hidden from not being an option to pick for that resume.
+
+//NOTE: id and object key will match except in the resumes object.
 const initialState: ResumeState = {
-    currentResume: "0", //might make this a UUID
     data: {
-        prevJobs: {},
+        prevJobs: {
+            0: {
+                id: "0",
+                kind: "prevJobs",
+                companyName: "Company Name",
+                jobTitle: "Your Job Title",
+                location: "City, ST",
+                monthStarted: "Jan",
+                yearStarted: 2024,
+                monthEnded: "Dec",
+                yearEnded: 2025
+            }
+        },
         bulletPoints: {
             0: { id: "0", kind: "bulletPoints", text: "ABC" },
             1: { id: "1", kind: "bulletPoints", text: "DEF" }
@@ -88,7 +100,7 @@ const initialState: ResumeState = {
         education: {},
     },
     resumes: {
-        0: [{ id: "0", kind: "bulletPoints", elementId: "0" }, { id: "1", kind: "bulletPoints", elementId: "0" }],
+        0: [{ id: "3", kind: "prevJobs", elementId: "0" }, { id: "0", kind: "bulletPoints", elementId: "0" }, { id: "1", kind: "bulletPoints", elementId: "0" }],
         1: [], //the render order for resume1,
         2: [], //the render order of resume2
     }, //a series of objects each with a "type"

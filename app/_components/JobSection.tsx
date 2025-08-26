@@ -1,13 +1,27 @@
-function JobSection() {
+import { PrevJobProps } from "@/state/resumeSlice";
+
+function JobSection({
+  id,
+  kind,
+  companyName,
+  jobTitle,
+  location,
+  monthStarted,
+  yearStarted,
+  monthEnded,
+  yearEnded,
+}: PrevJobProps) {
   return (
     <div>
       <div className="flex justify-between text-lg font-semibold">
-        <div>Company</div>
-        <div>Started - Ended</div>
+        <div>{companyName}</div>
+        <div>
+          {monthStarted} {yearStarted} - {monthEnded} {yearEnded}
+        </div>
       </div>
       <div className="flex justify-between">
-        <div>Job Title</div>
-        <div>City, ST</div>
+        <div>{jobTitle}</div>
+        <div>{location}</div>
       </div>
       {/* <div>Bullet Points would go here</div> */}
     </div>

@@ -1,7 +1,5 @@
-import { useSelector } from "react-redux";
 import DynamicInput from "./DynamicInput";
-import { BulletPointProps, ResumeItemProps } from "@/state/resumeSlice";
-import { RootState } from "@/state/store";
+import { BulletPointProps } from "@/state/resumeSlice";
 
 function BulletPoint({ id, text }: BulletPointProps) {
   //  const bullets = useSelector(
