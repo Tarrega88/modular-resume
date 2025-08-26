@@ -1,18 +1,21 @@
-import { useLiveQuery } from "dexie-react-hooks";
-import { db } from "../_lib/dexie/db";
 import BulletPoint from "./BulletPoint";
 import ResumeHeader from "./ResumeHeader";
 import JobSection from "./JobSection";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/store";
 
 export default function SideResumeInner() {
-  const bullets = useLiveQuery(() => db.bullets.toArray(), []);
-
   const PAGE_HEIGHT = 1100;
   const LINE_THICKNESS = 2;
 
-  let spacers = 0;
+  const bullets = useSelector((state: RootState) => state.db.data.bulletPoints);
 
+  // const [bullets, setBullets] = useState([
+  //   { id: "123", text: "123" },
+  //   { id: "456", text: "456" },
+  //   { id: "789", text: "789" },
+  // ]);
   //TODO 8/23/2025: I am probably going to change this to be page-by-page editing.
   //The problem with continuous editing is that the padding here would only apply to the first page
   //all subsequent pages don't know they're new pages
@@ -46,34 +49,9 @@ export default function SideResumeInner() {
       <div className="h-[48px]"></div>
       <ResumeHeader />
       <JobSection />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-
-      {/* <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint />
-      <BulletPoint /> */}
+      {bullets.map((e) => (
+        <BulletPoint key={e.id} id={e.id} text={e.text} />
+      ))}
 
       {/* <div className=" bg-white absolute bottom-0 h-[48px] text-center w-[802px]"></div> */}
       <div
