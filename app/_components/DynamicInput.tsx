@@ -41,28 +41,26 @@ function DynamicInput({
       dispatch(editBulletPoint({ id, text: tempText }));
     }
   }
-
-  //TODO 8/26/2025: Manage opacity with state and enter/exit
-  //OR consider a different approach for edit buttons
-
   return displayMode === "div" ? (
     <div
       className="relative hover:bg-gray-200 transition-all duration-150 cursor-pointer w-full"
       onClick={setDisplayToInput}
     >
       <div className="wrap-break-word">{tempText}</div>
-      <div className="absolute top-0 right-0 hover:opacity-100 h-full opacity-0">
-        <div
-          className="flex items-center bg-white gap-2 rounded-md w-14 justify-center border"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <DropdownElement
-            options={options}
-            kind={kind}
-            id={id}
-            renderIndex={renderIndex}
-          />
-          <DeleteElementButton />
+      <div className="absolute top-0 hover:opacity-100 h-full opacity-0 w-full">
+        <div className="absolute right-0">
+          <div
+            className="flex items-center bg-white gap-2 rounded-md w-14 justify-center border"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <DropdownElement
+              options={options}
+              kind={kind}
+              id={id}
+              renderIndex={renderIndex}
+            />
+            <DeleteElementButton />
+          </div>
         </div>
       </div>
     </div>
