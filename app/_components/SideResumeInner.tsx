@@ -6,6 +6,7 @@ import ResumeItemRenderer from "./ResumeItemRenderer";
 import { useParams } from "next/navigation";
 
 export default function SideResumeInner() {
+  //TODO 8/26/2025: reliably throw an error if there's no matching id between the params and resumeIds (right now it's based off of the lack of items in renderOrder)
   const PAGE_HEIGHT = 1100;
   const LINE_THICKNESS = 2;
 

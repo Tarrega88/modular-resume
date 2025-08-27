@@ -1,7 +1,8 @@
 import { useState } from "react";
 import DeleteElementButton from "./DeleteElementButton";
 import DropdownElement from "./DropdownElement";
-import { Kinds } from "@/state/resumeSlice";
+import { editBulletPoint, Kinds } from "@/state/resumeSlice";
+import { useDispatch } from "react-redux";
 
 type Props = {
   text?: string;
@@ -20,14 +21,41 @@ function DynamicInput({
   kind,
   renderIndex,
 }: Props) {
-  const [tempText, setTempText] = useState<string>(text ?? "");
+  const [tempText, setTempText] = useState<string>(children?.toString() ?? "");
   const [displayMode, setDisplayMode] = useState<"div" | "input">("div");
 
+  const dispatch = useDispatch();
+
+  function setDisplayToInput() {
+    setDisplayMode("input");
+  }
+
+  function setDisplayToDiv() {
+    setDisplayMode("div");
+  }
+
+  function handleEnter(e: any) {
+    if (e.key === "Enter") {
+      setDisplayMode("div");
+
+      dispatch(editBulletPoint({ id, text: tempText }));
+    }
+  }
+
+  //TODO 8/26/2025: Manage opacity with state and enter/exit
+  //OR consider a different approach for edit buttons
+
   return displayMode === "div" ? (
-    <div className="relative hover:bg-gray-200 transition-all duration-150 cursor-pointer w-full">
-      <div className="wrap-break-word">{children}</div>
-      <div className="absolute top-0 flex justify-end w-full hover:opacity-100 h-full opacity-0">
-        <div className="flex items-center bg-white gap-2 rounded-md w-14 justify-center border">
+    <div
+      className="relative hover:bg-gray-200 transition-all duration-150 cursor-pointer w-full"
+      onClick={setDisplayToInput}
+    >
+      <div className="wrap-break-word">{tempText}</div>
+      <div className="absolute top-0 right-0 hover:opacity-100 h-full opacity-0">
+        <div
+          className="flex items-center bg-white gap-2 rounded-md w-14 justify-center border"
+          onClick={(e) => e.stopPropagation()}
+        >
           <DropdownElement
             options={options}
             kind={kind}
@@ -39,7 +67,14 @@ function DynamicInput({
       </div>
     </div>
   ) : (
-    <input />
+    <input
+      className="w-full"
+      autoFocus
+      value={tempText}
+      onChange={(e) => setTempText(e.target.value)}
+      onBlur={setDisplayToDiv}
+      onKeyDown={handleEnter}
+    />
   );
 }
 
