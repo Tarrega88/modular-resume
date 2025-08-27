@@ -59,7 +59,7 @@ function DynamicInput({
               id={id}
               renderIndex={renderIndex}
             />
-            <DeleteElementButton />
+            <DeleteElementButton renderIndex={renderIndex} />
           </div>
         </div>
       </div>

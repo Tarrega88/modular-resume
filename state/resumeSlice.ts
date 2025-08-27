@@ -126,22 +126,20 @@ const resumeSlice = createSlice({
         // },
         editBulletPoint(state, action: PayloadAction<{ id: string; text: string; }>) {
             const { id, text } = action.payload;
-
-            // const currentResume = state.currentResumeId;
-
             state.data.bulletPoints[id].text = text;
-
         },
         changeBulletPoint(state, action: PayloadAction<{ renderIndex: number; id: string; }>) {
             const currentResume = state.currentResumeId;
             const { renderIndex, id } = action.payload;
-            const updatedBullet = state.data.bulletPoints[id].id;
-
-
             state.resumes[currentResume][renderIndex] = { id: crypto.randomUUID(), kind: "bulletPoint", elementId: id }
+        },
+        removeResumeItem(state, action: PayloadAction<{ renderIndex: number }>) {
+            const { renderIndex } = action.payload;
+            const currentResume = state.currentResumeId;
+            state.resumes[currentResume].splice(renderIndex, 1);
         }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem } = resumeSlice.actions;
 export default resumeSlice.reducer;
