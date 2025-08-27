@@ -4,8 +4,16 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import JobSection from "./JobSection";
 
-function ResumeItemRenderer({ id, kind, elementId }: ResumeItemProps) {
-  const { data } = useSelector((state: RootState) => state.resume);
+function ResumeItemRenderer({
+  id,
+  kind,
+  elementId,
+  renderIndex,
+}: ResumeItemProps & { renderIndex: number }) {
+  const { data, resumes } = useSelector((state: RootState) => state.resume);
+
+  // console.log(`RESUMES`);
+  // console.log(resumes);
 
   // console.log("Element ID");
   // console.log(elementId);
@@ -17,13 +25,20 @@ function ResumeItemRenderer({ id, kind, elementId }: ResumeItemProps) {
   switch (kind) {
     case "personalInfo":
       return;
-    case "bulletPoints":
+    case "bulletPoint":
       const bp = data.bulletPoints[elementId];
 
-      return <BulletPoint id={bp.id} kind={bp.kind} text={bp.text} />;
+      return (
+        <BulletPoint
+          id={bp.id}
+          kind={bp.kind}
+          text={bp.text}
+          renderIndex={renderIndex}
+        />
+      );
     case "education":
       return;
-    case "prevJobs":
+    case "prevJob":
       const {
         companyName,
         id,
@@ -47,6 +62,7 @@ function ResumeItemRenderer({ id, kind, elementId }: ResumeItemProps) {
           yearStarted={yearStarted}
           monthEnded={monthEnded}
           yearEnded={yearEnded}
+          renderIndex={renderIndex}
         />
       );
   }

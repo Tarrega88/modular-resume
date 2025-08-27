@@ -1,5 +1,4 @@
 import ResumeHeader from "./ResumeHeader";
-import JobSection from "./JobSection";
 import { useLayoutEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
@@ -21,8 +20,8 @@ export default function SideResumeInner() {
   const allData = resumeState.data;
   const renderOrder = resumeState.resumes[currentResume];
 
-  console.log("---Render Order---");
-  console.log(renderOrder);
+  // console.log("---Render Order---");
+  // console.log(renderOrder);
   //TODO: 8/25/2025: render different components based on the "kind" inside of each renderOrder element
 
   //TODO 8/23/2025: I am probably going to change this to be page-by-page editing.
@@ -31,10 +30,9 @@ export default function SideResumeInner() {
 
   const ref = useRef<HTMLDivElement | null>(null);
   useLayoutEffect(() => {
-    console.log("Here");
     if (!ref.current) return;
     // console.log("offsetHeight:", ref.current.offsetHeight); // integer, includes borders
-    console.log("clientHeight:", ref.current.clientHeight); // excludes borders/scrollbar
+    // console.log("clientHeight:", ref.current.clientHeight); // excludes borders/scrollbar
     // console.log("rect height:", ref.current.getBoundingClientRect().height); // precise, decimals
   });
 
@@ -57,9 +55,10 @@ export default function SideResumeInner() {
     >
       <div className="h-[48px]"></div>
       <ResumeHeader />
-      {renderOrder.map((e) => (
+      {renderOrder.map((e, i) => (
         <ResumeItemRenderer
           key={e.id}
+          renderIndex={i}
           id={e.id}
           kind={e.kind}
           elementId={e.elementId}

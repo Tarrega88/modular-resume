@@ -1,11 +1,32 @@
+import { useSelector } from "react-redux";
 import DynamicInput from "./DynamicInput";
 import { BulletPointProps } from "@/state/resumeSlice";
+import { RootState } from "@/state/store";
 
-function BulletPoint({ id, text }: BulletPointProps) {
+function BulletPoint({
+  id,
+  text,
+  kind,
+  renderIndex,
+}: BulletPointProps & { renderIndex: number }) {
   //  const bullets = useSelector(
   //   (state: RootState) => state.resume.data.bulletPoints
   // );
-  return <DynamicInput options={[]}>{text}</DynamicInput>;
+
+  const options = Object.values(
+    useSelector((state: RootState) => state.resume.data.bulletPoints)
+  );
+
+  return (
+    <DynamicInput
+      options={options}
+      kind={kind}
+      id={id}
+      renderIndex={renderIndex}
+    >
+      {text}
+    </DynamicInput>
+  );
 }
 
 export default BulletPoint;

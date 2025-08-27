@@ -10,7 +10,8 @@ function JobSection({
   yearStarted,
   monthEnded,
   yearEnded,
-}: PrevJobProps) {
+  renderIndex,
+}: PrevJobProps & { renderIndex?: number }) {
   return (
     <div>
       <div className="flex justify-between text-lg font-semibold">

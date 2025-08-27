@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ParamValue } from "next/dist/server/request/params";
 
 type ID = string;
 
-export type Kinds = "personalInfo" | "prevJobs" | "education" | "bulletPoints";
+export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint";
 
 export type ResumeItemProps = {
     id: ID;
@@ -16,6 +17,7 @@ export type ResumeItemProps = {
 //     | { id: ID; kind: "prevJob"; elementId: ID };
 
 type ResumeState = {
+    currentResumeId: string;
     data: {
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
@@ -45,7 +47,7 @@ export type PersonalInfoProps = {
 
 export type PrevJobProps = {
     id: string;
-    kind: "prevJobs";
+    kind: "prevJob";
     companyName: string;
     jobTitle: string;
     location: string;
@@ -55,7 +57,7 @@ export type PrevJobProps = {
     yearEnded: number;
 };
 
-export type BulletPointProps = { id: string; kind: "bulletPoints"; text: string; };
+export type BulletPointProps = { id: string; kind: "bulletPoint"; text: string; };
 
 export type EducationProps = {
     id: string;
@@ -78,11 +80,12 @@ export type EducationProps = {
 
 //NOTE: id and object key will match except in the resumes object.
 const initialState: ResumeState = {
+    currentResumeId: "0",
     data: {
         prevJobs: {
             0: {
                 id: "0",
-                kind: "prevJobs",
+                kind: "prevJob",
                 companyName: "Company Name",
                 jobTitle: "Your Job Title",
                 location: "City, ST",
@@ -93,14 +96,16 @@ const initialState: ResumeState = {
             }
         },
         bulletPoints: {
-            0: { id: "0", kind: "bulletPoints", text: "ABC" },
-            1: { id: "1", kind: "bulletPoints", text: "DEF" }
+            0: { id: "0", kind: "bulletPoint", text: "Built software for ABC company" },
+            1: { id: "1", kind: "bulletPoint", text: "Developed an internal application to reduce user friction" },
+            2: { id: "2", kind: "bulletPoint", text: "Wrote and used automated tests in Jest" }
+
         },
         personalInfo: {},
         education: {},
     },
     resumes: {
-        0: [{ id: "3", kind: "prevJobs", elementId: "0" }, { id: "0", kind: "bulletPoints", elementId: "0" }, { id: "1", kind: "bulletPoints", elementId: "0" }],
+        0: [{ id: "3", kind: "prevJob", elementId: "0" }, { id: "0", kind: "bulletPoint", elementId: "0" }, { id: "512490j", kind: "bulletPoint", elementId: "2" }, { id: "1", kind: "bulletPoint", elementId: "1" }],
         1: [], //the render order for resume1,
         2: [], //the render order of resume2
     }, //a series of objects each with a "type"
@@ -112,12 +117,23 @@ const resumeSlice = createSlice({
     name: "resume",
     initialState,
     reducers: {
-        addBulletPoint(state, action: PayloadAction<string>) {
-            const id = crypto.randomUUID();
-            state.data.bulletPoints[id] = { id, kind: "bulletPoints", text: action.payload };
+        setCurrentResume(state, action: PayloadAction<string>) {
+            state.currentResumeId = action.payload;
+        },
+        // addBulletPoint(state, action: PayloadAction<string>) {
+        //     const id = crypto.randomUUID();
+        //     state.data.bulletPoints[id] = { id, kind: "bulletPoint", text: action.payload };
+        // },
+        changeBulletPoint(state, action: PayloadAction<{ renderIndex: number; id: string; }>) {
+            const currentResume = state.currentResumeId;
+            const { renderIndex, id } = action.payload;
+            const updatedBullet = state.data.bulletPoints[id].id;
+
+
+            state.resumes[currentResume][renderIndex] = { id: crypto.randomUUID(), kind: "bulletPoint", elementId: id }
         }
     },
 });
 
-//export const {} = dbSlice.actions;
+export const { setCurrentResume, changeBulletPoint } = resumeSlice.actions;
 export default resumeSlice.reducer;
