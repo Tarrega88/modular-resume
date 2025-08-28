@@ -53,6 +53,7 @@ export default function SideResumeInner() {
 
         // overflowY: "auto",
       }}
+      // key={new Date().toString()} // could use to force re-rendering on changes but not a great practice
     >
       <div className="h-[48px]"></div>
       <ResumeHeader />

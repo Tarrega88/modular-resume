@@ -18,6 +18,8 @@ export type ResumeItemProps = {
 
 type ResumeState = {
     currentResumeId: string;
+    dragFromIndex: number;
+    dragToIndex: number;
     data: {
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
@@ -81,6 +83,8 @@ export type EducationProps = {
 //NOTE: id and object key will match except in the resumes object.
 const initialState: ResumeState = {
     currentResumeId: "0",
+    dragFromIndex: -1,
+    dragToIndex: -1,
     data: {
         prevJobs: {
             0: {
@@ -137,9 +141,23 @@ const resumeSlice = createSlice({
             const { renderIndex } = action.payload;
             const currentResume = state.currentResumeId;
             state.resumes[currentResume].splice(renderIndex, 1);
+        },
+        setDragFromIndex(state, action: PayloadAction<number>) {
+            state.dragFromIndex = action.payload;
+        },
+        setDragToIndex(state, action: PayloadAction<number>) {
+            state.dragToIndex = action.payload;
+        },
+        dragResumeItem(state, action: PayloadAction<number>) {
+            const { dragToIndex: toIndex, dragFromIndex: fromIndex, currentResumeId } = state;
+            if (toIndex === -1 || fromIndex === toIndex) return;
+
+            const arr = state.resumes[currentResumeId];
+            const [item] = arr.splice(fromIndex, 1);
+            arr.splice(toIndex, 0, item);
         }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem } = resumeSlice.actions;
 export default resumeSlice.reducer;
