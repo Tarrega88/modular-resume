@@ -1,4 +1,4 @@
-import { ResumeItemProps, Kinds } from "@/state/resumeSlice";
+import { ResumeItemProps } from "@/state/resumeSlice";
 import BulletPoint from "./BulletPoint";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";

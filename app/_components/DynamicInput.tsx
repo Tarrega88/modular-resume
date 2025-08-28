@@ -94,27 +94,28 @@ function DynamicInput({
   //   dragFromIndex === renderIndex ? "bg-transparent text-transparent" : "";
 
   const dragStyle =
-    dragFromIndex !== -1 && dragToIndex <= renderIndex ? "translate-y-3" : "";
+    dragFromIndex !== -1 &&
+    dragToIndex <= renderIndex &&
+    dragFromIndex !== renderIndex
+      ? "translate-y-3"
+      : "";
 
   const outerDragStyle =
     dragFromIndex === renderIndex ? "hover:opacity-50" : "hover:opacity-100";
 
   return displayMode === "div" ? (
     <div
-      draggable
-      className={`relative hover:bg-gray-200 transition-all duration-150 cursor-pointer w-full ${outerDragStyle}`}
+      className={`relative hover:bg-gray-200 transition-all duration-150 cursor-pointer w-full`}
       onClick={setDisplayToInput}
-      onDragStart={handleDragStart}
-      onDragEnter={handleDragEnter}
-      onDragLeave={handleDragLeave}
-      onDragEnd={handleDragEnd}
+      // onDragStart={handleDragStart}
+      // onDragEnter={handleDragEnter}
+      // onDragLeave={handleDragLeave}
+      // onDragEnd={handleDragEnd}
       // onDragEnter={() => s}
       // onMouseEnter={() => handleDragActive(renderIndex)}
       // onDrag={() => console.log("dragging")}
     >
-      <div
-        className={`wrap-break-word transition-all duration-200 ${dragStyle}`}
-      >
+      <div className={`wrap-break-word transition-all duration-200`}>
         {tempText}
       </div>
       <div className="absolute top-0 hover:opacity-100 h-full w-full">

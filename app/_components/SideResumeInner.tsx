@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import ResumeItemRenderer from "./ResumeItemRenderer";
 import { useParams } from "next/navigation";
+import Draggable from "./Draggable";
 
 export default function SideResumeInner() {
   //TODO 8/26/2025: reliably throw an error if there's no matching id between the params and resumeIds (right now it's based off of the lack of items in renderOrder)
@@ -58,13 +59,14 @@ export default function SideResumeInner() {
       <div className="h-[48px]"></div>
       <ResumeHeader />
       {renderOrder.map((e, i) => (
-        <ResumeItemRenderer
-          key={e.id}
-          renderIndex={i}
-          id={e.id}
-          kind={e.kind}
-          elementId={e.elementId}
-        />
+        <Draggable key={e.id}>
+          <ResumeItemRenderer
+            renderIndex={i}
+            id={e.id}
+            kind={e.kind}
+            elementId={e.elementId}
+          />
+        </Draggable>
       ))}
       {/* {bullets.map((e) => (
         <BulletPoint key={e.id} id={e.id} text={e.text} />
