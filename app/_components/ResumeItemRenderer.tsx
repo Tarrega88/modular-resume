@@ -3,6 +3,7 @@ import BulletPoint from "./BulletPoint";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import JobSection from "./JobSection";
+import Draggable from "./Draggable";
 
 function ResumeItemRenderer({
   id,
@@ -10,7 +11,9 @@ function ResumeItemRenderer({
   elementId,
   renderIndex,
 }: ResumeItemProps & { renderIndex: number }) {
-  const { data, resumes } = useSelector((state: RootState) => state.resume);
+  const { data, resumes, dragFromIndex, dragToIndex } = useSelector(
+    (state: RootState) => state.resume
+  );
 
   // console.log(`RESUMES`);
   // console.log(resumes);
@@ -29,12 +32,14 @@ function ResumeItemRenderer({
       const bp = data.bulletPoints[elementId];
 
       return (
-        <BulletPoint
-          id={bp.id}
-          kind={bp.kind}
-          text={bp.text}
-          renderIndex={renderIndex}
-        />
+        <Draggable renderIndex={renderIndex}>
+          <BulletPoint
+            id={bp.id}
+            kind={bp.kind}
+            text={bp.text}
+            renderIndex={renderIndex}
+          />
+        </Draggable>
       );
     case "education":
       return;
@@ -52,18 +57,20 @@ function ResumeItemRenderer({
       } = data.prevJobs[elementId];
 
       return (
-        <JobSection
-          id={id}
-          companyName={companyName}
-          jobTitle={jobTitle}
-          kind={kind}
-          location={location}
-          monthStarted={monthStarted}
-          yearStarted={yearStarted}
-          monthEnded={monthEnded}
-          yearEnded={yearEnded}
-          renderIndex={renderIndex}
-        />
+        <Draggable renderIndex={renderIndex}>
+          <JobSection
+            id={id}
+            companyName={companyName}
+            jobTitle={jobTitle}
+            kind={kind}
+            location={location}
+            monthStarted={monthStarted}
+            yearStarted={yearStarted}
+            monthEnded={monthEnded}
+            yearEnded={yearEnded}
+            renderIndex={renderIndex}
+          />
+        </Draggable>
       );
   }
 }

@@ -109,7 +109,7 @@ const initialState: ResumeState = {
         education: {},
     },
     resumes: {
-        0: [{ id: "3", kind: "prevJob", elementId: "0" }, { id: "0", kind: "bulletPoint", elementId: "0" }, { id: "512490j", kind: "bulletPoint", elementId: "2" }, { id: "1", kind: "bulletPoint", elementId: "1" }],
+        0: [{ id: "3", kind: "prevJob", elementId: "0" }, { id: "0", kind: "bulletPoint", elementId: "0" }, { id: "512490j", kind: "bulletPoint", elementId: "2" }, { id: "1", kind: "bulletPoint", elementId: "1" }, { id: "amklcmkwear", kind: "prevJob", elementId: "0" }, { id: "axmlwa", kind: "bulletPoint", elementId: "0" }, { id: "wermalw", kind: "bulletPoint", elementId: "2" }, { id: "awfemklawf", kind: "bulletPoint", elementId: "1" }],
         1: [], //the render order for resume1,
         2: [], //the render order of resume2
     }, //a series of objects each with a "type"
@@ -148,7 +148,7 @@ const resumeSlice = createSlice({
         setDragToIndex(state, action: PayloadAction<number>) {
             state.dragToIndex = action.payload;
         },
-        dragResumeItem(state, action: PayloadAction<number>) {
+        dragResumeItem(state) {
             const { dragToIndex: toIndex, dragFromIndex: fromIndex, currentResumeId } = state;
             if (toIndex === -1 || fromIndex === toIndex) return;
 
