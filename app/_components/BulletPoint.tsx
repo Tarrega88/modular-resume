@@ -9,8 +9,8 @@ function BulletPoint({
   kind,
   renderIndex,
 }: BulletPointProps & { renderIndex: number }) {
-  //  const bullets = useSelector(
-  //   (state: RootState) => state.resume.data.bulletPoints
+  // const { dragFromIndex, dragToIndex } = useSelector(
+  //   (state: RootState) => state.resume
   // );
 
   const options = Object.values(

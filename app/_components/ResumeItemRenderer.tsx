@@ -3,7 +3,6 @@ import BulletPoint from "./BulletPoint";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import JobSection from "./JobSection";
-import Draggable from "./Draggable";
 
 function ResumeItemRenderer({
   id,
@@ -32,14 +31,12 @@ function ResumeItemRenderer({
       const bp = data.bulletPoints[elementId];
 
       return (
-        <Draggable renderIndex={renderIndex}>
-          <BulletPoint
-            id={bp.id}
-            kind={bp.kind}
-            text={bp.text}
-            renderIndex={renderIndex}
-          />
-        </Draggable>
+        <BulletPoint
+          id={bp.id}
+          kind={bp.kind}
+          text={bp.text}
+          renderIndex={renderIndex}
+        />
       );
     case "education":
       return;
@@ -57,20 +54,18 @@ function ResumeItemRenderer({
       } = data.prevJobs[elementId];
 
       return (
-        <Draggable renderIndex={renderIndex}>
-          <JobSection
-            id={id}
-            companyName={companyName}
-            jobTitle={jobTitle}
-            kind={kind}
-            location={location}
-            monthStarted={monthStarted}
-            yearStarted={yearStarted}
-            monthEnded={monthEnded}
-            yearEnded={yearEnded}
-            renderIndex={renderIndex}
-          />
-        </Draggable>
+        <JobSection
+          id={id}
+          companyName={companyName}
+          jobTitle={jobTitle}
+          kind={kind}
+          location={location}
+          monthStarted={monthStarted}
+          yearStarted={yearStarted}
+          monthEnded={monthEnded}
+          yearEnded={yearEnded}
+          renderIndex={renderIndex}
+        />
       );
   }
 }
