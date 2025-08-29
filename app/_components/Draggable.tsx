@@ -53,7 +53,7 @@ function Draggable({
   return (
     <div
       draggable
-      className={`${outerDragStyle} ${dragStyle}`}
+      className={`${outerDragStyle} ${dragStyle} hover:outline-2 outline-sky-200 cursor-pointer`}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onDragEnter={handleDragEnter}

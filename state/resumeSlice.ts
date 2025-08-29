@@ -104,14 +104,37 @@ const initialState: ResumeState = {
         bulletPoints: {
             0: { id: "0", kind: "bulletPoint", text: "Built software for ABC company" },
             1: { id: "1", kind: "bulletPoint", text: "Developed an internal application to reduce user friction" },
-            2: { id: "2", kind: "bulletPoint", text: "Wrote and used automated tests in Jest" }
+            2: { id: "2", kind: "bulletPoint", text: "Wrote and used automated tests in Jest" },
+            3: { id: "3", kind: "bulletPoint", text: "Collaborated with cross-functional teams to launch new features" },
+            4: { id: "4", kind: "bulletPoint", text: "Optimized React components for faster load times" },
+            5: { id: "5", kind: "bulletPoint", text: "Created RESTful APIs to support front-end functionality" },
+            6: { id: "6", kind: "bulletPoint", text: "Implemented Redux for scalable state management" },
+            7: { id: "7", kind: "bulletPoint", text: "Reviewed code and mentored junior developers" },
+            8: { id: "8", kind: "bulletPoint", text: "Integrated third-party authentication services" },
+            9: { id: "9", kind: "bulletPoint", text: "Designed responsive UI components using Tailwind CSS" },
 
         },
         personalInfo: {},
         education: {},
     },
     resumes: {
-        0: [{ id: "3", kind: "prevJob", elementId: "0" }, { id: "0", kind: "bulletPoint", elementId: "0" }, { id: "512490j", kind: "bulletPoint", elementId: "2" }, { id: "1", kind: "bulletPoint", elementId: "1" }, { id: "amklcmkwear", kind: "prevJob", elementId: "0" }, { id: "axmlwa", kind: "bulletPoint", elementId: "0" }, { id: "wermalw", kind: "bulletPoint", elementId: "2" }, { id: "awfemklawf", kind: "bulletPoint", elementId: "1" }],
+        0: [{ id: "100", kind: "prevJob", elementId: "0" },
+        { id: "101", kind: "bulletPoint", elementId: "0" },
+        { id: "102", kind: "bulletPoint", elementId: "1" },
+        { id: "103", kind: "bulletPoint", elementId: "2" },
+
+        { id: "104", kind: "prevJob", elementId: "0" },
+        { id: "105", kind: "bulletPoint", elementId: "3" },
+        { id: "106", kind: "bulletPoint", elementId: "4" },
+        { id: "107", kind: "bulletPoint", elementId: "5" },
+
+        { id: "108", kind: "prevJob", elementId: "0" },
+        { id: "109", kind: "bulletPoint", elementId: "6" },
+        { id: "110", kind: "bulletPoint", elementId: "7" },
+        { id: "111", kind: "bulletPoint", elementId: "8" },
+
+        { id: "112", kind: "prevJob", elementId: "0" },
+        { id: "113", kind: "bulletPoint", elementId: "9" },],
         1: [], //the render order for resume1,
         2: [], //the render order of resume2
     }, //a series of objects each with a "type"
