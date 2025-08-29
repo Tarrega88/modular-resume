@@ -4,6 +4,21 @@ import BuilderColumn from "@/app/_components/BuilderColumn";
 import SideResume from "@/app/_components/SideResume";
 import { useScale } from "@/app/_context/ScaleContext";
 
+//TODO 8/29/2025:
+//In the left column, a filter section that applies to data
+//Something like this:
+/*
+Bullets - Jobs - Skills - Education (These are buttons in a row)
+
+Clicking on one of them would show filtering options.
+Could be written out in plain English.
+
+Something like this, if Bullets were selected:
+
+"The only bullet points I want to see are from [particular job] or [particular job]"
+
+*/
+
 export default function Page() {
   const { scale } = useScale();
   return (
