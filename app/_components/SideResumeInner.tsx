@@ -59,7 +59,7 @@ export default function SideResumeInner() {
       <div className="h-[48px]"></div>
       <ResumeHeader />
       {renderOrder.map((e, i) => (
-        <Draggable key={e.id}>
+        <Draggable key={e.id} renderIndex={i}>
           <ResumeItemRenderer
             renderIndex={i}
             id={e.id}

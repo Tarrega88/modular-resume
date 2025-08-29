@@ -20,6 +20,7 @@ type ResumeState = {
     currentResumeId: string;
     dragFromIndex: number;
     dragToIndex: number;
+    dragHigher: boolean;
     data: {
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
@@ -85,6 +86,7 @@ const initialState: ResumeState = {
     currentResumeId: "0",
     dragFromIndex: -1,
     dragToIndex: -1,
+    dragHigher: true,
     data: {
         prevJobs: {
             0: {
@@ -155,9 +157,12 @@ const resumeSlice = createSlice({
             const arr = state.resumes[currentResumeId];
             const [item] = arr.splice(fromIndex, 1);
             arr.splice(toIndex, 0, item);
+        },
+        setDragHigher(state, action: PayloadAction<boolean>) {
+            state.dragHigher = action.payload;
         }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher } = resumeSlice.actions;
 export default resumeSlice.reducer;
