@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ParamValue } from "next/dist/server/request/params";
 
+
+
+
 type ID = string;
 
 export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint";
@@ -26,11 +29,12 @@ type ResumeState = {
         bulletPoints: Record<ID, BulletPointProps>;
         personalInfo: Record<ID, PersonalInfoProps>;
         education: Record<ID, EducationProps>;
+        userLinks: Record<ID, UserLinkProps>
     };
     resumes: Record<ID, ResumeItemProps[]>;
 }
 
-type LinkProps = {
+export type UserLinkProps = {
     id: string;
     text: string;
     url: string;
@@ -43,9 +47,8 @@ export type PersonalInfoProps = {
     email: string;
     phoneNumber: string;
     location: string;
-    link1?: LinkProps;
-    link2?: LinkProps;
-    link3?: LinkProps;
+    link1?: UserLinkProps;
+    link2?: UserLinkProps;
 }
 
 export type PrevJobProps = {
@@ -82,6 +85,21 @@ export type EducationProps = {
 //which would start as false, but the user could mark anything to be hidden from not being an option to pick for that resume.
 
 //NOTE: id and object key will match except in the resumes object.
+//empty initialData:
+/*
+   // currentResumeId: "0",
+    // dragFromIndex: -1,
+    // dragToIndex: -1,
+    // dragHigher: true,
+    // data: {
+    //     prevJobs: {},
+    //     bulletPoints: {},
+    //     personalInfo: {},
+    //     education: {},
+    //     userLinks: {},
+    // },
+    // resumes: {}, 
+*/
 const initialState: ResumeState = {
     currentResumeId: "0",
     dragFromIndex: -1,
@@ -116,6 +134,7 @@ const initialState: ResumeState = {
         },
         personalInfo: {},
         education: {},
+        userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
     },
     resumes: {
         0: [{ id: "100", kind: "prevJob", elementId: "0" },
@@ -137,7 +156,8 @@ const initialState: ResumeState = {
         { id: "113", kind: "bulletPoint", elementId: "9" },],
         1: [], //the render order for resume1,
         2: [], //the render order of resume2
-    }, //a series of objects each with a "type"
+    },
+
 };
 
 //.data.bulletPoints

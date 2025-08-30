@@ -1,4 +1,6 @@
-function UserLink() {
+import { UserLinkProps } from "@/state/resumeSlice";
+
+function UserLink({ id, text, url }: UserLinkProps) {
   //TODO 8/29/2025
   //This will have:
   //1. Possibly dynamic div/input
