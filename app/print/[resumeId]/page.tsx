@@ -1,4 +1,9 @@
 import SideResume from "@/app/_components/SideResume";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Prepared Resume",
+};
 
 function Page() {
   return (

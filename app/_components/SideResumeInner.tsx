@@ -22,10 +22,6 @@ export default function SideResumeInner() {
   const allData = resumeState.data;
   const renderOrder = resumeState.resumes[currentResume];
 
-  // console.log("---Render Order---");
-  // console.log(renderOrder);
-  //TODO: 8/25/2025: render different components based on the "kind" inside of each renderOrder element
-
   //TODO 8/23/2025: I am probably going to change this to be page-by-page editing.
   //The problem with continuous editing is that the padding here would only apply to the first page
   //all subsequent pages don't know they're new pages
@@ -56,8 +52,10 @@ export default function SideResumeInner() {
       }}
       // key={new Date().toString()} // could use to force re-rendering on changes but not a great practice
     >
+      {/*
+      TODO 8/29/2025: consider making the div below a component that's generated in new pages or attached to ResumeHeader
+      */}
       <div className="h-[48px]"></div>
-      <ResumeHeader />
       {renderOrder.map((e, i) => (
         <Draggable key={e.id} renderIndex={i}>
           <ResumeItemRenderer

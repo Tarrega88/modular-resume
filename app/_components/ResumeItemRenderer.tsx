@@ -3,6 +3,7 @@ import BulletPoint from "./BulletPoint";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import JobSection from "./JobSection";
+import ResumeHeader from "./ResumeHeader";
 
 function ResumeItemRenderer({
   id,
@@ -26,7 +27,17 @@ function ResumeItemRenderer({
   //TODO 8/26/2025: Probably don't need kind on these - maybe remove from the Props, or if it's needed there then make a new Props type for these?
   switch (kind) {
     case "personalInfo":
-      return;
+      const info = data.personalInfo[elementId];
+      return (
+        <ResumeHeader
+          id={info.id}
+          kind={info.kind}
+          fullName={info.fullName}
+          email={info.email}
+          phoneNumber={info.phoneNumber}
+          location={info.location}
+        />
+      );
     case "bulletPoint":
       const bp = data.bulletPoints[elementId];
 

@@ -3,6 +3,7 @@
 import BuilderColumn from "@/app/_components/BuilderColumn";
 import SideResume from "@/app/_components/SideResume";
 import { useScale } from "@/app/_context/ScaleContext";
+import { Metadata } from "next";
 
 //TODO 8/29/2025:
 //In the left column, a filter section that applies to data
@@ -18,6 +19,12 @@ Something like this, if Bullets were selected:
 "The only bullet points I want to see are from [particular job] or [particular job]"
 
 */
+
+//TODO 8/29/2025: this will not work in client components.
+//this component is only using useScale - will rework where the scaling is happening later
+// export const metadata: Metadata = {
+//   title: "Modular Builder",
+// };
 
 export default function Page() {
   const { scale } = useScale();

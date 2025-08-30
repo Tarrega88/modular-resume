@@ -85,21 +85,7 @@ export type EducationProps = {
 //which would start as false, but the user could mark anything to be hidden from not being an option to pick for that resume.
 
 //NOTE: id and object key will match except in the resumes object.
-//empty initialData:
-/*
-   // currentResumeId: "0",
-    // dragFromIndex: -1,
-    // dragToIndex: -1,
-    // dragHigher: true,
-    // data: {
-    //     prevJobs: {},
-    //     bulletPoints: {},
-    //     personalInfo: {},
-    //     education: {},
-    //     userLinks: {},
-    // },
-    // resumes: {}, 
-*/
+
 const initialState: ResumeState = {
     currentResumeId: "0",
     dragFromIndex: -1,
@@ -132,12 +118,14 @@ const initialState: ResumeState = {
             9: { id: "9", kind: "bulletPoint", text: "Designed responsive UI components using Tailwind CSS" },
 
         },
-        personalInfo: {},
+        personalInfo: {
+            0: { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: "City, ST" }
+        },
         education: {},
         userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
     },
     resumes: {
-        0: [{ id: "100", kind: "prevJob", elementId: "0" },
+        0: [{ id: "99", kind: "personalInfo", elementId: "0" }, { id: "100", kind: "prevJob", elementId: "0" },
         { id: "101", kind: "bulletPoint", elementId: "0" },
         { id: "102", kind: "bulletPoint", elementId: "1" },
         { id: "103", kind: "bulletPoint", elementId: "2" },
