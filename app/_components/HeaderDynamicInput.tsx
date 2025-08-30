@@ -3,14 +3,14 @@ import { editBulletPoint, Kinds } from "@/state/resumeSlice";
 import { useDispatch } from "react-redux";
 
 type Props = {
-  text?: string;
+  text: string;
   id?: string;
-  children: React.ReactNode;
   kind?: Kinds;
 };
 
-function HeaderDynamicInput({ text, id, children, kind }: Props) {
-  const [tempText, setTempText] = useState<string>(children?.toString() ?? "");
+function HeaderDynamicInput({ text, id, kind }: Props) {
+  //TODO 8/29/2025: consider how to handle default generation of ids for newly created sections.
+  const [tempText, setTempText] = useState(text);
   const [displayMode, setDisplayMode] = useState<"div" | "input">("div");
 
   const dispatch = useDispatch();

@@ -5,23 +5,15 @@ import DeleteElementButton from "./DeleteElementButton";
 import DropdownElement from "./DropdownElement";
 
 type Props = {
-  text?: string;
+  text: string;
   id: string;
-  children: React.ReactNode;
   options?: any[];
   kind: Kinds;
   renderIndex: number;
 };
 
-function DynamicInput({
-  text,
-  id,
-  options,
-  children,
-  kind,
-  renderIndex,
-}: Props) {
-  const [tempText, setTempText] = useState<string>(children?.toString() ?? "");
+function DynamicInput({ text = "", id, options, kind, renderIndex }: Props) {
+  const [tempText, setTempText] = useState(text);
   const [displayMode, setDisplayMode] = useState<"div" | "input">("div");
 
   const dispatch = useDispatch();

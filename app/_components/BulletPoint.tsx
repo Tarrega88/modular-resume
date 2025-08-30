@@ -23,9 +23,8 @@ function BulletPoint({
       kind={kind}
       id={id}
       renderIndex={renderIndex}
-    >
-      {text}
-    </DynamicInput>
+      text={text}
+    />
   );
 }
 
