@@ -160,6 +160,8 @@ const initialState: ResumeState = {
 
 //.data.bulletPoints
 
+//TODO 8/31/2025: Any future editing actions will need to take into account whether or not the id exists yet (Since I've allowed render items to not exist in the data object yet)
+
 const resumeSlice = createSlice({
     name: "resume",
     initialState,

@@ -12,6 +12,8 @@ type Props = {
   renderIndex: number;
 };
 
+//TODO 8/31/2025: decouple the bulletpoint logic up into bulletpoint component
+
 function DynamicInput({ text = "", id, options, kind, renderIndex }: Props) {
   const [tempText, setTempText] = useState(text);
   const [displayMode, setDisplayMode] = useState<"div" | "input">("div");
