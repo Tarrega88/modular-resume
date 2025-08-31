@@ -22,8 +22,9 @@ function DynamicInput({ text = "", id, options, kind, renderIndex }: Props) {
     setDisplayMode("input");
   }
 
-  function setDisplayToDiv() {
+  function handleBlur() {
     setDisplayMode("div");
+    dispatch(editBulletPoint({ id, text: tempText }));
   }
 
   function handleEnter(e: any) {
@@ -73,7 +74,7 @@ function DynamicInput({ text = "", id, options, kind, renderIndex }: Props) {
       autoFocus
       value={tempText}
       onChange={(e) => setTempText(e.target.value)}
-      onBlur={setDisplayToDiv}
+      onBlur={handleBlur}
       onKeyDown={handleEnter}
     />
   );

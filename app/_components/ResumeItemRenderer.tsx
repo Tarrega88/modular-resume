@@ -52,6 +52,7 @@ function ResumeItemRenderer({
       };
       return (
         <BulletPoint
+          key={bp.text}
           id={bp.id}
           kind={bp.kind}
           text={bp.text}
