@@ -167,10 +167,15 @@ const resumeSlice = createSlice({
         setCurrentResume(state, action: PayloadAction<string>) {
             state.currentResumeId = action.payload;
         },
+        createEmptyResume(state) {
+            const { currentResumeId } = state;
+            state.resumes[currentResumeId] = [];
+        },
         addResumeItem(state, action: PayloadAction<{ kind: Kinds, elementId: string }>) {
-            const { currentResumeId, resumes } = state;
+            const { currentResumeId } = state;
             const { kind, elementId } = action.payload;
-            resumes[currentResumeId].push({ id: crypto.randomUUID(), kind, elementId })
+
+            state.resumes[currentResumeId].push({ id: crypto.randomUUID(), kind, elementId })
         },
         addPersonalInfoData(state, action: PayloadAction<PersonalInfoProps>) {
             const { id } = action.payload;
@@ -222,5 +227,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume } = resumeSlice.actions;
 export default resumeSlice.reducer;
