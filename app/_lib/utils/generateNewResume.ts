@@ -11,6 +11,8 @@ import {
     PrevJobProps,
     Kinds,
     createEmptyResume,
+    EducationProps,
+    addEducationData,
 } from "@/state/resumeSlice";
 
 const newResumeRenderItems: Kinds[] = [
@@ -55,6 +57,14 @@ export function generateNewResume(dispatch: Function, userInfo: any): string {
                 break;
             }
 
+            case "education": {
+                const educationData: EducationProps = {
+                    id, kind, schoolName: "University Name", degree: "Level of Degree", fieldOfStudy: "Field of Study"
+                };
+                dispatch(addEducationData(educationData));
+                dispatch(addResumeItem({ kind, elementId: id }));
+                break;
+            }
             case "prevJob": {
                 const prevJobData: PrevJobProps = {
                     id,
