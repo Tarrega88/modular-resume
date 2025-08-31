@@ -1,4 +1,4 @@
-import SideResume from "@/app/_components/SideResume";
+import ViewResume from "@/app/_components/ViewResume";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 function Page() {
   return (
     <div className="resume-page">
-      <SideResume scale={1} />
+      <ViewResume />
     </div>
   );
 }

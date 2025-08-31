@@ -1,8 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ParamValue } from "next/dist/server/request/params";
-
-
-
 
 type ID = string;
 
@@ -157,10 +153,11 @@ const resumeSlice = createSlice({
         setCurrentResume(state, action: PayloadAction<string>) {
             state.currentResumeId = action.payload;
         },
-        // addBulletPoint(state, action: PayloadAction<string>) {
-        //     const id = crypto.randomUUID();
-        //     state.data.bulletPoints[id] = { id, kind: "bulletPoint", text: action.payload };
-        // },
+        addResumeItem(state, action: PayloadAction<{ kind: Kinds, elementId: string }>) {
+            const { currentResumeId, resumes } = state;
+            const { kind, elementId } = action.payload;
+            resumes[currentResumeId].push({ id: crypto.randomUUID(), kind, elementId })
+        },
         editBulletPoint(state, action: PayloadAction<{ id: string; text: string; }>) {
             const { id, text } = action.payload;
             state.data.bulletPoints[id].text = text;
@@ -195,5 +192,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem } = resumeSlice.actions;
 export default resumeSlice.reducer;

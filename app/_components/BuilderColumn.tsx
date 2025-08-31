@@ -1,8 +1,14 @@
+"use client";
+
+import { useDispatch } from "react-redux";
 import { MAX, MIN, useScale } from "../_context/ScaleContext";
 import BulletSelect from "./BulletSelect";
+import { addResumeItem } from "@/state/resumeSlice";
 
 function BuilderColumn() {
   const { scale, setScale } = useScale();
+
+  const dispatch = useDispatch();
   // function handleSetScale() {
   //   setScale(scale )
   // }
@@ -38,6 +44,14 @@ function BuilderColumn() {
       </div>
 
       <BulletSelect />
+      {/* <button
+        className="bg-sky-400 cursor-pointer hover:bg-sky-300 transition-all duration-150"
+        onClick={() =>
+          dispatch(addResumeItem({ kind: "prevJob", elementId: "0" }))
+        }
+      >
+        Add Item
+      </button> */}
     </div>
   );
 }

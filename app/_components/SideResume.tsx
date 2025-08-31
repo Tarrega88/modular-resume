@@ -1,8 +1,11 @@
 "use client";
 
+import { useScale } from "../_context/ScaleContext";
 import SideResumeInner from "./SideResumeInner";
 
-export default function SideResume({ scale }: { scale: number }) {
+export default function SideResume() {
+  const { scale } = useScale();
+
   return (
     <div
       style={{
