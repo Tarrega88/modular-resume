@@ -11,9 +11,7 @@ function ResumeItemRenderer({
   elementId,
   renderIndex,
 }: ResumeItemProps & { renderIndex: number }) {
-  const { data, resumes, dragFromIndex, dragToIndex } = useSelector(
-    (state: RootState) => state.resume
-  );
+  const { data } = useSelector((state: RootState) => state.resume);
 
   // console.log(`RESUMES`);
   // console.log(resumes);
@@ -27,7 +25,15 @@ function ResumeItemRenderer({
   //TODO 8/26/2025: Probably don't need kind on these - maybe remove from the Props, or if it's needed there then make a new Props type for these?
   switch (kind) {
     case "personalInfo":
-      const info = data.personalInfo[elementId];
+      const info = data?.personalInfo[elementId] || {
+        id: elementId,
+        kind: "personalInfo",
+        fullName: "Full Name",
+        email: "email@email.com",
+        phoneNumber: "(123) 456-7890",
+        location: "City, ST",
+      };
+
       return (
         <ResumeHeader
           id={info.id}
@@ -39,8 +45,11 @@ function ResumeItemRenderer({
         />
       );
     case "bulletPoint":
-      const bp = data.bulletPoints[elementId];
-
+      const bp = data?.bulletPoints[elementId] || {
+        id: elementId,
+        kind: "bulletPoint",
+        text: "Enter Bullet Point Text...",
+      };
       return (
         <BulletPoint
           id={bp.id}
@@ -62,7 +71,17 @@ function ResumeItemRenderer({
         yearStarted,
         monthEnded,
         yearEnded,
-      } = data.prevJobs[elementId];
+      } = data?.prevJobs[elementId] || {
+        id: elementId,
+        companyName: "Company Name",
+        jobTitle: "Job Title",
+        kind: "prevJob",
+        location: "City, ST",
+        monthStarted: "Jan",
+        yearStarted: 2024,
+        monthEnded: "Dec",
+        yearEnded: 2025,
+      };
 
       return (
         <JobSection

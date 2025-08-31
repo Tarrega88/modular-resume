@@ -23,65 +23,67 @@ const newResumeRenderItems: Kinds[] = [
     "bulletPoint",
 ];
 
-export function generateNewResume(dispatch: Function, userInfo: any): string {
+export function generateNewResume(dispatch: Function): string {
     const newResumeId = crypto.randomUUID();
     dispatch(setCurrentResume(newResumeId));
     dispatch(createEmptyResume());
 
     for (const kind of newResumeRenderItems) {
-        const id = crypto.randomUUID();
 
-        switch (kind) {
-            case "personalInfo": {
-                const personalInfoData: PersonalInfoProps = {
-                    id,
-                    kind,
-                    fullName: userInfo.fullName,
-                    email: userInfo.email,
-                    phoneNumber: userInfo.phoneNumber,
-                    location: userInfo.location,
-                };
-                dispatch(addPersonalInfoData(personalInfoData));
-                dispatch(addResumeItem({ kind, elementId: id }));
-                break;
-            }
+        dispatch(addResumeItem({ kind, elementId: null }));
 
-            case "bulletPoint": {
-                const bulletPointData: BulletPointProps = {
-                    id,
-                    kind,
-                    text: "Enter your bullet point text here....",
-                };
-                dispatch(addBulletData(bulletPointData));
-                dispatch(addResumeItem({ kind, elementId: id }));
-                break;
-            }
+        // const id = crypto.randomUUID();
+        // switch (kind) {
+        //     case "personalInfo": {
+        //         const personalInfoData: PersonalInfoProps = {
+        //             id,
+        //             kind,
+        //             fullName: userInfo.fullName,
+        //             email: userInfo.email,
+        //             phoneNumber: userInfo.phoneNumber,
+        //             location: userInfo.location,
+        //         };
+        //         // dispatch(addPersonalInfoData(personalInfoData));
+        //         dispatch(addResumeItem({ kind, elementId: null }));
+        //         break;
+        //     }
 
-            case "education": {
-                const educationData: EducationProps = {
-                    id, kind, schoolName: "University Name", degree: "Level of Degree", fieldOfStudy: "Field of Study"
-                };
-                dispatch(addEducationData(educationData));
-                dispatch(addResumeItem({ kind, elementId: id }));
-                break;
-            }
-            case "prevJob": {
-                const prevJobData: PrevJobProps = {
-                    id,
-                    kind,
-                    companyName: "Company Name",
-                    jobTitle: "Your Job Title",
-                    location: "City, ST",
-                    monthStarted: "Jan",
-                    yearStarted: 2024,
-                    monthEnded: "Dec",
-                    yearEnded: 2025,
-                };
-                dispatch(addPrevJobData(prevJobData));
-                dispatch(addResumeItem({ kind, elementId: id }));
-                break;
-            }
-        }
+        //     case "bulletPoint": {
+        //         const bulletPointData: BulletPointProps = {
+        //             id,
+        //             kind,
+        //             text: "Enter your bullet point text here....",
+        //         };
+        //         // dispatch(addBulletData(bulletPointData));
+        //         dispatch(addResumeItem({ kind, elementId: null }));
+        //         break;
+        //     }
+
+        //     case "education": {
+        //         const educationData: EducationProps = {
+        //             id, kind, schoolName: "University Name", degree: "Level of Degree", fieldOfStudy: "Field of Study"
+        //         };
+        //         // dispatch(addEducationData(educationData));
+        //         dispatch(addResumeItem({ kind, elementId: null }));
+        //         break;
+        //     }
+        //     case "prevJob": {
+        //         const prevJobData: PrevJobProps = {
+        //             id,
+        //             kind,
+        //             companyName: "Company Name",
+        //             jobTitle: "Your Job Title",
+        //             location: "City, ST",
+        //             monthStarted: "Jan",
+        //             yearStarted: 2024,
+        //             monthEnded: "Dec",
+        //             yearEnded: 2025,
+        //         };
+        //         // dispatch(addPrevJobData(prevJobData));
+        //         dispatch(addResumeItem({ kind, elementId: null }));
+        //         break;
+        //     }
+        // }
     }
 
     return newResumeId;

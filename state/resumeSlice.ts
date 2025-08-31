@@ -171,11 +171,16 @@ const resumeSlice = createSlice({
             const { currentResumeId } = state;
             state.resumes[currentResumeId] = [];
         },
-        addResumeItem(state, action: PayloadAction<{ kind: Kinds, elementId: string }>) {
+        addResumeItem(state, action: PayloadAction<{ kind: Kinds, elementId: string | null }>) {
             const { currentResumeId } = state;
             const { kind, elementId } = action.payload;
 
-            state.resumes[currentResumeId].push({ id: crypto.randomUUID(), kind, elementId })
+            if (elementId === null) {
+                state.resumes[currentResumeId].push({ id: crypto.randomUUID(), kind, elementId: crypto.randomUUID() })
+            } else {
+                state.resumes[currentResumeId].push({ id: crypto.randomUUID(), kind, elementId })
+            }
+
         },
         addPersonalInfoData(state, action: PayloadAction<PersonalInfoProps>) {
             const { id } = action.payload;
@@ -195,7 +200,11 @@ const resumeSlice = createSlice({
         },
         editBulletPoint(state, action: PayloadAction<{ id: string; text: string; }>) {
             const { id, text } = action.payload;
-            state.data.bulletPoints[id].text = text;
+            if (id in state.data.bulletPoints) {
+                state.data.bulletPoints[id].text = text;
+            } else {
+                state.data.bulletPoints[id] = { id, kind: "bulletPoint", text }
+            }
         },
         changeBulletPoint(state, action: PayloadAction<{ renderIndex: number; id: string; }>) {
             const currentResume = state.currentResumeId;
