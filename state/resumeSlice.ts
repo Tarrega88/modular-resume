@@ -10,7 +10,11 @@ export type ResumeItemProps = {
     elementId: ID;
 }
 
-
+export type UserLinkProps = {
+    id: string;
+    text: string;
+    url: string;
+}
 // type ResumeItem =
 //     | { id: ID; kind: "bulletPoint"; elementId: ID }
 //     | { id: ID; kind: "prevJob"; elementId: ID };
@@ -20,6 +24,13 @@ type ResumeState = {
     dragFromIndex: number;
     dragToIndex: number;
     dragHigher: boolean;
+    userInfo: {
+        fullName: string;
+        email: string;
+        phoneNumber: string;
+        location: string;
+        userLinks: UserLinkProps[];
+    },
     data: {
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
@@ -30,11 +41,7 @@ type ResumeState = {
     resumes: Record<ID, ResumeItemProps[]>;
 }
 
-export type UserLinkProps = {
-    id: string;
-    text: string;
-    url: string;
-}
+
 
 export type PersonalInfoProps = {
     id: string;
@@ -87,6 +94,13 @@ const initialState: ResumeState = {
     dragFromIndex: -1,
     dragToIndex: -1,
     dragHigher: true,
+    userInfo: {
+        fullName: "Full Name",
+        email: "email@email.com",
+        phoneNumber: "(123) 456-7890",
+        location: "City, ST",
+        userLinks: []
+    },
     data: {
         prevJobs: {
             0: {
@@ -158,6 +172,22 @@ const resumeSlice = createSlice({
             const { kind, elementId } = action.payload;
             resumes[currentResumeId].push({ id: crypto.randomUUID(), kind, elementId })
         },
+        addPersonalInfoData(state, action: PayloadAction<PersonalInfoProps>) {
+            const { id } = action.payload;
+            state.data.personalInfo[id] = action.payload;
+        },
+        addBulletData(state, action: PayloadAction<BulletPointProps>) {
+            const { id } = action.payload;
+            state.data.bulletPoints[id] = action.payload;
+        },
+        addPrevJobData(state, action: PayloadAction<PrevJobProps>) {
+            const { id } = action.payload;
+            state.data.prevJobs[id] = action.payload;
+        },
+        addEducationData(state, action: PayloadAction<EducationProps>) {
+            const { id } = action.payload;
+            state.data.education[id] = action.payload;
+        },
         editBulletPoint(state, action: PayloadAction<{ id: string; text: string; }>) {
             const { id, text } = action.payload;
             state.data.bulletPoints[id].text = text;
@@ -192,5 +222,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData } = resumeSlice.actions;
 export default resumeSlice.reducer;
