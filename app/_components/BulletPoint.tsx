@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DynamicInput from "./DynamicInput";
-import { BulletPointProps } from "@/state/resumeSlice";
+import { BulletPointProps, editBulletPoint } from "@/state/resumeSlice";
 import { RootState } from "@/state/store";
 
 function BulletPoint({
@@ -13,9 +13,15 @@ function BulletPoint({
   //   (state: RootState) => state.resume
   // );
 
+  const dispatch = useDispatch();
+
   const options = Object.values(
     useSelector((state: RootState) => state.resume.data.bulletPoints)
   );
+
+  function editData(id: string, text: string) {
+    dispatch(editBulletPoint({ id, text }));
+  }
 
   return (
     <DynamicInput
@@ -24,6 +30,7 @@ function BulletPoint({
       id={id}
       renderIndex={renderIndex}
       text={text}
+      editData={editData}
     />
   );
 }

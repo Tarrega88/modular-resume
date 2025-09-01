@@ -1,6 +1,5 @@
-import { editBulletPoint, Kinds } from "@/state/resumeSlice";
+import { Kinds } from "@/state/resumeSlice";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import DeleteElementButton from "./DeleteElementButton";
 import DropdownElement from "./DropdownElement";
 
@@ -10,15 +9,21 @@ type Props = {
   options?: any[];
   kind: Kinds;
   renderIndex: number;
+  editData(id: string, text: string): void;
 };
 
 //TODO 8/31/2025: decouple the bulletpoint logic up into bulletpoint component
 
-function DynamicInput({ text = "", id, options, kind, renderIndex }: Props) {
+function DynamicInput({
+  text = "",
+  id,
+  options,
+  kind,
+  renderIndex,
+  editData,
+}: Props) {
   const [tempText, setTempText] = useState(text);
   const [displayMode, setDisplayMode] = useState<"div" | "input">("div");
-
-  const dispatch = useDispatch();
 
   function setDisplayToInput() {
     setDisplayMode("input");
@@ -26,13 +31,13 @@ function DynamicInput({ text = "", id, options, kind, renderIndex }: Props) {
 
   function handleBlur() {
     setDisplayMode("div");
-    dispatch(editBulletPoint({ id, text: tempText }));
+    editData(id, tempText);
   }
 
   function handleEnter(e: any) {
     if (e.key === "Enter") {
       setDisplayMode("div");
-      dispatch(editBulletPoint({ id, text: tempText }));
+      editData(id, tempText);
     }
   }
 
