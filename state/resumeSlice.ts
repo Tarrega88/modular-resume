@@ -10,6 +10,8 @@ export type ResumeItemProps = {
     elementId: ID;
 }
 
+export type TextEdit = PayloadAction<{ id: string; text: string; }>
+
 export type UserLinkProps = {
     id: string;
     text: string;
@@ -82,6 +84,7 @@ export type EducationProps = {
     gpa?: string;
 };
 
+const prevJobDefaults: PrevJobProps = { id: "", kind: "prevJob", companyName: "Company Name", location: "City, ST", jobTitle: "Job Title", monthStarted: "Jan", yearStarted: 2024, monthEnded: "Dec", yearEnded: 2025 }
 
 
 //data will store all data across multiple resumes - might add a "hidden" boolean to everything,
@@ -200,12 +203,20 @@ const resumeSlice = createSlice({
             const { id } = action.payload;
             state.data.education[id] = action.payload;
         },
-        editBulletPoint(state, action: PayloadAction<{ id: string; text: string; }>) {
+        editBulletPoint(state, action: TextEdit) {
             const { id, text } = action.payload;
             if (id in state.data.bulletPoints) {
                 state.data.bulletPoints[id].text = text;
             } else {
                 state.data.bulletPoints[id] = { id, kind: "bulletPoint", text }
+            }
+        },
+        editJobTitle(state, action: TextEdit) {
+            const { id, text } = action.payload;
+            if (id in state.data.prevJobs) {
+                state.data.prevJobs[id].jobTitle = text;
+            } else {
+                state.data.prevJobs[id] = { ...prevJobDefaults, id, jobTitle: text }
             }
         },
         changeBulletPoint(state, action: PayloadAction<{ renderIndex: number; id: string; }>) {
@@ -238,5 +249,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle } = resumeSlice.actions;
 export default resumeSlice.reducer;

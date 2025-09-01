@@ -12,7 +12,11 @@ type Props = {
   editData(id: string, text: string): void;
 };
 
-//TODO 8/31/2025: decouple the bulletpoint logic up into bulletpoint component
+//TODO 8/31/2025: After decoupling and seeing how this looks on other parts of the resume,
+// I realized this might just be best suited for bullet points.
+//So I think I'm going to make other types of DynamicInputs,
+// otherwise this will start taking in more props and getting needlessly complex
+//Which means... maybe the component BulletPoint should eat this component at some point.
 
 function DynamicInput({
   text = "",
