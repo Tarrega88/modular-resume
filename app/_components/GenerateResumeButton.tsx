@@ -1,19 +1,37 @@
 "use client";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import type { RootState } from "@/state/store";
-import { generateNewResume } from "../_lib/utils/generateNewResume";
+import {
+  addResumeItem,
+  createEmptyResume,
+  Kinds,
+  setCurrentResume,
+} from "@/state/resumeSlice";
+
+const newResumeRenderItems: Kinds[] = [
+  "personalInfo",
+  "prevJob",
+  "bulletPoint",
+  "bulletPoint",
+  "bulletPoint",
+];
 
 export default function GenerateResumeButton() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { userInfo } = useSelector((s: RootState) => s.resume);
 
-  const handleClick = () => {
-    const newResumeId = generateNewResume(dispatch, userInfo);
+  function handleClick() {
+    const newResumeId = crypto.randomUUID();
+    dispatch(setCurrentResume(newResumeId));
+    dispatch(createEmptyResume());
+
+    for (const kind of newResumeRenderItems) {
+      dispatch(addResumeItem({ kind, elementId: null }));
+    }
+
     router.push(`/builder/${newResumeId}`);
-  };
+  }
 
   return <button onClick={handleClick}>Generate New Resume</button>;
 }

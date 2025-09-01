@@ -26,14 +26,14 @@ type ResumeState = {
     dragFromIndex: number;
     dragToIndex: number;
     dragHigher: boolean;
-    userInfo: {
-        fullName: string;
-        email: string;
-        phoneNumber: string;
-        location: string;
-        userLinks: UserLinkProps[];
-    },
     data: {
+        userInfo: {
+            fullName: string;
+            email: string;
+            phoneNumber: string;
+            location: string;
+            userLinks: UserLinkProps[];
+        },
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
         personalInfo: Record<ID, PersonalInfoProps>;
@@ -97,14 +97,15 @@ const initialState: ResumeState = {
     dragFromIndex: -1,
     dragToIndex: -1,
     dragHigher: true,
-    userInfo: {
-        fullName: "Full Name",
-        email: "email@email.com",
-        phoneNumber: "(123) 456-7890",
-        location: "City, ST",
-        userLinks: []
-    },
     data: {
+        userInfo: {
+            fullName: "Full Name",
+            email: "email@email.com",
+            phoneNumber: "(123) 456-7890",
+            location: "City, ST",
+            userLinks: []
+        },
+
         prevJobs: {
             0: {
                 id: "0",

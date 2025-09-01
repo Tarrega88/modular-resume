@@ -1,7 +1,8 @@
-import { editJobTitle, PrevJobProps } from "@/state/resumeSlice";
-import DynamicInput from "./DynamicInput";
-import { useDispatch, useSelector } from "react-redux";
+import { PrevJobProps } from "@/state/resumeSlice";
+import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
+import JobTitleInput from "./JobTitleInput";
+import JobLocationInput from "./JobLocationInput";
 
 function JobSection({
   id,
@@ -15,14 +16,9 @@ function JobSection({
   yearEnded,
   renderIndex,
 }: PrevJobProps & { renderIndex: number }) {
-  const dispatch = useDispatch();
-  function handleEditJobTitle(id: string, text: string) {
-    dispatch(editJobTitle({ id, text }));
-  }
-
-  const { data, resumes, currentResumeId } = useSelector(
-    (state: RootState) => state.resume
-  );
+  // const { data, resumes, currentResumeId } = useSelector(
+  //   (state: RootState) => state.resume
+  // );
 
   return (
     <div>
@@ -33,15 +29,8 @@ function JobSection({
         </div>
       </div>
       <div className="flex justify-between">
-        <DynamicInput
-          id={id}
-          kind={kind}
-          text={jobTitle}
-          renderIndex={renderIndex}
-          editData={handleEditJobTitle}
-        />
-        {/* <div>{jobTitle}</div> */}
-        <div>{location}</div>
+        <JobTitleInput text={jobTitle} id={id} />
+        <JobLocationInput text={location} id={id} />
       </div>
       {/* <div>Bullet Points would go here</div> */}
     </div>
