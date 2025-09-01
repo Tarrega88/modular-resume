@@ -17,6 +17,7 @@ export type UserLinkProps = {
     text: string;
     url: string;
 }
+
 // type ResumeItem =
 //     | { id: ID; kind: "bulletPoint"; elementId: ID }
 //     | { id: ID; kind: "prevJob"; elementId: ID };
@@ -34,6 +35,7 @@ type ResumeState = {
             location: string;
             userLinks: UserLinkProps[];
         },
+        locations: string[];
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
         personalInfo: Record<ID, PersonalInfoProps>;
@@ -105,7 +107,7 @@ const initialState: ResumeState = {
             location: "City, ST",
             userLinks: []
         },
-
+        locations: ["Anchorage, AK", "Boulder, CO"],
         prevJobs: {
             0: {
                 id: "0",
@@ -246,9 +248,14 @@ const resumeSlice = createSlice({
         },
         setDragHigher(state, action: PayloadAction<boolean>) {
             state.dragHigher = action.payload;
+        },
+        addLocation(state, action: PayloadAction<string>) {
+            const lowerLocations = state.data.locations.map(e => e.toLowerCase());
+            if (lowerLocations.includes(action.payload.toLowerCase())) return;
+            state.data.locations.push(action.payload);
         }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, addLocation } = resumeSlice.actions;
 export default resumeSlice.reducer;
