@@ -26,7 +26,7 @@ function DropdownElement({ options, kind, id, renderIndex }: TempProps) {
 
   return (
     <select
-      className="w-4 focus:outline-none h-4 cursor-pointer hover:text-gray-500 transition-all duration-150"
+      className="w-4 focus:outline-none cursor-pointer hover:text-gray-500 transition-all duration-150"
       onChange={onChange}
       value={id}
     >

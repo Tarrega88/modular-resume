@@ -42,17 +42,15 @@ function JobLocationInput({
     />
   ) : (
     <div
-      className="group relative w-1/2 text-right hover:bg-sky-50"
+      className="group relative w-1/2 text-right hover:bg-sky-50 h-full"
       onClick={() => setShowInput(true)}
     >
       <div>{tempText}</div>
       <div
-        className="
-      absolute top-1/2 -right-6 -translate-y-1/2
-      opacity-0 group-hover:opacity-100 hover:opacity-100
+        className="absolute top-1/2 -translate-y-1/2 -right-5 opacity-0
+       group-hover:opacity-100 hover:opacity-100
       transition-opacity
-      pointer-events-none
-    "
+      pointer-events-none"
       >
         <div
           className="pointer-events-auto"
