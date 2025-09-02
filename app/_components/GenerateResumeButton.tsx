@@ -27,6 +27,8 @@ export default function GenerateResumeButton() {
     dispatch(createEmptyResume());
 
     for (const kind of newResumeRenderItems) {
+      const id = crypto.randomUUID();
+
       dispatch(addResumeItem({ kind, elementId: null }));
     }
 

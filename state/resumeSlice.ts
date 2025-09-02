@@ -89,8 +89,11 @@ export type EducationProps = {
     gpa?: string;
 };
 
-export const locationDefaults: Location = { id: "0", text: "City, ST" }
-export const prevJobDefaults: PrevJobProps = { id: "0", kind: "prevJob", companyName: "Company Name", location: locationDefaults, jobTitle: "Job Title", monthStarted: "Jan", yearStarted: 2024, monthEnded: "Dec", yearEnded: 2025 }
+export const locationDefault: Location = { id: "0", text: "City, ST" }
+export const prevJobDefault: PrevJobProps = { id: "0", kind: "prevJob", companyName: "Company Name", location: locationDefault, jobTitle: "Job Title", monthStarted: "Jan", yearStarted: 2024, monthEnded: "Dec", yearEnded: 2025 }
+export const personalInfoDefault: PersonalInfoProps = { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: locationDefault }
+export const bulletPointDefault: BulletPointProps = { id: "0", kind: "bulletPoint", text: "Enter Bullet Point Text Here" }
+
 
 
 //data will store all data across multiple resumes - might add a "hidden" boolean to everything,
@@ -113,7 +116,7 @@ const initialState: ResumeState = {
         },
         locations: { 1: { id: "1", text: "Anchorage, AK" }, 2: { id: "2", text: "Boulder, CO" } },
         prevJobs: {
-            0: prevJobDefaults
+            0: prevJobDefault
         },
         bulletPoints: {
             0: { id: "0", kind: "bulletPoint", text: "Built software for ABC company" },
@@ -129,7 +132,7 @@ const initialState: ResumeState = {
 
         },
         personalInfo: {
-            0: { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: locationDefaults }
+            0: { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: locationDefault }
         },
         education: {},
         userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
