@@ -27,9 +27,11 @@ export default function GenerateResumeButton() {
 
   const state = useSelector((state: RootState) => state.resume.data);
 
-  const { userInfo, locations } = state;
+  const { userInfo } = state;
 
   const { fullName, email, location, phoneNumber, userLinks } = userInfo;
+
+  console.log(userInfo);
 
   function handleClick() {
     const newResumeId = crypto.randomUUID();
@@ -49,10 +51,7 @@ export default function GenerateResumeButton() {
               fullName: fullName || "Full Name",
               email: email || "email@email.com",
               phoneNumber: phoneNumber || "(123) 456-7890",
-              location: location || {
-                id: crypto.randomUUID(),
-                text: "City, ST",
-              },
+              location: location || "City, ST",
             })
           );
           break;
@@ -63,10 +62,7 @@ export default function GenerateResumeButton() {
               kind,
               companyName: "Company Name",
               jobTitle: "Job Title",
-              location: location || {
-                id: crypto.randomUUID(),
-                text: "City, ST",
-              },
+              location: location || "City, ST",
               monthStarted: "Jan",
               monthEnded: "Dec",
               yearStarted: 2024,

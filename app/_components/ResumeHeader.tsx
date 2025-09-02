@@ -25,7 +25,7 @@ function ResumeHeader({
         <div className="grid grid-cols-[3fr_2fr_2fr]">
           <HeaderDynamicInput text={email} />
           <HeaderDynamicInput text={phoneNumber} />
-          <HeaderDynamicInput text={location.text} />
+          <HeaderDynamicInput text={location} />
         </div>
         <div className="flex justify-end gap-8">
           {/* <UserLink />

@@ -22,10 +22,6 @@ export type UserLinkProps = {
 //     | { id: ID; kind: "bulletPoint"; elementId: ID }
 //     | { id: ID; kind: "prevJob"; elementId: ID };
 
-export type Location = {
-    text: string;
-    id: string;
-}
 
 type ResumeState = {
     currentResumeId: string;
@@ -37,10 +33,9 @@ type ResumeState = {
             fullName: string;
             email: string;
             phoneNumber: string;
-            location: Location;
+            location: string;
             userLinks: UserLinkProps[];
         },
-        locations: Record<ID, Location>;
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
         personalInfo: Record<ID, PersonalInfoProps>;
@@ -56,7 +51,7 @@ export type PersonalInfoProps = {
     fullName: string;
     email: string;
     phoneNumber: string;
-    location: Location;
+    location: string;
     link1?: UserLinkProps;
     link2?: UserLinkProps;
 }
@@ -66,7 +61,7 @@ export type PrevJobProps = {
     kind: "prevJob";
     companyName: string;
     jobTitle: string;
-    location: Location;
+    location: string;
     monthStarted: string;
     yearStarted: number;
     monthEnded: string;
@@ -85,11 +80,11 @@ export type EducationProps = {
     yearStarted?: number;
     monthEnded?: string;
     yearEnded?: number;
-    location?: Location;
+    location?: string;
     gpa?: string;
 };
 
-export const locationDefault: Location = { id: "0", text: "City, ST" }
+export const locationDefault: string = "City, ST";
 export const prevJobDefault: PrevJobProps = { id: "0", kind: "prevJob", companyName: "Company Name", location: locationDefault, jobTitle: "Job Title", monthStarted: "Jan", yearStarted: 2024, monthEnded: "Dec", yearEnded: 2025 }
 export const personalInfoDefault: PersonalInfoProps = { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: locationDefault }
 export const bulletPointDefault: BulletPointProps = { id: "0", kind: "bulletPoint", text: "Enter Bullet Point Text Here" }
@@ -111,10 +106,9 @@ const initialState: ResumeState = {
             fullName: "Michael See",
             email: "michaelseedev@gmail.com",
             phoneNumber: "(123) 456-7890",
-            location: { id: "1", text: "Anchorage, AK" },
+            location: "Anchorage, AK",
             userLinks: []
         },
-        locations: { 1: { id: "1", text: "Anchorage, AK" }, 2: { id: "2", text: "Boulder, CO" } },
         prevJobs: {
             0: prevJobDefault
         },
@@ -248,22 +242,10 @@ const resumeSlice = createSlice({
         setDragHigher(state, action: PayloadAction<boolean>) {
             state.dragHigher = action.payload;
         },
-        changePrevJobLocation(state, action: PayloadAction<{ id: string; locationId: string }>) {
-            const { currentResumeId, resumes } = state;
-            const { id, locationId } = action.payload;
 
-            const locationData = state.data.locations[locationId];
 
-            state.data.prevJobs[id].location = locationData;
-
-        },
-        // addLocation(state, action: PayloadAction<string>) {
-        //     const lowerLocations = state.data.locations.map(e => e.toLowerCase());
-        //     if (lowerLocations.includes(action.payload.toLowerCase())) return;
-        //     state.data.locations.push(action.payload);
-        // }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, changePrevJobLocation } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle } = resumeSlice.actions;
 export default resumeSlice.reducer;
