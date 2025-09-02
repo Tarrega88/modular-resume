@@ -1,27 +1,45 @@
-import { changeBulletPoint, Kinds } from "@/state/resumeSlice";
+import {
+  changeBulletPoint,
+  changePrevJobLocation,
+  Kinds,
+} from "@/state/resumeSlice";
+import { RootState } from "@/state/store";
 import { useState } from "react";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 type TempProps = {
   options?: any[];
   kind: Kinds;
   id: string;
   renderIndex: number;
+  field?: string;
 };
 
-function DropdownElement({ options, kind, id, renderIndex }: TempProps) {
+function DropdownElement({ options, kind, id, renderIndex, field }: TempProps) {
   const dispatch = useDispatch();
 
   function onChange(e: any) {
-    switch (kind) {
-      case "bulletPoint":
+    switch (true) {
+      case kind === "bulletPoint":
         dispatch(changeBulletPoint({ renderIndex, id: e.target.value }));
         // changeBulletPoint(resumeId);
-        return;
-      case "prevJob":
-        return;
+        break;
+      case kind === "prevJob" && field === "location":
+        dispatch(changePrevJobLocation({ id: e.target.value, renderIndex }));
+        break;
     }
+  }
+
+  const { data, resumes } = useSelector((state: RootState) => state.resume);
+
+  if (kind === "prevJob") {
+    console.log("DATA");
+    console.log(data);
+    console.log("RESUMES");
+    console.log(resumes);
+
+    console.log(`ID: ${id}`);
   }
 
   return (

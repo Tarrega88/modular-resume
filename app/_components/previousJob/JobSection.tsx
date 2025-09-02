@@ -20,6 +20,10 @@ function JobSection({
   //   (state: RootState) => state.resume
   // );
 
+  const { locations } = useSelector((state: RootState) => state.resume.data);
+
+  const locationOptions = Object.values(locations);
+
   return (
     <div>
       <div className="flex justify-between text-lg font-semibold">
@@ -34,6 +38,8 @@ function JobSection({
           text={location.text}
           id={id}
           renderIndex={renderIndex}
+          locations={locationOptions}
+          key={id}
         />
       </div>
       {/* <div>Bullet Points would go here</div> */}

@@ -64,6 +64,11 @@ function ResumeItemRenderer({
     case "education":
       return;
     case "prevJob":
+      // console.log("PREVJOBDATA");
+      // console.log(data.prevJobs);
+      // console.log(elementId);
+      //TODO 9/2/2025 - since no id exists yet on brand new items - a check must be made on the id.
+      // If it is blank then a new id should be injected into state.
       const {
         companyName,
         id,

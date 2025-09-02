@@ -22,7 +22,7 @@ export type UserLinkProps = {
 //     | { id: ID; kind: "bulletPoint"; elementId: ID }
 //     | { id: ID; kind: "prevJob"; elementId: ID };
 
-type Location = {
+export type Location = {
     text: string;
     id: string;
 }
@@ -49,8 +49,6 @@ type ResumeState = {
     };
     resumes: Record<ID, ResumeItemProps[]>;
 }
-
-
 
 export type PersonalInfoProps = {
     id: string;
@@ -92,7 +90,7 @@ export type EducationProps = {
 };
 
 export const locationDefaults: Location = { id: "0", text: "City, ST" }
-export const prevJobDefaults: PrevJobProps = { id: "", kind: "prevJob", companyName: "Company Name", location: locationDefaults, jobTitle: "Job Title", monthStarted: "Jan", yearStarted: 2024, monthEnded: "Dec", yearEnded: 2025 }
+export const prevJobDefaults: PrevJobProps = { id: "0", kind: "prevJob", companyName: "Company Name", location: locationDefaults, jobTitle: "Job Title", monthStarted: "Jan", yearStarted: 2024, monthEnded: "Dec", yearEnded: 2025 }
 
 
 //data will store all data across multiple resumes - might add a "hidden" boolean to everything,
@@ -113,7 +111,7 @@ const initialState: ResumeState = {
             location: { id: "1", text: "Anchorage, AK" },
             userLinks: []
         },
-        locations: { 0: { id: "1", text: "Anchorage, AK" }, 1: { id: "2", text: "Boulder, CO" } },
+        locations: { 1: { id: "1", text: "Anchorage, AK" }, 2: { id: "2", text: "Boulder, CO" } },
         prevJobs: {
             0: prevJobDefaults
         },
@@ -159,10 +157,12 @@ const initialState: ResumeState = {
     },
 
 };
-
 //.data.bulletPoints
 
 //TODO 8/31/2025: Any future editing actions will need to take into account whether or not the id exists yet (Since I've allowed render items to not exist in the data object yet)
+
+//TODO 9/2/2025: Switch resume generation logic back to creating actual data instead of the null elementId
+//It will make it so there's a lot of "blank" looking data but I can just hide that from the dropdowns until it's different.
 
 const resumeSlice = createSlice({
     name: "resume",
@@ -245,6 +245,11 @@ const resumeSlice = createSlice({
         setDragHigher(state, action: PayloadAction<boolean>) {
             state.dragHigher = action.payload;
         },
+        changePrevJobLocation(state, action: PayloadAction<{ id: string; renderIndex: number; }>) {
+            const { currentResumeId, resumes } = state;
+            const { renderIndex, id } = action.payload;
+
+        },
         // addLocation(state, action: PayloadAction<string>) {
         //     const lowerLocations = state.data.locations.map(e => e.toLowerCase());
         //     if (lowerLocations.includes(action.payload.toLowerCase())) return;
@@ -253,5 +258,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, changePrevJobLocation } = resumeSlice.actions;
 export default resumeSlice.reducer;

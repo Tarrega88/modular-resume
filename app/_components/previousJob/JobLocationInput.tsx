@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownElement from "../DropdownElement";
-import JobLocationDropdown from "./JobLocationDropdown";
 import { RootState } from "@/state/store";
+import { Location } from "@/state/resumeSlice";
 
 function JobLocationInput({
   id,
   text,
   renderIndex,
+  locations,
 }: {
   id: string;
   text: string;
   renderIndex: number;
+  locations: Location[];
 }) {
   const [tempText, setTempText] = useState(text);
   const [showInput, setShowInput] = useState(false);
@@ -57,13 +59,11 @@ function JobLocationInput({
           onClick={(e) => e.stopPropagation()}
         >
           <DropdownElement
-            options={[
-              { id: "0", text: "A" },
-              { id: "1", text: "B" },
-            ]}
+            options={locations}
             kind={"prevJob"}
             id={id}
             renderIndex={renderIndex}
+            field="location"
           />
         </div>
       </div>
