@@ -5,6 +5,8 @@ import { RootState } from "@/state/store";
 import JobSection from "./previousJob/JobSection";
 import ResumeHeader from "./ResumeHeader";
 
+import { locationDefaults } from "@/state/resumeSlice";
+
 function ResumeItemRenderer({
   id,
   kind,
@@ -31,7 +33,7 @@ function ResumeItemRenderer({
         fullName: "Full Name",
         email: "email@email.com",
         phoneNumber: "(123) 456-7890",
-        location: "City, ST",
+        location: locationDefaults,
       };
 
       return (
@@ -77,7 +79,7 @@ function ResumeItemRenderer({
         companyName: "Company Name",
         jobTitle: "Job Title",
         kind: "prevJob",
-        location: "City, ST",
+        location: locationDefaults,
         monthStarted: "Jan",
         yearStarted: 2024,
         monthEnded: "Dec",

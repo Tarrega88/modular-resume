@@ -30,7 +30,11 @@ function JobSection({
       </div>
       <div className="flex justify-between">
         <JobTitleInput text={jobTitle} id={id} />
-        <JobLocationInput text={location} id={id} renderIndex={renderIndex} />
+        <JobLocationInput
+          text={location.text}
+          id={id}
+          renderIndex={renderIndex}
+        />
       </div>
       {/* <div>Bullet Points would go here</div> */}
     </div>

@@ -2,6 +2,8 @@ import { PersonalInfoProps } from "@/state/resumeSlice";
 import DynamicInput from "./DynamicInput";
 import HeaderDynamicInput from "./HeaderDynamicInput";
 import UserLink from "./UserLink";
+
+import { locationDefaults } from "@/state/resumeSlice";
 //TODO 8/23/2025: Consider using a separate component for the header instead of DynamicInput,
 //since this info is generally more consistent.
 function ResumeHeader({
@@ -10,7 +12,7 @@ function ResumeHeader({
   fullName = "Full Name",
   email = "email@email.com",
   phoneNumber = "(123) 123-4567",
-  location = "City, ST",
+  location = locationDefaults,
   link1,
   link2,
 }: PersonalInfoProps) {
@@ -23,7 +25,7 @@ function ResumeHeader({
         <div className="grid grid-cols-[3fr_2fr_2fr]">
           <HeaderDynamicInput text={email} />
           <HeaderDynamicInput text={phoneNumber} />
-          <HeaderDynamicInput text={location} />
+          <HeaderDynamicInput text={location.text} />
         </div>
         <div className="flex justify-end gap-8">
           {/* <UserLink />

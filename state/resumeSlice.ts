@@ -22,6 +22,11 @@ export type UserLinkProps = {
 //     | { id: ID; kind: "bulletPoint"; elementId: ID }
 //     | { id: ID; kind: "prevJob"; elementId: ID };
 
+type Location = {
+    text: string;
+    id: string;
+}
+
 type ResumeState = {
     currentResumeId: string;
     dragFromIndex: number;
@@ -32,10 +37,10 @@ type ResumeState = {
             fullName: string;
             email: string;
             phoneNumber: string;
-            location: string;
+            location: Location;
             userLinks: UserLinkProps[];
         },
-        locations: string[];
+        locations: Record<ID, Location>;
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
         personalInfo: Record<ID, PersonalInfoProps>;
@@ -53,7 +58,7 @@ export type PersonalInfoProps = {
     fullName: string;
     email: string;
     phoneNumber: string;
-    location: string;
+    location: Location;
     link1?: UserLinkProps;
     link2?: UserLinkProps;
 }
@@ -63,7 +68,7 @@ export type PrevJobProps = {
     kind: "prevJob";
     companyName: string;
     jobTitle: string;
-    location: string;
+    location: Location;
     monthStarted: string;
     yearStarted: number;
     monthEnded: string;
@@ -82,11 +87,12 @@ export type EducationProps = {
     yearStarted?: number;
     monthEnded?: string;
     yearEnded?: number;
-    location?: string;
+    location?: Location;
     gpa?: string;
 };
 
-const prevJobDefaults: PrevJobProps = { id: "", kind: "prevJob", companyName: "Company Name", location: "City, ST", jobTitle: "Job Title", monthStarted: "Jan", yearStarted: 2024, monthEnded: "Dec", yearEnded: 2025 }
+export const locationDefaults: Location = { id: "0", text: "City, ST" }
+export const prevJobDefaults: PrevJobProps = { id: "", kind: "prevJob", companyName: "Company Name", location: locationDefaults, jobTitle: "Job Title", monthStarted: "Jan", yearStarted: 2024, monthEnded: "Dec", yearEnded: 2025 }
 
 
 //data will store all data across multiple resumes - might add a "hidden" boolean to everything,
@@ -104,22 +110,12 @@ const initialState: ResumeState = {
             fullName: "Full Name",
             email: "email@email.com",
             phoneNumber: "(123) 456-7890",
-            location: "City, ST",
+            location: { id: "1", text: "Anchorage, AK" },
             userLinks: []
         },
-        locations: ["Anchorage, AK", "Boulder, CO"],
+        locations: { 0: { id: "1", text: "Anchorage, AK" }, 1: { id: "2", text: "Boulder, CO" } },
         prevJobs: {
-            0: {
-                id: "0",
-                kind: "prevJob",
-                companyName: "Company Name",
-                jobTitle: "Your Job Title",
-                location: "City, ST",
-                monthStarted: "Jan",
-                yearStarted: 2024,
-                monthEnded: "Dec",
-                yearEnded: 2025
-            }
+            0: prevJobDefaults
         },
         bulletPoints: {
             0: { id: "0", kind: "bulletPoint", text: "Built software for ABC company" },
@@ -135,7 +131,7 @@ const initialState: ResumeState = {
 
         },
         personalInfo: {
-            0: { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: "City, ST" }
+            0: { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: locationDefaults }
         },
         education: {},
         userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
@@ -249,13 +245,13 @@ const resumeSlice = createSlice({
         setDragHigher(state, action: PayloadAction<boolean>) {
             state.dragHigher = action.payload;
         },
-        addLocation(state, action: PayloadAction<string>) {
-            const lowerLocations = state.data.locations.map(e => e.toLowerCase());
-            if (lowerLocations.includes(action.payload.toLowerCase())) return;
-            state.data.locations.push(action.payload);
-        }
+        // addLocation(state, action: PayloadAction<string>) {
+        //     const lowerLocations = state.data.locations.map(e => e.toLowerCase());
+        //     if (lowerLocations.includes(action.payload.toLowerCase())) return;
+        //     state.data.locations.push(action.payload);
+        // }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, addLocation } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle } = resumeSlice.actions;
 export default resumeSlice.reducer;
