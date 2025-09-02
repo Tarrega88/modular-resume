@@ -1,13 +1,17 @@
 "use client";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import {
+  addBulletData,
+  addPersonalInfoData,
+  addPrevJobData,
   addResumeItem,
   createEmptyResume,
   Kinds,
   setCurrentResume,
 } from "@/state/resumeSlice";
+import { RootState } from "@/state/store";
 
 const newResumeRenderItems: Kinds[] = [
   "personalInfo",
@@ -21,15 +25,62 @@ export default function GenerateResumeButton() {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const state = useSelector((state: RootState) => state.resume.data);
+
+  const { userInfo, locations } = state;
+
+  const { fullName, email, location, phoneNumber, userLinks } = userInfo;
+
   function handleClick() {
     const newResumeId = crypto.randomUUID();
     dispatch(setCurrentResume(newResumeId));
     dispatch(createEmptyResume());
 
+    //TODO 9/2/2025: create a file of defaults instead of using the strings for the fallbacks
     for (const kind of newResumeRenderItems) {
       const id = crypto.randomUUID();
 
-      dispatch(addResumeItem({ kind, elementId: null }));
+      switch (kind) {
+        case "personalInfo":
+          dispatch(
+            addPersonalInfoData({
+              id,
+              kind,
+              fullName: fullName || "Full Name",
+              email: email || "email@email.com",
+              phoneNumber: phoneNumber || "(123) 456-7890",
+              location: location || {
+                id: crypto.randomUUID(),
+                text: "City, ST",
+              },
+            })
+          );
+          break;
+        case "prevJob":
+          dispatch(
+            addPrevJobData({
+              id,
+              kind,
+              companyName: "Company Name",
+              jobTitle: "Job Title",
+              location: location || {
+                id: crypto.randomUUID(),
+                text: "City, ST",
+              },
+              monthStarted: "Jan",
+              monthEnded: "Dec",
+              yearStarted: 2024,
+              yearEnded: 2025,
+            })
+          );
+          break;
+        case "bulletPoint":
+          dispatch(
+            addBulletData({ id, kind, text: "Enter Bullet Point Text..." })
+          );
+      }
+
+      dispatch(addResumeItem({ kind, elementId: id }));
     }
 
     router.push(`/builder/${newResumeId}`);

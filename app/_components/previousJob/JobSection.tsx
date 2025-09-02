@@ -20,7 +20,14 @@ function JobSection({
   //   (state: RootState) => state.resume
   // );
 
-  const { locations } = useSelector((state: RootState) => state.resume.data);
+  const state = useSelector((state: RootState) => state.resume.data);
+  console.log("LOCATIONS");
+  console.log(state.locations);
+
+  console.log("PREVJOBS");
+  console.log(state.prevJobs);
+
+  const locations = state.locations;
 
   const locationOptions = Object.values(locations);
 
@@ -36,10 +43,11 @@ function JobSection({
         <JobTitleInput text={jobTitle} id={id} />
         <JobLocationInput
           text={location.text}
+          locationId={location.id}
           id={id}
           renderIndex={renderIndex}
           locations={locationOptions}
-          key={id}
+          key={location.id}
         />
       </div>
       {/* <div>Bullet Points would go here</div> */}

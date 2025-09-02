@@ -3,7 +3,7 @@ import DynamicInput from "./DynamicInput";
 import HeaderDynamicInput from "./HeaderDynamicInput";
 import UserLink from "./UserLink";
 
-import { locationDefaults } from "@/state/resumeSlice";
+import { locationDefault } from "@/state/resumeSlice";
 //TODO 8/23/2025: Consider using a separate component for the header instead of DynamicInput,
 //since this info is generally more consistent.
 function ResumeHeader({
@@ -12,7 +12,7 @@ function ResumeHeader({
   fullName = "Full Name",
   email = "email@email.com",
   phoneNumber = "(123) 123-4567",
-  location = locationDefaults,
+  location = locationDefault,
   link1,
   link2,
 }: PersonalInfoProps) {

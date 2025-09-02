@@ -12,11 +12,19 @@ type TempProps = {
   options?: any[];
   kind: Kinds;
   id: string;
+  locationId: string;
   renderIndex: number;
   field?: string;
 };
 
-function DropdownElement({ options, kind, id, renderIndex, field }: TempProps) {
+function DropdownElement({
+  options,
+  kind,
+  id,
+  locationId,
+  renderIndex,
+  field,
+}: TempProps) {
   const dispatch = useDispatch();
 
   function onChange(e: any) {
@@ -26,27 +34,19 @@ function DropdownElement({ options, kind, id, renderIndex, field }: TempProps) {
         // changeBulletPoint(resumeId);
         break;
       case kind === "prevJob" && field === "location":
-        dispatch(changePrevJobLocation({ id: e.target.value, renderIndex }));
+        dispatch(changePrevJobLocation({ id, locationId: e.target.value }));
         break;
     }
   }
 
   const { data, resumes } = useSelector((state: RootState) => state.resume);
 
-  if (kind === "prevJob") {
-    console.log("DATA");
-    console.log(data);
-    console.log("RESUMES");
-    console.log(resumes);
-
-    console.log(`ID: ${id}`);
-  }
-
   return (
     <select
       className="w-4 focus:outline-none cursor-pointer hover:text-gray-500 transition-all duration-150"
       onChange={onChange}
-      value={id}
+      value={locationId}
+      key={locationId}
     >
       {options?.map((option) => (
         <option key={option.id} value={option.id}>

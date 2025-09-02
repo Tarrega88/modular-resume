@@ -108,8 +108,8 @@ const initialState: ResumeState = {
     dragHigher: true,
     data: {
         userInfo: {
-            fullName: "Full Name",
-            email: "email@email.com",
+            fullName: "Michael See",
+            email: "michaelseedev@gmail.com",
             phoneNumber: "(123) 456-7890",
             location: { id: "1", text: "Anchorage, AK" },
             userLinks: []
@@ -218,7 +218,7 @@ const resumeSlice = createSlice({
             if (id in state.data.prevJobs) {
                 state.data.prevJobs[id].jobTitle = text;
             } else {
-                state.data.prevJobs[id] = { ...prevJobDefaults, id, jobTitle: text }
+                state.data.prevJobs[id] = { ...prevJobDefault, id, jobTitle: text }
             }
         },
         changeBulletPoint(state, action: PayloadAction<{ renderIndex: number; id: string; }>) {
@@ -248,9 +248,13 @@ const resumeSlice = createSlice({
         setDragHigher(state, action: PayloadAction<boolean>) {
             state.dragHigher = action.payload;
         },
-        changePrevJobLocation(state, action: PayloadAction<{ id: string; renderIndex: number; }>) {
+        changePrevJobLocation(state, action: PayloadAction<{ id: string; locationId: string }>) {
             const { currentResumeId, resumes } = state;
-            const { renderIndex, id } = action.payload;
+            const { id, locationId } = action.payload;
+
+            const locationData = state.data.locations[locationId];
+
+            state.data.prevJobs[id].location = locationData;
 
         },
         // addLocation(state, action: PayloadAction<string>) {

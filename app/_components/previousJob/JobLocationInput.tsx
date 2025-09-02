@@ -6,11 +6,13 @@ import { Location } from "@/state/resumeSlice";
 
 function JobLocationInput({
   id,
+  locationId,
   text,
   renderIndex,
   locations,
 }: {
   id: string;
+  locationId: string;
   text: string;
   renderIndex: number;
   locations: Location[];
@@ -62,6 +64,7 @@ function JobLocationInput({
             options={locations}
             kind={"prevJob"}
             id={id}
+            locationId={locationId}
             renderIndex={renderIndex}
             field="location"
           />

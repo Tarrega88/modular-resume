@@ -1,11 +1,9 @@
-import { ResumeItemProps } from "@/state/resumeSlice";
+import { locationDefault, ResumeItemProps } from "@/state/resumeSlice";
 import BulletPoint from "./bulletPoints/BulletPoint";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import JobSection from "./previousJob/JobSection";
 import ResumeHeader from "./ResumeHeader";
-
-import { locationDefaults } from "@/state/resumeSlice";
 
 function ResumeItemRenderer({
   id,
@@ -33,7 +31,7 @@ function ResumeItemRenderer({
         fullName: "Full Name",
         email: "email@email.com",
         phoneNumber: "(123) 456-7890",
-        location: locationDefaults,
+        location: locationDefault,
       };
 
       return (
@@ -84,7 +82,7 @@ function ResumeItemRenderer({
         companyName: "Company Name",
         jobTitle: "Job Title",
         kind: "prevJob",
-        location: locationDefaults,
+        location: locationDefault,
         monthStarted: "Jan",
         yearStarted: 2024,
         monthEnded: "Dec",
