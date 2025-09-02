@@ -53,20 +53,18 @@ function DynamicInput({
       <div className="wrap-break-word transition-all duration-200">
         {tempText}
       </div>
-      <div className="absolute top-0 hover:opacity-100 h-full w-full">
-        <div className="absolute right-0">
-          <div
-            className="bg-white gap-2 rounded-md w-14 justify-center border h-5"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <DropdownElement
-              options={options}
-              kind={kind}
-              id={id}
-              renderIndex={renderIndex}
-            />
-            <DeleteElementButton renderIndex={renderIndex} />
-          </div>
+      <div className="absolute top-1/2 -translate-y-1/2 hover:opacity-100 h-full w-full opacity-0">
+        <div
+          className="flex bg-white gap-2 rounded-md w-14 justify-center items-center border h-5 absolute right-0 top-1/2 -translate-y-1/2"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <DropdownElement
+            options={options}
+            kind={kind}
+            id={id}
+            renderIndex={renderIndex}
+          />
+          <DeleteElementButton renderIndex={renderIndex} />
         </div>
       </div>
     </div>

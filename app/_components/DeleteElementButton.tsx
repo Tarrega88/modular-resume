@@ -12,7 +12,7 @@ function DeleteElementButton({ renderIndex }: { renderIndex: number }) {
   }
   return (
     <button
-      className="text-red-600 text-xl cursor-pointer hover:text-red-800 absolute"
+      className="text-red-600 text-xl cursor-pointer hover:text-red-800"
       onClick={handleRemove}
     >
       <TiDelete />
