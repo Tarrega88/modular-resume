@@ -1,12 +1,23 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DropdownElement from "../DropdownElement";
 import JobLocationDropdown from "./JobLocationDropdown";
+import { RootState } from "@/state/store";
 
-function JobLocationInput({ id, text }: { id: string; text: string }) {
+function JobLocationInput({
+  id,
+  text,
+  renderIndex,
+}: {
+  id: string;
+  text: string;
+  renderIndex: number;
+}) {
   const [tempText, setTempText] = useState(text);
   const [showInput, setShowInput] = useState(false);
   const dispatch = useDispatch();
+
+  const { data } = useSelector((state: RootState) => state.resume);
 
   function handleEnter(e: any) {
     if (e.key === "Enter") {
@@ -54,7 +65,7 @@ function JobLocationInput({ id, text }: { id: string; text: string }) {
             ]}
             kind={"prevJob"}
             id={id}
-            renderIndex={1}
+            renderIndex={renderIndex}
           />
         </div>
       </div>
