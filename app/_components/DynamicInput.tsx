@@ -53,14 +53,12 @@ function DynamicInput({
       <div className="wrap-break-word transition-all duration-200">
         {tempText}
       </div>
-      <div className="absolute top-0 hover:opacity-100 h-full w-full opacity-0">
+      <div className="absolute top-0 hover:opacity-100 h-full w-full">
         <div className="absolute right-0">
           <div
-            className="flex items-center bg-white gap-2 rounded-md w-14 justify-center border"
+            className="bg-white gap-2 rounded-md w-14 justify-center border h-5"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* <AddAboveButton />
-            <AddBelowButton /> */}
             <DropdownElement
               options={options}
               kind={kind}
@@ -68,13 +66,6 @@ function DynamicInput({
               renderIndex={renderIndex}
             />
             <DeleteElementButton renderIndex={renderIndex} />
-            {/*
-            Still need:
-            Move Up Button
-            Move Down Button
-            Add Above
-            Add Below
-            */}
           </div>
         </div>
       </div>

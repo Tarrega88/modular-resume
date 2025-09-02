@@ -2,7 +2,7 @@
 
 import { useDispatch } from "react-redux";
 import { MAX, MIN, useScale } from "../_context/ScaleContext";
-import BulletSelect from "./BulletSelect";
+import BulletSelect from "./bulletPoints/BulletSelect";
 import { addResumeItem } from "@/state/resumeSlice";
 
 function BuilderColumn() {

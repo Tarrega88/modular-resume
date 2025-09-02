@@ -1,8 +1,8 @@
 import { ResumeItemProps } from "@/state/resumeSlice";
-import BulletPoint from "./BulletPoint";
+import BulletPoint from "./bulletPoints/BulletPoint";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
-import JobSection from "./JobSection";
+import JobSection from "./previousJob/JobSection";
 import ResumeHeader from "./ResumeHeader";
 
 function ResumeItemRenderer({

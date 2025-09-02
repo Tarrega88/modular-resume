@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import DynamicInput from "./DynamicInput";
+import DynamicInput from "../DynamicInput";
 import { BulletPointProps, editBulletPoint } from "@/state/resumeSlice";
 import { RootState } from "@/state/store";
 
