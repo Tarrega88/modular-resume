@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function MonthDropdown({
   selected,
   startOrEnd,
@@ -9,12 +11,21 @@ function MonthDropdown({
 }) {
   function handleOnChange() {}
 
+  const [showDropdown, selectShowdropdown] = useState(false);
+
   //TODO 9/2/2025: Since these will be close to other dropdowns,
   //I might make a custom dropdown instead of using <select>
 
-  return (
-    <div className="absolute top-1/2 -translate-y-1/2 -right-6 text-base">
-      {/* <select
+  return <div>{monthDisplay[selected]}</div>;
+}
+
+export default MonthDropdown;
+
+{
+  /*
+  
+      <div className="absolute top-1/2 -translate-y-1/2 -right-6 text-base">
+      <select
         className="w-4 outline-none"
         value={monthDisplay[selected]}
         onChange={handleOnChange}
@@ -24,9 +35,6 @@ function MonthDropdown({
             {e}
           </option>
         ))}
-      </select> */}
-    </div>
-  );
+      </select>
+    </div>*/
 }
-
-export default MonthDropdown;

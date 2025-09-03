@@ -9,6 +9,7 @@ import {
   addResumeItem,
   createEmptyResume,
   Kinds,
+  prevJobDefault,
   setCurrentResume,
 } from "@/state/resumeSlice";
 import { RootState } from "@/state/store";
@@ -30,8 +31,6 @@ export default function GenerateResumeButton() {
   const { userInfo } = state;
 
   const { fullName, email, location, phoneNumber, userLinks } = userInfo;
-
-  console.log(userInfo);
 
   function handleClick() {
     const newResumeId = crypto.randomUUID();
@@ -63,8 +62,8 @@ export default function GenerateResumeButton() {
               companyName: "Company Name",
               jobTitle: "Job Title",
               location: location || "City, ST",
-              monthStarted: "Jan",
-              monthEnded: "Dec",
+              monthStarted: 0,
+              monthEnded: 11,
               yearStarted: 2024,
               yearEnded: 2025,
             })

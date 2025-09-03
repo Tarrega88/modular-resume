@@ -31,6 +31,9 @@ function JobSection({
 
   const { monthType } = state;
 
+  console.log("STARTED");
+  console.log(monthStarted);
+
   // state.prevJobs[id]
 
   return (
@@ -43,8 +46,8 @@ function JobSection({
           textAlign="left"
         />
         <div className="flex gap-4">
-          <JobStart id={id} monthType={monthType} />
-          <JobStart id={id} monthType={monthType} />
+          <JobStart id={id} monthType={monthType} month={monthStarted} />
+          {/* <JobStart id={id} monthType={monthType} /> */}
         </div>
 
         {/* <JobEnd id={id}/> */}
