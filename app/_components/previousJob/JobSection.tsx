@@ -23,16 +23,7 @@ function JobSection({
   // );
 
   const state = useSelector((state: RootState) => state.resume);
-
-  console.log("PREVJOBS");
-  console.log(state.data.prevJobs);
-
-  console.log(state.data.prevJobs[id]);
-
   const { monthType } = state;
-
-  console.log("STARTED");
-  console.log(monthStarted);
 
   // state.prevJobs[id]
 
@@ -45,8 +36,11 @@ function JobSection({
           field="companyName"
           textAlign="left"
         />
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           <JobStart id={id} monthType={monthType} month={monthStarted} />
+          <div>-</div>
+          <JobStart id={id} monthType={monthType} month={monthStarted} />
+
           {/* <JobStart id={id} monthType={monthType} /> */}
         </div>
 

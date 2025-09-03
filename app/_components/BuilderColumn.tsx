@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { MAX, MIN, useScale } from "../_context/ScaleContext";
 import BulletSelect from "./bulletPoints/BulletSelect";
 import { addResumeItem } from "@/state/resumeSlice";
+import SwitchMode from "./SwitchMode";
 
 function BuilderColumn() {
   const { scale, setScale } = useScale();
@@ -42,7 +43,7 @@ function BuilderColumn() {
           + Scale
         </button>
       </div>
-
+      <SwitchMode />
       <BulletSelect />
       {/* <button
         className="bg-sky-400 cursor-pointer hover:bg-sky-300 transition-all duration-150"

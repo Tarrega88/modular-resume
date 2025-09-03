@@ -1,8 +1,9 @@
 import { useState } from "react";
 import MonthDropdown from "./MonthDropdown";
 import { longMonths, months } from "@/app/_lib/utils/months";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
+import { setStartMonth } from "@/state/resumeSlice";
 
 function JobStart({
   id,
@@ -16,16 +17,27 @@ function JobStart({
   //   const [showDropdown, setShowDropdown] = useState(true);
 
   const monthDisplay = monthType === "short" ? months : longMonths;
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dispatch = useDispatch();
+  function handleOnChange(month: number) {
+    setShowDropdown(false);
+    dispatch(setStartMonth({ id, month }));
+  }
+
+  function handleShowDropdown(bool: boolean) {
+    setShowDropdown(bool);
+  }
 
   return (
-    <div className="w-full hover:bg-sky-100 text-right">
-      {/* <div>{monthDisplay[0]}</div> */}
-
+    <div className="w-full hover:bg-sky-100 text-right relative flex gap-1">
       <MonthDropdown
-        selected={month}
-        startOrEnd="start"
+        month={month}
         monthDisplay={monthDisplay}
+        handleOnChange={handleOnChange}
+        showDropdown={showDropdown}
+        handleShowDropdown={handleShowDropdown}
       />
+      <div>2024</div>
     </div>
   );
 }
