@@ -29,6 +29,7 @@ type ResumeState = {
     dragFromIndex: number;
     dragToIndex: number;
     dragHigher: boolean;
+    monthType: "short" | "long",
     data: {
         userInfo: {
             fullName: string;
@@ -102,6 +103,7 @@ const initialState: ResumeState = {
     dragFromIndex: -1,
     dragToIndex: -1,
     dragHigher: true,
+    monthType: "short",
     data: {
         userInfo: {
             fullName: "Michael See",

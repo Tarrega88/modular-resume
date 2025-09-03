@@ -1,22 +1,31 @@
-import { months } from "@/app/_lib/utils/months";
-
 function MonthDropdown({
   selected,
-  monthType,
+  startOrEnd,
+  monthDisplay,
 }: {
   selected: number;
-  monthType: "start" | "end";
+  startOrEnd: "start" | "end";
+  monthDisplay: string[];
 }) {
   function handleOnChange() {}
 
+  //TODO 9/2/2025: Since these will be close to other dropdowns,
+  //I might make a custom dropdown instead of using <select>
+
   return (
-    <select value={months[selected]} onChange={handleOnChange}>
-      {months.map((e, i) => (
-        <option key={i} value={i}>
-          {e}
-        </option>
-      ))}
-    </select>
+    <div className="absolute top-1/2 -translate-y-1/2 -right-6 text-base">
+      {/* <select
+        className="w-4 outline-none"
+        value={monthDisplay[selected]}
+        onChange={handleOnChange}
+      >
+        {monthDisplay.map((e, i) => (
+          <option key={i} value={i}>
+            {e}
+          </option>
+        ))}
+      </select> */}
+    </div>
   );
 }
 
