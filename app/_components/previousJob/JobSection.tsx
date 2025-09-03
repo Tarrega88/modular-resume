@@ -1,8 +1,7 @@
 import { PrevJobProps } from "@/state/resumeSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
-import JobTitleInput from "./JobTitleInput";
-import JobLocationInput from "./JobLocationInput";
+import JobSectionInput from "./JobSectionInput";
 
 function JobSection({
   id,
@@ -28,21 +27,30 @@ function JobSection({
   return (
     <div>
       <div className="flex justify-between text-lg font-semibold">
-        <div>{companyName}</div>
+        <JobSectionInput
+          text={companyName}
+          id={id}
+          field="companyName"
+          textAlign="left"
+        />
         <div>
           {monthStarted} {yearStarted} - {monthEnded} {yearEnded}
         </div>
       </div>
       <div className="flex justify-between">
-        <JobTitleInput text={jobTitle} id={id} />
-        <JobLocationInput
+        <JobSectionInput
+          text={jobTitle}
+          id={id}
+          field="jobTitle"
+          textAlign="left"
+        />
+        <JobSectionInput
           text={location}
           id={id}
-          renderIndex={renderIndex}
-          key={location}
+          field="location"
+          textAlign="right"
         />
       </div>
-      {/* <div>Bullet Points would go here</div> */}
     </div>
   );
 }

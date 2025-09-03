@@ -1,26 +1,37 @@
-import { editJobTitle } from "@/state/resumeSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { editJobSection, editJobTitle } from "@/state/resumeSlice";
 
-function JobTitleInput({ id, text }: { id: string; text: string }) {
+function JobSectionInput({
+  id,
+  text,
+  field,
+  textAlign,
+}: {
+  id: string;
+  text: string;
+  field: "jobTitle" | "location" | "companyName";
+  textAlign: "left" | "right" | "center";
+}) {
   const [tempText, setTempText] = useState(text);
   const [showInput, setShowInput] = useState(false);
   const dispatch = useDispatch();
 
   function handleEnter(e: any) {
     if (e.key === "Enter") {
-      dispatch(editJobTitle({ id, text: tempText }));
+      dispatch(editJobSection({ id, text: tempText, field }));
       setShowInput(false);
     }
   }
 
   function handleBlur() {
-    dispatch(editJobTitle({ id, text: tempText }));
+    dispatch(editJobSection({ id, text: tempText, field }));
     setShowInput(false);
   }
 
   return showInput ? (
     <input
+      style={{ textAlign }}
       className="w-1/2"
       autoFocus
       value={tempText}
@@ -29,10 +40,14 @@ function JobTitleInput({ id, text }: { id: string; text: string }) {
       onBlur={handleBlur}
     />
   ) : (
-    <div className="hover:bg-sky-50 w-1/2" onClick={() => setShowInput(true)}>
+    <div
+      style={{ textAlign }}
+      className="hover:bg-sky-50 w-1/2"
+      onClick={() => setShowInput(true)}
+    >
       {tempText}
     </div>
   );
 }
 
-export default JobTitleInput;
+export default JobSectionInput;

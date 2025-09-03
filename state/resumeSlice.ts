@@ -11,6 +11,7 @@ export type ResumeItemProps = {
 }
 
 export type TextEdit = PayloadAction<{ id: string; text: string; }>
+export type JobSectionTextEdit = PayloadAction<{ id: string; text: string; field: "jobTitle" | "location" | "companyName"; }>
 
 export type UserLinkProps = {
     id: string;
@@ -219,6 +220,10 @@ const resumeSlice = createSlice({
             const { id, text } = action.payload;
             state.data.prevJobs[id].location = text;
         },
+        editJobSection(state, action: JobSectionTextEdit) {
+            const { id, text, field } = action.payload;
+            state.data.prevJobs[id][field] = text;
+        },
         changeBulletPoint(state, action: PayloadAction<{ renderIndex: number; id: string; }>) {
             const currentResume = state.currentResumeId;
             const { renderIndex, id } = action.payload;
@@ -251,5 +256,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, editJobLocation } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, editJobLocation, editJobSection } = resumeSlice.actions;
 export default resumeSlice.reducer;
