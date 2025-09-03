@@ -2,6 +2,9 @@ import { PrevJobProps } from "@/state/resumeSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import JobSectionInput from "./JobSectionInput";
+import MonthDropdown from "./MonthDropdown";
+import JobStart from "./JobStart";
+import JobEnd from "./JobEnd";
 
 function JobSection({
   id,
@@ -24,6 +27,10 @@ function JobSection({
   console.log("PREVJOBS");
   console.log(state.prevJobs);
 
+  console.log(state.prevJobs[id]);
+
+  // state.prevJobs[id]
+
   return (
     <div>
       <div className="flex justify-between text-lg font-semibold">
@@ -33,9 +40,8 @@ function JobSection({
           field="companyName"
           textAlign="left"
         />
-        <div>
-          {monthStarted} {yearStarted} - {monthEnded} {yearEnded}
-        </div>
+        <JobStart id={id} />
+        {/* <JobEnd id={id}/> */}
       </div>
       <div className="flex justify-between">
         <JobSectionInput

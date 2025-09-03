@@ -63,9 +63,9 @@ export type PrevJobProps = {
     companyName: string;
     jobTitle: string;
     location: string;
-    monthStarted: string;
+    monthStarted: number;
     yearStarted: number;
-    monthEnded: string;
+    monthEnded: number;
     yearEnded: number;
 };
 
@@ -77,16 +77,16 @@ export type EducationProps = {
     schoolName: string;
     degree: string;
     fieldOfStudy: string;
-    monthStarted?: string;
+    monthStarted?: number;
     yearStarted?: number;
-    monthEnded?: string;
+    monthEnded?: number;
     yearEnded?: number;
     location?: string;
     gpa?: string;
 };
 
 export const locationDefault: string = "City, ST";
-export const prevJobDefault: PrevJobProps = { id: "0", kind: "prevJob", companyName: "Company Name", location: locationDefault, jobTitle: "Job Title", monthStarted: "Jan", yearStarted: 2024, monthEnded: "Dec", yearEnded: 2025 }
+export const prevJobDefault: PrevJobProps = { id: "0", kind: "prevJob", companyName: "Company Name", location: locationDefault, jobTitle: "Job Title", monthStarted: 0, yearStarted: 2024, monthEnded: 11, yearEnded: 2025 }
 export const personalInfoDefault: PersonalInfoProps = { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: locationDefault }
 export const bulletPointDefault: BulletPointProps = { id: "0", kind: "bulletPoint", text: "Enter Bullet Point Text Here" }
 
