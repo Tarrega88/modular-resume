@@ -1,14 +1,11 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
-
 @theme {
   /* Global sans stack for ATS-friendly PDFs */
   --font-sans: Arial, Helvetica, "Noto Sans", Roboto, ui-sans-serif, system-ui,
     sans-serif;
 }
 
-/* Print hardening (prevents mangled spaces/emails) */
 @media print {
   body,
   body * {
