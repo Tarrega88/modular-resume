@@ -18,19 +18,15 @@ function ResumeHeader({
 }: PersonalInfoProps) {
   return (
     <div>
-      <h1 className="text-3xl font-semibold">
-        <HeaderDynamicInput text={fullName} />
-      </h1>
-      <div className="grid grid-cols-[3fr_1fr]">
-        <div className="grid grid-cols-[3fr_2fr_2fr]">
-          <HeaderDynamicInput text={email} />
-          <HeaderDynamicInput text={phoneNumber} />
-          <HeaderDynamicInput text={location} />
-        </div>
-        <div className="flex justify-end gap-8">
-          {/* <UserLink />
-          <UserLink /> */}
-        </div>
+      <div>
+        <span className="text-3xl font-semibold">
+          <HeaderDynamicInput text={fullName} />
+        </span>
+      </div>
+      <div className="flex gap-4">
+        <HeaderDynamicInput text={email} />
+        <HeaderDynamicInput text={phoneNumber} />
+        <HeaderDynamicInput text={location} />
       </div>
     </div>
   );

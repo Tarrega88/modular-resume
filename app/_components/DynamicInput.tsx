@@ -50,9 +50,7 @@ function DynamicInput({
       className="relative hover:bg-sky-50 transition-all duration-150 cursor-pointer w-full"
       onClick={setDisplayToInput}
     >
-      <div className="wrap-break-word transition-all duration-200">
-        {tempText}
-      </div>
+      <div className="transition-all duration-200">{tempText}</div>
       <div className="absolute top-1/2 -translate-y-1/2 hover:opacity-100 h-full w-full opacity-0">
         <div
           className="flex bg-white gap-2 rounded-md w-14 justify-center items-center border h-5 absolute right-0 top-1/2 -translate-y-1/2"

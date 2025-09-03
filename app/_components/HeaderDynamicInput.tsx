@@ -30,10 +30,10 @@ function HeaderDynamicInput({ text, id, kind }: Props) {
   }
   return displayMode === "div" ? (
     <div
-      className="relative hover:bg-sky-50 transition-all duration-150 cursor-pointer w-full"
+      className="hover:bg-sky-50 transition-all duration-150 cursor-pointer w-full"
       onClick={setDisplayToInput}
     >
-      <div className="wrap-break-word">{tempText}</div>
+      <span>{tempText}</span>
     </div>
   ) : (
     <input

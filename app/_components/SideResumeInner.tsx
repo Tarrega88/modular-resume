@@ -71,22 +71,6 @@ export default function SideResumeInner() {
       ))} */}
 
       {/* <div className=" bg-white absolute bottom-0 h-[48px] text-center w-[802px]"></div> */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          zIndex: 10,
-          backgroundImage: `repeating-linear-gradient(
-            to bottom,
-            transparent,
-            transparent ${PAGE_HEIGHT - LINE_THICKNESS}px,
-            rgba(0,0,0,0.35) ${PAGE_HEIGHT - LINE_THICKNESS}px,
-            rgba(0,0,0,0.35) ${PAGE_HEIGHT}px
-          )`,
-        }}
-      />
     </div>
   );
 }
@@ -104,6 +88,27 @@ export default function SideResumeInner() {
   //dotted line spacer:
   /*
      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 10,
+          backgroundImage: `repeating-linear-gradient(
+            to bottom,
+            transparent,
+            transparent ${PAGE_HEIGHT - LINE_THICKNESS}px,
+            rgba(0,0,0,0.35) ${PAGE_HEIGHT - LINE_THICKNESS}px,
+            rgba(0,0,0,0.35) ${PAGE_HEIGHT}px
+          )`,
+        }}
+      />
+  */
+}
+
+{
+  /*
+        <div
         aria-hidden
         style={{
           position: "absolute",

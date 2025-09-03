@@ -40,11 +40,7 @@ function JobSection({
           <JobStart id={id} monthType={monthType} month={monthStarted} />
           <div>-</div>
           <JobStart id={id} monthType={monthType} month={monthStarted} />
-
-          {/* <JobStart id={id} monthType={monthType} /> */}
         </div>
-
-        {/* <JobEnd id={id}/> */}
       </div>
       <div className="flex justify-between">
         <JobSectionInput
