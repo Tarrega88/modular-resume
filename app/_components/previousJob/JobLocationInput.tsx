@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
+import { editJobLocation } from "@/state/resumeSlice";
 
 function JobLocationInput({
   id,
@@ -8,7 +9,6 @@ function JobLocationInput({
   renderIndex,
 }: {
   id: string;
-  locationId: string;
   text: string;
   renderIndex: number;
 }) {
@@ -18,15 +18,17 @@ function JobLocationInput({
 
   const { data } = useSelector((state: RootState) => state.resume);
 
+  console.log(data);
+
   function handleEnter(e: any) {
     if (e.key === "Enter") {
-      //   dispatch(editJobTitle({ id, text: tempText }));
+      dispatch(editJobLocation({ id, text: tempText }));
       setShowInput(false);
     }
   }
 
   function handleBlur() {
-    //   dispatch(editJobTitle({ id, text: tempText }));
+    dispatch(editJobLocation({ id, text: tempText }));
     setShowInput(false);
   }
 

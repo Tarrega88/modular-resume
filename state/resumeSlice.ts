@@ -207,13 +207,17 @@ const resumeSlice = createSlice({
                 state.data.bulletPoints[id] = { id, kind: "bulletPoint", text }
             }
         },
+        editCompanyName(state, action: TextEdit) {
+            const { id, text } = action.payload;
+            state.data.prevJobs[id].companyName = text;
+        },
         editJobTitle(state, action: TextEdit) {
             const { id, text } = action.payload;
-            if (id in state.data.prevJobs) {
-                state.data.prevJobs[id].jobTitle = text;
-            } else {
-                state.data.prevJobs[id] = { ...prevJobDefault, id, jobTitle: text }
-            }
+            state.data.prevJobs[id].jobTitle = text;
+        },
+        editJobLocation(state, action: TextEdit) {
+            const { id, text } = action.payload;
+            state.data.prevJobs[id].location = text;
         },
         changeBulletPoint(state, action: PayloadAction<{ renderIndex: number; id: string; }>) {
             const currentResume = state.currentResumeId;
@@ -247,5 +251,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, editJobLocation } = resumeSlice.actions;
 export default resumeSlice.reducer;
