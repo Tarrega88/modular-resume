@@ -27,6 +27,9 @@ function JobSection({
 
   // state.prevJobs[id]
 
+  //TODO 9/4/2025: looks like the date will be correctly parsed by ATS like this.
+  //Will put in a separate date component in place of 2024 and 2025.
+
   return (
     <div>
       <div className="flex justify-between font-semibold">
@@ -37,10 +40,11 @@ function JobSection({
           textAlign="left"
         />
         <div className="flex gap-2">
-          <div>Jan 2024 - Apr 2025</div>
-          {/* <JobStart id={id} monthType={monthType} month={monthStarted} />
-          <span>-</span>
-          <JobEnd id={id} monthType={monthType} month={monthEnded} /> */}
+          <JobStart id={id} monthType={monthType} month={monthStarted} />
+          <div>2024</div>
+          <div> - </div>
+          <JobEnd id={id} monthType={monthType} month={monthEnded} />
+          <div>2025</div>
         </div>
       </div>
       <div className="flex justify-between">

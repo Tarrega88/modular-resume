@@ -26,7 +26,7 @@ function JobEnd({
   }
 
   return (
-    <div className="w-full hover:bg-sky-100 text-right relative flex gap-1">
+    <div className="w-full hover:bg-sky-100 text-right">
       <MonthDropdown
         month={month}
         monthDisplay={monthDisplay}
@@ -34,7 +34,6 @@ function JobEnd({
         showDropdown={showDropdown}
         handleShowDropdown={handleShowDropdown}
       />
-      <span>2024</span>
     </div>
   );
 }
