@@ -16,6 +16,7 @@ import { RootState } from "@/state/store";
 
 const newResumeRenderItems: Kinds[] = [
   "personalInfo",
+  "experienceHeader",
   "prevJob",
   "bulletPoint",
   "bulletPoint",
@@ -54,6 +55,8 @@ export default function GenerateResumeButton() {
             })
           );
           break;
+        // case "experienceHeader":
+        //   return;
         case "prevJob":
           dispatch(
             addPrevJobData({

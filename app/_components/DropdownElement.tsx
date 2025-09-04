@@ -1,7 +1,6 @@
 import { changeBulletPoint, Kinds } from "@/state/resumeSlice";
-import { RootState } from "@/state/store";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 type TempProps = {
   options?: any[];
@@ -23,9 +22,6 @@ function DropdownElement({ options, kind, id, renderIndex, field }: TempProps) {
         break;
     }
   }
-
-  const { data, resumes } = useSelector((state: RootState) => state.resume);
-
   return (
     <select
       className="w-4 focus:outline-none cursor-pointer hover:text-gray-500 transition-all duration-150"
@@ -41,18 +37,3 @@ function DropdownElement({ options, kind, id, renderIndex, field }: TempProps) {
 }
 
 export default DropdownElement;
-
-/*
-    <div
-      className="text-lg text-gray-500 hover:text-gray-800"
-      onClick={() => setIsActive(true)}
-    >
-      <IoIosArrowDropdownCircle />
-    </div>
-*/
-
-// <ul className="absolute top-0 bg-gray-500">
-//   {options?.map((option) => (
-//     <li key={option.id}>{option.text}</li>
-//   ))}
-// </ul>

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import MonthDropdown from "./MonthDropdown";
 import { longMonths, months } from "@/app/_lib/utils/months";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/state/store";
+import { useDispatch } from "react-redux";
 import { setStartMonth } from "@/state/resumeSlice";
 
 function JobStart({
@@ -14,8 +13,6 @@ function JobStart({
   monthType: "short" | "long";
   month: number;
 }) {
-  //   const [showDropdown, setShowDropdown] = useState(true);
-
   const monthDisplay = monthType === "short" ? months : longMonths;
   const [showDropdown, setShowDropdown] = useState(false);
   const dispatch = useDispatch();

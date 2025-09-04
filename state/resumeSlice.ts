@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type ID = string;
 
-export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint";
+export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint" | "experienceHeader";
 
 export type ResumeItemProps = {
     id: ID;
@@ -256,10 +256,18 @@ const resumeSlice = createSlice({
         setStartMonth(state, action: PayloadAction<{ month: number; id: string }>) {
             const { month, id } = action.payload;
             state.data.prevJobs[id].monthStarted = month;
+        },
+        setEndMonth(state, action: PayloadAction<{ month: number; id: string }>) {
+            const { month, id } = action.payload;
+            state.data.prevJobs[id].monthEnded = month;
+        },
+
+        addExperienceHeader(state, action) {
+
         }
 
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, editJobLocation, editJobSection, setStartMonth } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, editJobLocation, editJobSection, setStartMonth, setEndMonth, addExperienceHeader } = resumeSlice.actions;
 export default resumeSlice.reducer;
