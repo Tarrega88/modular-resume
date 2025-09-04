@@ -34,7 +34,7 @@ function JobEnd({
         showDropdown={showDropdown}
         handleShowDropdown={handleShowDropdown}
       />
-      <div>2024</div>
+      <span>2024</span>
     </div>
   );
 }

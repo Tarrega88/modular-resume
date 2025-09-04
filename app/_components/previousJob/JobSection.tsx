@@ -37,9 +37,10 @@ function JobSection({
           textAlign="left"
         />
         <div className="flex gap-2">
-          <JobStart id={id} monthType={monthType} month={monthStarted} />
-          <span>—</span>
-          <JobEnd id={id} monthType={monthType} month={monthEnded} />
+          <div>Jan 2024 - Apr 2025</div>
+          {/* <JobStart id={id} monthType={monthType} month={monthStarted} />
+          <span>-</span>
+          <JobEnd id={id} monthType={monthType} month={monthEnded} /> */}
         </div>
       </div>
       <div className="flex justify-between">

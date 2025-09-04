@@ -11,9 +11,6 @@ function MonthDropdown({
   showDropdown: boolean;
   handleShowDropdown(e: boolean): void;
 }) {
-  //TODO 9/2/2025: Since these will be close to other dropdowns,
-  //I might make a custom dropdown instead of using <select>
-
   return showDropdown ? (
     <div>
       <select

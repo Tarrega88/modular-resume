@@ -114,7 +114,8 @@ const initialState: ResumeState = {
         },
         prevJobs: {
             0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 6, yearStarted: 2023, monthEnded: 11, yearEnded: 2024 },
-            1: { id: "1", kind: "prevJob", companyName: "Microsoft", location: "Los Angeles, CA", jobTitle: "UI/UX Designer", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 }
+            1: { id: "1", kind: "prevJob", companyName: "Microsoft", location: "Los Angeles, CA", jobTitle: "UI/UX Designer", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 },
+            // 2: { id: "2", kind: "prevJob", companyName: "Best Buy", location: "Los Angeles, CA", jobTitle: "Customer Support", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 }
 
         },
         bulletPoints: {
@@ -150,10 +151,10 @@ const initialState: ResumeState = {
         { id: "106", kind: "bulletPoint", elementId: "4" },
         { id: "107", kind: "bulletPoint", elementId: "5" },
 
-            //{ id: "108", kind: "prevJob", elementId: "0" },
-            //{ id: "109", kind: "bulletPoint", elementId: "6" },
-            //{ id: "110", kind: "bulletPoint", elementId: "7" },
-            //{ id: "111", kind: "bulletPoint", elementId: "8" },
+            // { id: "108", kind: "prevJob", elementId: "2" },
+            // { id: "109", kind: "bulletPoint", elementId: "6" },
+            // { id: "110", kind: "bulletPoint", elementId: "7" },
+            // { id: "111", kind: "bulletPoint", elementId: "8" },
 
             // { id: "112", kind: "prevJob", elementId: "0" },
             // { id: "113", kind: "bulletPoint", elementId: "9" },
