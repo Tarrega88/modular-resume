@@ -60,12 +60,7 @@ function ResumeItemRenderer({
         />
       );
     case "experienceHeader": {
-      return (
-        <ExperienceHeader
-          id={data.experienceHeaders[elementId].id}
-          kind="experienceHeader"
-        />
-      );
+      return <ExperienceHeader />;
     }
     case "education":
       return;

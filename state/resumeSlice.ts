@@ -19,11 +19,6 @@ export type UserLinkProps = {
     url: string;
 }
 
-export type ExperienceHeaderProps = {
-    id: string;
-    kind: "experienceHeader";
-}
-
 // type ResumeItem =
 //     | { id: ID; kind: "bulletPoint"; elementId: ID }
 //     | { id: ID; kind: "prevJob"; elementId: ID };
@@ -209,10 +204,6 @@ const resumeSlice = createSlice({
             const { id } = action.payload;
             state.data.education[id] = action.payload;
         },
-        addExperienceHeaderData(state, action: PayloadAction<ExperienceHeaderProps>) {
-            const { id } = action.payload;
-            state.data.experienceHeaders[id] = action.payload;
-        },
         editBulletPoint(state, action: TextEdit) {
             const { id, text } = action.payload;
             if (id in state.data.bulletPoints) {
@@ -278,5 +269,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, editJobLocation, editJobSection, setStartMonth, setEndMonth, addExperienceHeaderData } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, editJobLocation, editJobSection, setStartMonth, setEndMonth } = resumeSlice.actions;
 export default resumeSlice.reducer;

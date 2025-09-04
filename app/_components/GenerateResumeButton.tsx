@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import {
   addBulletData,
-  addExperienceHeaderData,
   addPersonalInfoData,
   addPrevJobData,
   addResumeItem,
@@ -56,9 +55,7 @@ export default function GenerateResumeButton() {
             })
           );
           break;
-        case "experienceHeader":
-          dispatch(addExperienceHeaderData({ id, kind }));
-          break;
+
         case "prevJob":
           dispatch(
             addPrevJobData({
