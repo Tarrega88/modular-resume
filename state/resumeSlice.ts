@@ -113,7 +113,9 @@ const initialState: ResumeState = {
             userLinks: []
         },
         prevJobs: {
-            0: prevJobDefault
+            0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 0, yearStarted: 2023, monthEnded: 3, yearEnded: 2024 },
+            1: { id: "1", kind: "prevJob", companyName: "Microsoft", location: "Los Angeles, CA", jobTitle: "UI/UX Designer", monthStarted: 4, yearStarted: 2022, monthEnded: 0, yearEnded: 2023 }
+
         },
         bulletPoints: {
             0: { id: "0", kind: "bulletPoint", text: "Built software for ABC company" },
@@ -135,23 +137,27 @@ const initialState: ResumeState = {
         userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
     },
     resumes: {
-        0: [{ id: "99", kind: "personalInfo", elementId: "0" }, { id: "100", kind: "prevJob", elementId: "0" },
+        0: [{ id: "99", kind: "personalInfo", elementId: "0" },
+        { id: "", kind: "experienceHeader", elementId: "" },
+        { id: "100", kind: "prevJob", elementId: "0" },
+
         { id: "101", kind: "bulletPoint", elementId: "0" },
         { id: "102", kind: "bulletPoint", elementId: "1" },
         { id: "103", kind: "bulletPoint", elementId: "2" },
 
-        { id: "104", kind: "prevJob", elementId: "0" },
+        { id: "104", kind: "prevJob", elementId: "1" },
         { id: "105", kind: "bulletPoint", elementId: "3" },
         { id: "106", kind: "bulletPoint", elementId: "4" },
         { id: "107", kind: "bulletPoint", elementId: "5" },
 
-        { id: "108", kind: "prevJob", elementId: "0" },
-        { id: "109", kind: "bulletPoint", elementId: "6" },
-        { id: "110", kind: "bulletPoint", elementId: "7" },
-        { id: "111", kind: "bulletPoint", elementId: "8" },
+            //{ id: "108", kind: "prevJob", elementId: "0" },
+            //{ id: "109", kind: "bulletPoint", elementId: "6" },
+            //{ id: "110", kind: "bulletPoint", elementId: "7" },
+            //{ id: "111", kind: "bulletPoint", elementId: "8" },
 
-        { id: "112", kind: "prevJob", elementId: "0" },
-        { id: "113", kind: "bulletPoint", elementId: "9" },],
+            // { id: "112", kind: "prevJob", elementId: "0" },
+            // { id: "113", kind: "bulletPoint", elementId: "9" },
+        ],
         1: [], //the render order for resume1,
         2: [], //the render order of resume2
     },
