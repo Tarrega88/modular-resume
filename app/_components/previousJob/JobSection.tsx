@@ -29,7 +29,7 @@ function JobSection({
 
   return (
     <div>
-      <div className="flex justify-between text-lg font-semibold">
+      <div className="flex justify-between font-semibold">
         <JobSectionInput
           text={companyName}
           id={id}
@@ -38,7 +38,7 @@ function JobSection({
         />
         <div className="flex gap-2">
           <JobStart id={id} monthType={monthType} month={monthStarted} />
-          <div>-</div>
+          <span>—</span>
           <JobEnd id={id} monthType={monthType} month={monthEnded} />
         </div>
       </div>

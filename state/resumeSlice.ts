@@ -113,8 +113,8 @@ const initialState: ResumeState = {
             userLinks: []
         },
         prevJobs: {
-            0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 0, yearStarted: 2023, monthEnded: 3, yearEnded: 2024 },
-            1: { id: "1", kind: "prevJob", companyName: "Microsoft", location: "Los Angeles, CA", jobTitle: "UI/UX Designer", monthStarted: 4, yearStarted: 2022, monthEnded: 0, yearEnded: 2023 }
+            0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 6, yearStarted: 2023, monthEnded: 11, yearEnded: 2024 },
+            1: { id: "1", kind: "prevJob", companyName: "Microsoft", location: "Los Angeles, CA", jobTitle: "UI/UX Designer", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 }
 
         },
         bulletPoints: {

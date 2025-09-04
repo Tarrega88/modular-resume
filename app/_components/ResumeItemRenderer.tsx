@@ -86,9 +86,9 @@ function ResumeItemRenderer({
         jobTitle: "Job Title",
         kind: "prevJob",
         location: locationDefault,
-        monthStarted: "Jan",
+        monthStarted: 0,
         yearStarted: 2024,
-        monthEnded: "Dec",
+        monthEnded: 11,
         yearEnded: 2025,
       };
 
