@@ -10,9 +10,11 @@ export default function SideResume() {
 
   const state = useSelector((state: RootState) => state.resume);
 
-  const { resumes, currentResumeId } = state;
+  const { data, resumes, currentResumeId } = state;
 
   console.log(resumes[currentResumeId]);
+  console.log("DATA");
+  console.log(data);
 
   return (
     <div

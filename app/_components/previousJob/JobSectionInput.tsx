@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { editJobSection, editJobTitle } from "@/state/resumeSlice";
+import { updatePrevJobField } from "@/state/resumeSlice";
 
 function JobSectionInput({
   id,
@@ -19,13 +19,13 @@ function JobSectionInput({
 
   function handleEnter(e: any) {
     if (e.key === "Enter") {
-      dispatch(editJobSection({ id, text: tempText, field }));
+      dispatch(updatePrevJobField({ id, field, value: tempText }));
       setShowInput(false);
     }
   }
 
   function handleBlur() {
-    dispatch(editJobSection({ id, text: tempText, field }));
+    dispatch(updatePrevJobField({ id, field, value: tempText }));
     setShowInput(false);
   }
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import MonthDropdown from "./MonthDropdown";
 import { longMonths, months } from "@/app/_lib/utils/months";
 import { useDispatch } from "react-redux";
-import { setStartMonth } from "@/state/resumeSlice";
+import { updatePrevJobField } from "@/state/resumeSlice";
 
 function JobStart({
   id,
@@ -18,7 +18,7 @@ function JobStart({
   const dispatch = useDispatch();
   function handleOnChange(month: number) {
     setShowDropdown(false);
-    dispatch(setStartMonth({ id, month }));
+    dispatch(updatePrevJobField({ id, field: "monthStarted", value: month }));
   }
 
   function handleShowDropdown(bool: boolean) {

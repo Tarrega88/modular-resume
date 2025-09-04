@@ -1,8 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type ID = string;
+type PrevJobEditable = Omit<PrevJobProps, "id" | "kind">;
+type PrevJobKey = keyof PrevJobEditable;
+
 
 export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint" | "experienceHeader";
+
+function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
+    (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
+}
+
+function ensurePrevJob(state: ResumeState, id: ID): PrevJobProps {
+    return (state.data.prevJobs[id] ??= { ...prevJobDefault, id });
+}
 
 export type ResumeItemProps = {
     id: ID;
@@ -201,6 +212,14 @@ const resumeSlice = createSlice({
             const { id } = action.payload;
             state.data.bulletPoints[id] = action.payload;
         },
+        updatePrevJobField(
+            state,
+            action: PayloadAction<{ id: ID; field: PrevJobKey; value: PrevJobEditable[PrevJobKey] }>
+        ) {
+            const { id, field, value } = action.payload;
+            const job = ensurePrevJob(state, id);
+            setField(job, field, value);
+        },
         addPrevJobData(state, action: PayloadAction<PrevJobProps>) {
             const { id } = action.payload;
             state.data.prevJobs[id] = action.payload;
@@ -216,22 +235,6 @@ const resumeSlice = createSlice({
             } else {
                 state.data.bulletPoints[id] = { id, kind: "bulletPoint", text }
             }
-        },
-        editCompanyName(state, action: TextEdit) {
-            const { id, text } = action.payload;
-            state.data.prevJobs[id].companyName = text;
-        },
-        editJobTitle(state, action: TextEdit) {
-            const { id, text } = action.payload;
-            state.data.prevJobs[id].jobTitle = text;
-        },
-        editJobLocation(state, action: TextEdit) {
-            const { id, text } = action.payload;
-            state.data.prevJobs[id].location = text;
-        },
-        editJobSection(state, action: JobSectionTextEdit) {
-            const { id, text, field } = action.payload;
-            state.data.prevJobs[id][field] = text;
         },
         changeBulletPoint(state, action: PayloadAction<{ renderIndex: number; id: string; }>) {
             const currentResume = state.currentResumeId;
@@ -260,19 +263,8 @@ const resumeSlice = createSlice({
         setDragHigher(state, action: PayloadAction<boolean>) {
             state.dragHigher = action.payload;
         },
-        setStartMonth(state, action: PayloadAction<{ month: number; id: string }>) {
-            const { month, id } = action.payload;
-            state.data.prevJobs[id].monthStarted = month;
-        },
-        setEndMonth(state, action: PayloadAction<{ month: number; id: string }>) {
-            const { month, id } = action.payload;
-            state.data.prevJobs[id].monthEnded = month;
-        },
-
-
-
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, editJobTitle, editJobLocation, editJobSection, setStartMonth, setEndMonth } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, updatePrevJobField } = resumeSlice.actions;
 export default resumeSlice.reducer;
