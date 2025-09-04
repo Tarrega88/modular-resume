@@ -38,7 +38,6 @@ type ResumeState = {
             location: string;
             userLinks: UserLinkProps[];
         },
-        experienceHeaders: Record<ID, ExperienceHeaderProps>;
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
         personalInfo: Record<ID, PersonalInfoProps>;
@@ -113,7 +112,6 @@ const initialState: ResumeState = {
             location: "Anchorage, AK",
             userLinks: []
         },
-        experienceHeaders: {},
         prevJobs: {
             0: prevJobDefault
         },
