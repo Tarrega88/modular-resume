@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import JobSection from "./previousJob/JobSection";
 import ResumeHeader from "./ResumeHeader";
+import ExperienceHeader from "./ExperienceHeader";
 
 function ResumeItemRenderer({
   id,
@@ -33,7 +34,6 @@ function ResumeItemRenderer({
         phoneNumber: "(123) 456-7890",
         location: locationDefault,
       };
-
       return (
         <ResumeHeader
           id={info.id}
@@ -59,6 +59,14 @@ function ResumeItemRenderer({
           renderIndex={renderIndex}
         />
       );
+    case "experienceHeader": {
+      return (
+        <ExperienceHeader
+          id={data.experienceHeaders[elementId].id}
+          kind="experienceHeader"
+        />
+      );
+    }
     case "education":
       return;
     case "prevJob":
