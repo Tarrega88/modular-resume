@@ -24,6 +24,9 @@ function ResumeItemRenderer({
 
   // const kindString = kind.toString();
   //TODO 8/26/2025: Probably don't need kind on these - maybe remove from the Props, or if it's needed there then make a new Props type for these?
+
+  //TODO 9/4/2025: It will probably be necessary to tie BulletPoints to PrevJobs as {children} prop in order to appease ATS parsing
+  //Likely solution will be tying bulletpoints to the specific job. Benefit to that will be more organization
   switch (kind) {
     case "personalInfo":
       const info = data?.personalInfo[elementId] || {
@@ -44,32 +47,7 @@ function ResumeItemRenderer({
           location={info.location}
         />
       );
-    case "bulletPoint":
-      const bp = data?.bulletPoints[elementId] || {
-        id: elementId,
-        kind: "bulletPoint",
-        text: "Enter Bullet Point Text...",
-      };
-      return (
-        <BulletPoint
-          key={bp.text}
-          id={bp.id}
-          kind={bp.kind}
-          text={bp.text}
-          renderIndex={renderIndex}
-        />
-      );
-    case "experienceHeader": {
-      return <ExperienceHeader />;
-    }
-    case "education":
-      return;
     case "prevJob":
-      // console.log("PREVJOBDATA");
-      // console.log(data.prevJobs);
-      // console.log(elementId);
-      //TODO 9/2/2025 - since no id exists yet on brand new items - a check must be made on the id.
-      // If it is blank then a new id should be injected into state.
       const {
         companyName,
         id,
@@ -106,6 +84,26 @@ function ResumeItemRenderer({
           renderIndex={renderIndex}
         />
       );
+    case "bulletPoint":
+      const bp = data?.bulletPoints[elementId] || {
+        id: elementId,
+        kind: "bulletPoint",
+        text: "Enter Bullet Point Text...",
+      };
+      return (
+        <BulletPoint
+          key={bp.text}
+          id={bp.id}
+          kind={bp.kind}
+          text={bp.text}
+          renderIndex={renderIndex}
+        />
+      );
+    case "experienceHeader": {
+      return <ExperienceHeader />;
+    }
+    case "education":
+      return;
   }
 }
 

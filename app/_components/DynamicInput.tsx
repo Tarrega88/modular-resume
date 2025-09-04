@@ -50,7 +50,7 @@ function DynamicInput({
       className="relative hover:bg-sky-50 transition-all duration-150 cursor-pointer w-full flex"
       onClick={setDisplayToInput}
     >
-      <span className="pr-2">•</span>
+      <span className="px-2">•</span>
       <div className="transition-all duration-200">{tempText}</div>
       <div className="absolute top-1/2 -translate-y-1/2 hover:opacity-100 h-full w-full opacity-0">
         <div

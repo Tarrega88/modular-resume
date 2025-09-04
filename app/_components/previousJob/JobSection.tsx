@@ -61,6 +61,14 @@ function JobSection({
           textAlign="right"
         />
       </div>
+      {/* <ul>
+        <li className="pl-1">• Built and designed software</li>
+        <li className="pl-1">• Mentored team of customer support agents</li>
+        <li className="pl-1">
+          • Collaborated across multiple teams to ensure timely delivery of
+          product
+        </li>
+      </ul> */}
     </div>
   );
 }
