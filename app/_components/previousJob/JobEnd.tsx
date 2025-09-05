@@ -26,7 +26,7 @@ function JobEnd({
   }
 
   return (
-    <div className="w-full hover:bg-sky-100 text-right">
+    <div className="w-max hover:bg-sky-100">
       <MonthDropdown
         month={month}
         monthDisplay={monthDisplay}

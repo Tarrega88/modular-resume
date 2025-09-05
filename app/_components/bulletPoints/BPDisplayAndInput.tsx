@@ -1,7 +1,7 @@
 import { Kinds } from "@/state/resumeSlice";
 import { useState } from "react";
-import DeleteElementButton from "./DeleteElementButton";
-import DropdownElement from "./DropdownElement";
+import DeleteElementButton from "../DeleteElementButton";
+import DropdownElement from "../DropdownElement";
 
 type Props = {
   text: string;

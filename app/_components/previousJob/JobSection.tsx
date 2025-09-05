@@ -5,6 +5,7 @@ import JobSectionInput from "./JobSectionInput";
 import MonthDropdown from "./MonthDropdown";
 import JobStart from "./JobStart";
 import JobEnd from "./JobEnd";
+import DynamicInput from "../DynamicInput";
 
 function JobSection({
   id,
@@ -30,21 +31,31 @@ function JobSection({
   //TODO 9/4/2025: looks like the date will be correctly parsed by ATS like this.
   //Will put in a separate date component in place of 2024 and 2025.
 
+  function handleOnSubmit(e: string) {
+    console.log(e);
+  }
+
   return (
     <div>
-      <div className="flex justify-between font-semibold">
+      <div className="flex font-semibold justify-between">
         <JobSectionInput
           text={companyName}
           id={id}
           field="companyName"
           textAlign="left"
         />
-        <div className="flex gap-2">
+        <div className="flex w-max gap-1">
           <JobStart id={id} monthType={monthType} month={monthStarted} />
-          <div>2024</div>
+          <DynamicInput
+            text={yearStarted.toString()}
+            handleOnSubmit={handleOnSubmit}
+          />
           <div> - </div>
           <JobEnd id={id} monthType={monthType} month={monthEnded} />
-          <div>2025</div>
+          <DynamicInput
+            text={yearEnded.toString()}
+            handleOnSubmit={handleOnSubmit}
+          />
         </div>
       </div>
       <div className="flex justify-between">

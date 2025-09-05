@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { BulletPointProps, editBulletPoint } from "@/state/resumeSlice";
 import { RootState } from "@/state/store";
-import BPDisplayAndInput from "../BPDisplayAndInput";
+import BPDisplayAndInput from "./BPDisplayAndInput";
 
 function BulletPoint({
   id,
