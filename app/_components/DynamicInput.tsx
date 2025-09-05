@@ -55,8 +55,8 @@ function DynamicInput({
         <span className="transition-all duration-200">{tempText}</span>
       </p>
       <div className="absolute w-full">
-        <div className="relative w-full">
-          <div className="absolute h-full right-24">
+        <div className="relative">
+          <div className="absolute h-full right-[96px]">
             <div
               className="flex bg-white gap-2 rounded-md w-14 justify-center items-center border h-5 group-hover:opacity-100 opacity-0"
               onClick={(e) => e.stopPropagation()}
