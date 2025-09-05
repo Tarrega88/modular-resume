@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import DynamicInput from "../DynamicInput";
 import { BulletPointProps, editBulletPoint } from "@/state/resumeSlice";
 import { RootState } from "@/state/store";
+import BPDisplayAndInput from "../BPDisplayAndInput";
 
 function BulletPoint({
   id,
@@ -20,14 +20,17 @@ function BulletPoint({
   }
 
   return (
-    <DynamicInput
-      options={options}
-      kind={kind}
-      id={id}
-      renderIndex={renderIndex}
-      text={text}
-      editData={editData}
-    />
+    <div className="flex">
+      <span className="mx-2">•</span>
+      <BPDisplayAndInput
+        options={options}
+        kind={kind}
+        id={id}
+        renderIndex={renderIndex}
+        text={text}
+        editData={editData}
+      />
+    </div>
   );
 }
 

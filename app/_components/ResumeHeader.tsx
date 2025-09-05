@@ -1,11 +1,8 @@
 import { PersonalInfoProps } from "@/state/resumeSlice";
-import DynamicInput from "./DynamicInput";
 import HeaderDynamicInput from "./HeaderDynamicInput";
 import UserLink from "./UserLink";
 
 import { locationDefault } from "@/state/resumeSlice";
-//TODO 8/23/2025: Consider using a separate component for the header instead of DynamicInput,
-//since this info is generally more consistent.
 function ResumeHeader({
   id,
   kind,

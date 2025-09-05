@@ -12,13 +12,7 @@ type Props = {
   editData(id: string, text: string): void;
 };
 
-//TODO 8/31/2025: After decoupling and seeing how this looks on other parts of the resume,
-// I realized this might just be best suited for bullet points.
-//So I think I'm going to make other types of DynamicInputs,
-// otherwise this will start taking in more props and getting needlessly complex
-//Which means... maybe the component BulletPoint should eat this component at some point.
-
-function DynamicInput({
+function BPDisplayAndInput({
   text = "",
   id,
   options,
@@ -51,12 +45,12 @@ function DynamicInput({
       onClick={setDisplayToInput}
     >
       <p>
-        <span className="px-2">•</span>
+        {/* <span className="px-2">•</span> */}
         <span className="transition-all duration-200">{tempText}</span>
       </p>
       <div className="absolute w-full">
         <div className="relative">
-          <div className="absolute h-full right-[96px]">
+          <div className="absolute h-full right-[116px]">
             <div
               className="flex bg-white gap-2 rounded-md w-14 justify-center items-center border h-5 group-hover:opacity-100 opacity-0"
               onClick={(e) => e.stopPropagation()}
@@ -85,4 +79,4 @@ function DynamicInput({
   );
 }
 
-export default DynamicInput;
+export default BPDisplayAndInput;
