@@ -47,23 +47,29 @@ function DynamicInput({
 
   return displayMode === "div" ? (
     <div
-      className="relative hover:bg-sky-50 transition-all duration-150 cursor-pointer w-full flex"
+      className="group hover:bg-sky-50 transition-all duration-150 cursor-pointer w-full flex"
       onClick={setDisplayToInput}
     >
-      <span className="px-2">•</span>
-      <div className="transition-all duration-200">{tempText}</div>
-      <div className="absolute top-1/2 -translate-y-1/2 hover:opacity-100 h-full w-full opacity-0">
-        <div
-          className="flex bg-white gap-2 rounded-md w-14 justify-center items-center border h-5 absolute right-0 top-1/2 -translate-y-1/2"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <DropdownElement
-            options={options}
-            kind={kind}
-            id={id}
-            renderIndex={renderIndex}
-          />
-          <DeleteElementButton renderIndex={renderIndex} />
+      <p>
+        <span className="px-2">•</span>
+        <span className="transition-all duration-200">{tempText}</span>
+      </p>
+      <div className="absolute w-full">
+        <div className="relative w-full">
+          <div className="absolute h-full right-24">
+            <div
+              className="flex bg-white gap-2 rounded-md w-14 justify-center items-center border h-5 group-hover:opacity-100 opacity-0"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <DropdownElement
+                options={options}
+                kind={kind}
+                id={id}
+                renderIndex={renderIndex}
+              />
+              <DeleteElementButton renderIndex={renderIndex} />
+            </div>
+          </div>
         </div>
       </div>
     </div>
