@@ -5,6 +5,7 @@ import { RootState } from "@/state/store";
 import JobSection from "./previousJob/JobSection";
 import ResumeHeader from "./ResumeHeader";
 import ExperienceHeader from "./ExperienceHeader";
+import SectionHeader from "./SectionHeader";
 
 function ResumeItemRenderer({
   id,
@@ -101,6 +102,15 @@ function ResumeItemRenderer({
       );
     case "experienceHeader": {
       return <ExperienceHeader />;
+    }
+    case "sectionHeader": {
+      const sectionHeaderData = data.sectionHeaders[elementId];
+      return (
+        <SectionHeader
+          id={sectionHeaderData.id}
+          text={sectionHeaderData.text}
+        />
+      );
     }
     case "education":
       return;

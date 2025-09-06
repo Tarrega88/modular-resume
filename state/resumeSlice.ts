@@ -5,7 +5,7 @@ type PrevJobEditable = Omit<PrevJobProps, "id" | "kind">;
 type PrevJobKey = keyof PrevJobEditable;
 
 
-export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint" | "experienceHeader";
+export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "sectionHeader";
 
 function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
@@ -30,6 +30,11 @@ export type UserLinkProps = {
     url: string;
 }
 
+export type SectionHeaderProps = {
+    id: string;
+    text: string;
+}
+
 // type ResumeItem =
 //     | { id: ID; kind: "bulletPoint"; elementId: ID }
 //     | { id: ID; kind: "prevJob"; elementId: ID };
@@ -49,6 +54,7 @@ type ResumeState = {
             location: string;
             userLinks: UserLinkProps[];
         },
+        sectionHeaders: Record<ID, SectionHeaderProps>;
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
         personalInfo: Record<ID, PersonalInfoProps>;
@@ -114,7 +120,7 @@ const initialState: ResumeState = {
     dragFromIndex: -1,
     dragToIndex: -1,
     dragHigher: true,
-    monthType: "short",
+    monthType: "short", //TODO 9/6/2025: store monthTypes in a "per resume" type of object
     data: {
         userInfo: {
             fullName: "Michael See",
@@ -123,6 +129,7 @@ const initialState: ResumeState = {
             location: "Anchorage, AK",
             userLinks: []
         },
+        sectionHeaders: {},
         prevJobs: {
             0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 6, yearStarted: 2023, monthEnded: 11, yearEnded: 2024 },
             1: { id: "1", kind: "prevJob", companyName: "Microsoft", location: "Los Angeles, CA", jobTitle: "UI/UX Designer", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 },
@@ -212,6 +219,10 @@ const resumeSlice = createSlice({
             const { id } = action.payload;
             state.data.bulletPoints[id] = action.payload;
         },
+        addSectionHeaderData(state, action: PayloadAction<SectionHeaderProps>) {
+            const { id } = action.payload;
+            state.data.sectionHeaders[id] = action.payload;
+        },
         updatePrevJobField(
             state,
             action: PayloadAction<{ id: ID; field: PrevJobKey; value: PrevJobEditable[PrevJobKey] }>
@@ -263,8 +274,12 @@ const resumeSlice = createSlice({
         setDragHigher(state, action: PayloadAction<boolean>) {
             state.dragHigher = action.payload;
         },
+        editSectionHeader(state, action: PayloadAction<SectionHeaderProps>) {
+            const { id, text } = action.payload;
+            state.data.sectionHeaders[id].text = text;
+        }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, updatePrevJobField } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, updatePrevJobField, addSectionHeaderData } = resumeSlice.actions;
 export default resumeSlice.reducer;

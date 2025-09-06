@@ -7,6 +7,7 @@ import {
   addPersonalInfoData,
   addPrevJobData,
   addResumeItem,
+  addSectionHeaderData,
   createEmptyResume,
   Kinds,
   prevJobDefault,
@@ -17,6 +18,7 @@ import { RootState } from "@/state/store";
 const newResumeRenderItems: Kinds[] = [
   "personalInfo",
   "experienceHeader",
+  "sectionHeader",
   "prevJob",
   "bulletPoint",
   "bulletPoint",
@@ -75,6 +77,10 @@ export default function GenerateResumeButton() {
           dispatch(
             addBulletData({ id, kind, text: "Enter Bullet Point Text..." })
           );
+          break;
+        case "sectionHeader": {
+          dispatch(addSectionHeaderData({ id, text: "Test" }));
+        }
       }
 
       dispatch(addResumeItem({ kind, elementId: id }));
