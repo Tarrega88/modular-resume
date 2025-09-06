@@ -33,6 +33,7 @@ export type UserLinkProps = {
 export type SectionHeaderProps = {
     id: string;
     text: string;
+    kind: string;
 }
 
 // type ResumeItem =

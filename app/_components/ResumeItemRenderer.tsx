@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import JobSection from "./previousJob/JobSection";
 import ResumeHeader from "./ResumeHeader";
-import ExperienceHeader from "./ExperienceHeader";
 import SectionHeader from "./SectionHeader";
 
 function ResumeItemRenderer({
@@ -101,14 +100,12 @@ function ResumeItemRenderer({
         />
       );
     case "experienceHeader": {
-      return <ExperienceHeader />;
-    }
-    case "sectionHeader": {
       const sectionHeaderData = data.sectionHeaders[elementId];
       return (
         <SectionHeader
           id={sectionHeaderData.id}
           text={sectionHeaderData.text}
+          kind={sectionHeaderData.kind}
         />
       );
     }

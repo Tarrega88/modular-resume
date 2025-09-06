@@ -18,7 +18,7 @@ import { RootState } from "@/state/store";
 const newResumeRenderItems: Kinds[] = [
   "personalInfo",
   "experienceHeader",
-  "sectionHeader",
+  // "sectionHeader",
   "prevJob",
   "bulletPoint",
   "bulletPoint",
@@ -78,8 +78,14 @@ export default function GenerateResumeButton() {
             addBulletData({ id, kind, text: "Enter Bullet Point Text..." })
           );
           break;
-        case "sectionHeader": {
-          dispatch(addSectionHeaderData({ id, text: "Test" }));
+        case "experienceHeader": {
+          dispatch(
+            addSectionHeaderData({
+              id,
+              text: "Experience",
+              kind,
+            })
+          );
         }
       }
 
