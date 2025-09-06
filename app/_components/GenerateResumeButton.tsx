@@ -17,12 +17,16 @@ import { RootState } from "@/state/store";
 
 const newResumeRenderItems: Kinds[] = [
   "personalInfo",
+  "summaryHeader",
   "experienceHeader",
   // "sectionHeader",
   "prevJob",
   "bulletPoint",
   "bulletPoint",
   "bulletPoint",
+  "educationHeader",
+  "skillsHeader",
+  "projectsHeader",
 ];
 
 export default function GenerateResumeButton() {
@@ -78,11 +82,15 @@ export default function GenerateResumeButton() {
             addBulletData({ id, kind, text: "Enter Bullet Point Text..." })
           );
           break;
-        case "experienceHeader": {
+        case "summaryHeader":
+        case "experienceHeader":
+        case "educationHeader":
+        case "projectsHeader":
+        case "skillsHeader": {
           dispatch(
             addSectionHeaderData({
               id,
-              text: "Experience",
+              text: kind[0].toUpperCase() + kind.slice(1, -6),
               kind,
             })
           );

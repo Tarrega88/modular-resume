@@ -99,7 +99,12 @@ function ResumeItemRenderer({
           renderIndex={renderIndex}
         />
       );
-    case "experienceHeader": {
+    case "summaryHeader":
+    case "experienceHeader":
+    case "educationHeader":
+    case "projectsHeader":
+    case "skillsHeader":
+    case "sectionHeader": {
       const sectionHeaderData = data.sectionHeaders[elementId];
       return (
         <SectionHeader

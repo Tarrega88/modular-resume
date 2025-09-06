@@ -5,7 +5,7 @@ type PrevJobEditable = Omit<PrevJobProps, "id" | "kind">;
 type PrevJobKey = keyof PrevJobEditable;
 
 
-export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "sectionHeader";
+export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "sectionHeader" | "educationHeader" | "skillsHeader" | "projectsHeader" | "summaryHeader";
 
 function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
