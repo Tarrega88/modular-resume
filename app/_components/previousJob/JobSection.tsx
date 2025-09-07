@@ -5,6 +5,8 @@ import JobStart from "./JobStart";
 import JobEnd from "./JobEnd";
 import DynamicInput from "../DynamicInput";
 import { PrevJobProps } from "@/state/types";
+import RelativeAbsRight from "../RelativeAbsRight";
+import DeleteElementButton from "../DeleteElementButton";
 
 function JobSection({
   id,
@@ -31,7 +33,10 @@ function JobSection({
   }
 
   return (
-    <div>
+    <div className="group">
+      <RelativeAbsRight>
+        <DeleteElementButton renderIndex={renderIndex} />
+      </RelativeAbsRight>
       <div className="flex font-semibold justify-between">
         <JobSectionInput
           text={companyName}

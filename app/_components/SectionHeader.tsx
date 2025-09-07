@@ -1,6 +1,9 @@
 import { SectionHeaderProps } from "@/state/types";
 import DynamicInput from "./DynamicInput";
 import DeleteElementButton from "./DeleteElementButton";
+import { widthWithoutMargin } from "./SideResumeInner";
+import RelativeAbsLeft from "./RelativeAbsLeft";
+import RelativeAbsRight from "./RelativeAbsRight";
 
 //TODO 9/6/2025: Consider whether to store section header data as oneoffs or allow
 //multiple versions of each header type
@@ -14,11 +17,9 @@ function SectionHeader({
 
   return (
     <div className="group text-xl font-semibold my-4">
-      <div className="relative">
-        <div className="absolute left-[101%] group-hover:opacity-100 opacity-0 transition-all duration-150">
-          <DeleteElementButton renderIndex={renderIndex} />
-        </div>
-      </div>
+      <RelativeAbsRight>
+        <DeleteElementButton renderIndex={renderIndex} />
+      </RelativeAbsRight>
       <DynamicInput
         text={text}
         handleOnSubmit={handleOnSubmit}

@@ -5,6 +5,7 @@ import UserLink from "./UserLink";
 import { locationDefault } from "@/state/resumeSlice";
 import DeleteElementButton from "./DeleteElementButton";
 import { widthWithoutMargin } from "./SideResumeInner";
+import RelativeAbsRight from "./RelativeAbsRight";
 function ResumeHeader({
   id,
   kind,
@@ -18,11 +19,9 @@ function ResumeHeader({
 }: PersonalInfoProps & { renderIndex: number }) {
   return (
     <div className="group">
-      <div className="relative">
-        <div className="absolute left-[101%] group-hover:opacity-100 opacity-0 transition-all duration-150">
-          <DeleteElementButton renderIndex={renderIndex} />
-        </div>
-      </div>
+      <RelativeAbsRight>
+        <DeleteElementButton renderIndex={renderIndex} />
+      </RelativeAbsRight>
       <div>
         <span className="text-3xl font-semibold">
           <HeaderDynamicInput text={fullName} />
