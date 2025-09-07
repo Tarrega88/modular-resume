@@ -1,4 +1,4 @@
-import { pageWidth, widthWithoutMargin } from "./SideResumeInner";
+import { pageWidth, widthWithoutMargin } from "../SideResumeInner";
 
 function RelativeAbsRight({ children }: { children: React.ReactNode }) {
   return (

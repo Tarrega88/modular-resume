@@ -5,7 +5,7 @@ import UserLink from "./UserLink";
 import { locationDefault } from "@/state/resumeSlice";
 import DeleteElementButton from "./DeleteElementButton";
 import { widthWithoutMargin } from "./SideResumeInner";
-import RelativeAbsRight from "./RelativeAbsRight";
+import RelativeAbsRight from "./wrappers/RelativeAbsRight";
 function ResumeHeader({
   id,
   kind,

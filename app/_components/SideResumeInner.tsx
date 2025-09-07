@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import ResumeItemRenderer from "./ResumeItemRenderer";
 import { useParams } from "next/navigation";
-import Draggable from "./Draggable";
+import Draggable from "./wrappers/Draggable";
 
 export const pageMargin = 48;
 export const pageWidth = 850;

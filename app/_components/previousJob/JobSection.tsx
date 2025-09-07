@@ -5,7 +5,7 @@ import JobStart from "./JobStart";
 import JobEnd from "./JobEnd";
 import DynamicInput from "../DynamicInput";
 import { PrevJobProps } from "@/state/types";
-import RelativeAbsRight from "../RelativeAbsRight";
+import RelativeAbsRight from "../wrappers/RelativeAbsRight";
 import DeleteElementButton from "../DeleteElementButton";
 
 function JobSection({

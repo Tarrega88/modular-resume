@@ -2,8 +2,8 @@ import { useState } from "react";
 import DeleteElementButton from "../DeleteElementButton";
 import DropdownElement from "../DropdownElement";
 import { Kinds } from "@/state/types";
-import RelativeAbsRight from "../RelativeAbsRight";
-import RelativeAbsLeft from "../RelativeAbsLeft";
+import RelativeAbsRight from "../wrappers/RelativeAbsRight";
+import RelativeAbsLeft from "../wrappers/RelativeAbsLeft";
 
 type Props = {
   text: string;

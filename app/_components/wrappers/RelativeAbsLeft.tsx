@@ -1,4 +1,4 @@
-import { pageWidth } from "./SideResumeInner";
+import { pageWidth } from "../SideResumeInner";
 
 function RelativeAbsLeft({
   children,
