@@ -15,7 +15,13 @@ export const prevJobDefault: PrevJobProps = { id: "0", kind: "prevJob", companyN
 export const personalInfoDefault: PersonalInfoProps = { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: locationDefault }
 export const bulletPointDefault: BulletPointProps = { id: "0", kind: "bulletPoint", text: "Enter Bullet Point Text Here" }
 
-
+export const sectionHeaderPlaceholders = {
+    summaryHeader: { kind: "summaryHeader", text: "Summary" },
+    experienceHeader: { kind: "experienceHeader", text: "Experience" },
+    educationHeader: { kind: "educationHeader", text: "Education" },
+    projectsHeader: { kind: "projectsHeader", text: "Projects" },
+    skillsHeader: { kind: "skillsHeader", text: "Skills" }
+} as const;
 
 //data will store all data across multiple resumes - might add a "hidden" boolean to everything,
 //which would start as false, but the user could mark anything to be hidden from not being an option to pick for that resume.
@@ -36,7 +42,13 @@ const initialState: ResumeState = {
             location: "Anchorage, AK",
             userLinks: []
         },
-        sectionHeaders: {},
+        sectionHeaders: {
+            summaryHeader: sectionHeaderPlaceholders.summaryHeader,
+            experienceHeader: sectionHeaderPlaceholders.experienceHeader,
+            educationHeader: sectionHeaderPlaceholders.educationHeader,
+            projectsHeader: sectionHeaderPlaceholders.projectsHeader,
+            skillsHeader: sectionHeaderPlaceholders.skillsHeader,
+        },
         prevJobs: {
             0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 6, yearStarted: 2023, monthEnded: 11, yearEnded: 2024 },
             1: { id: "1", kind: "prevJob", companyName: "Microsoft", location: "Los Angeles, CA", jobTitle: "UI/UX Designer", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 },
@@ -121,10 +133,6 @@ const resumeSlice = createSlice({
             const { id } = action.payload;
             state.data.bulletPoints[id] = action.payload;
         },
-        addSectionHeaderData(state, action: PayloadAction<SectionHeaderProps>) {
-            const { id } = action.payload;
-            state.data.sectionHeaders[id] = action.payload;
-        },
         updatePrevJobField(
             state,
             action: PayloadAction<{ id: ID; field: PrevJobKey; value: PrevJobEditable[PrevJobKey] }>
@@ -177,11 +185,11 @@ const resumeSlice = createSlice({
             state.dragHigher = action.payload;
         },
         editSectionHeader(state, action: PayloadAction<SectionHeaderProps>) {
-            const { id, text } = action.payload;
-            state.data.sectionHeaders[id].text = text;
+            const { text, kind } = action.payload;
+            state.data.sectionHeaders[kind].text = text;
         }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, updatePrevJobField, addSectionHeaderData } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, updatePrevJobField } = resumeSlice.actions;
 export default resumeSlice.reducer;

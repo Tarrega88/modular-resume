@@ -7,7 +7,6 @@ import {
   addPersonalInfoData,
   addPrevJobData,
   addResumeItem,
-  addSectionHeaderData,
   createEmptyResume,
   prevJobDefault,
   setCurrentResume,
@@ -82,19 +81,18 @@ export default function GenerateResumeButton() {
             addBulletData({ id, kind, text: "Enter Bullet Point Text..." })
           );
           break;
-        case "summaryHeader":
-        case "experienceHeader":
-        case "educationHeader":
-        case "projectsHeader":
-        case "skillsHeader": {
-          dispatch(
-            addSectionHeaderData({
-              id,
-              text: kind[0].toUpperCase() + kind.slice(1, -6),
-              kind,
-            })
-          );
-        }
+        // case "summaryHeader":
+        // case "experienceHeader":
+        // case "educationHeader":
+        // case "projectsHeader":
+        // case "skillsHeader": {
+        //   dispatch(
+        //     addSectionHeaderData({
+        //       text: kind[0].toUpperCase() + kind.slice(1, -6),
+        //       kind,
+        //     })
+        //   );
+        // }
       }
 
       dispatch(addResumeItem({ kind, elementId: id }));

@@ -98,19 +98,40 @@ function ResumeItemRenderer({
           renderIndex={renderIndex}
         />
       );
-    case "summaryHeader":
-    case "experienceHeader":
-    case "educationHeader":
-    case "projectsHeader":
-    case "skillsHeader":
-    case "sectionHeader": {
-      const sectionHeaderData = data.sectionHeaders[elementId];
+    case "summaryHeader": {
+      const { summaryHeader } = data.sectionHeaders;
+      return (
+        <SectionHeader text={summaryHeader.text} kind={summaryHeader.kind} />
+      );
+    }
+    case "experienceHeader": {
+      const { experienceHeader } = data.sectionHeaders;
       return (
         <SectionHeader
-          id={sectionHeaderData.id}
-          text={sectionHeaderData.text}
-          kind={sectionHeaderData.kind}
+          text={experienceHeader.text}
+          kind={experienceHeader.kind}
         />
+      );
+    }
+    case "educationHeader": {
+      const { educationHeader } = data.sectionHeaders;
+      return (
+        <SectionHeader
+          text={educationHeader.text}
+          kind={educationHeader.kind}
+        />
+      );
+    }
+    case "projectsHeader": {
+      const { projectsHeader } = data.sectionHeaders;
+      return (
+        <SectionHeader text={projectsHeader.text} kind={projectsHeader.kind} />
+      );
+    }
+    case "skillsHeader": {
+      const { skillsHeader } = data.sectionHeaders;
+      return (
+        <SectionHeader text={skillsHeader.text} kind={skillsHeader.kind} />
       );
     }
     case "education":

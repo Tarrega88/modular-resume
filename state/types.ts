@@ -22,12 +22,6 @@ export type UserLinkProps = {
     url: string;
 }
 
-export type SectionHeaderProps = {
-    id: string;
-    text: string;
-    kind: string;
-}
-
 export type PersonalInfoProps = {
     id: string;
     kind: "personalInfo";
@@ -67,6 +61,11 @@ export type EducationProps = {
     gpa?: string;
 };
 
+export type SectionHeaderProps = {
+    text: string;
+    kind: "summaryHeader" | "experienceHeader" | "educationHeader" | "skillsHeader" | "projectsHeader";
+}
+
 export type ResumeState = {
     currentResumeId: string;
     dragFromIndex: number;
@@ -81,7 +80,13 @@ export type ResumeState = {
             location: string;
             userLinks: UserLinkProps[];
         },
-        sectionHeaders: Record<ID, SectionHeaderProps>;
+        sectionHeaders: {
+            summaryHeader: SectionHeaderProps;
+            experienceHeader: SectionHeaderProps;
+            educationHeader: SectionHeaderProps;
+            skillsHeader: SectionHeaderProps;
+            projectsHeader: SectionHeaderProps;
+        };
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
         personalInfo: Record<ID, PersonalInfoProps>;
