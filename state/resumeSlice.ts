@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BulletPointProps, EducationProps, ID, Kinds, PersonalInfoProps, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, SectionHeaderProps, TextEdit, UserLinkProps } from "./types";
+import { BulletPointProps, EducationProps, ID, Kinds, PersonalInfoProps, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, ResumeState, SectionHeaderProps, TextEdit, UserLinkProps } from "./types";
 
 function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
@@ -7,30 +7,6 @@ function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
 
 function ensurePrevJob(state: ResumeState, id: ID): PrevJobProps {
     return (state.data.prevJobs[id] ??= { ...prevJobDefault, id });
-}
-
-type ResumeState = {
-    currentResumeId: string;
-    dragFromIndex: number;
-    dragToIndex: number;
-    dragHigher: boolean;
-    monthType: "short" | "long",
-    data: {
-        userInfo: {
-            fullName: string;
-            email: string;
-            phoneNumber: string;
-            location: string;
-            userLinks: UserLinkProps[];
-        },
-        sectionHeaders: Record<ID, SectionHeaderProps>;
-        prevJobs: Record<ID, PrevJobProps>;
-        bulletPoints: Record<ID, BulletPointProps>;
-        personalInfo: Record<ID, PersonalInfoProps>;
-        education: Record<ID, EducationProps>;
-        userLinks: Record<ID, UserLinkProps>
-    };
-    resumes: Record<ID, ResumeItemProps[]>;
 }
 
 

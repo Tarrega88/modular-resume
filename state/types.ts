@@ -66,3 +66,27 @@ export type EducationProps = {
     location?: string;
     gpa?: string;
 };
+
+export type ResumeState = {
+    currentResumeId: string;
+    dragFromIndex: number;
+    dragToIndex: number;
+    dragHigher: boolean;
+    monthType: "short" | "long",
+    data: {
+        userInfo: {
+            fullName: string;
+            email: string;
+            phoneNumber: string;
+            location: string;
+            userLinks: UserLinkProps[];
+        },
+        sectionHeaders: Record<ID, SectionHeaderProps>;
+        prevJobs: Record<ID, PrevJobProps>;
+        bulletPoints: Record<ID, BulletPointProps>;
+        personalInfo: Record<ID, PersonalInfoProps>;
+        education: Record<ID, EducationProps>;
+        userLinks: Record<ID, UserLinkProps>
+    };
+    resumes: Record<ID, ResumeItemProps[]>;
+}
