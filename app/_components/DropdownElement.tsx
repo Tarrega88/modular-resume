@@ -1,4 +1,5 @@
-import { changeBulletPoint, Kinds } from "@/state/resumeSlice";
+import { changeBulletPoint } from "@/state/resumeSlice";
+import { Kinds } from "@/state/types";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { useDispatch } from "react-redux";
 
@@ -26,6 +27,7 @@ function DropdownElement({ options, kind, id, renderIndex, field }: TempProps) {
     <select
       className="w-4 focus:outline-none cursor-pointer hover:text-gray-500 transition-all duration-150"
       onChange={onChange}
+      value={id}
     >
       {options?.map((option) => (
         <option key={option.id} value={option.id}>

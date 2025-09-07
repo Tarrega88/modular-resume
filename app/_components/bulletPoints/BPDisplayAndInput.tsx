@@ -1,7 +1,7 @@
-import { Kinds } from "@/state/resumeSlice";
 import { useState } from "react";
 import DeleteElementButton from "../DeleteElementButton";
 import DropdownElement from "../DropdownElement";
+import { Kinds } from "@/state/types";
 
 type Props = {
   text: string;
@@ -56,6 +56,7 @@ function BPDisplayAndInput({
               onClick={(e) => e.stopPropagation()}
             >
               <DropdownElement
+                key={id}
                 options={options}
                 kind={kind}
                 id={id}
