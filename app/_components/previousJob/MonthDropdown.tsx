@@ -12,7 +12,7 @@ function MonthDropdown({
   handleShowDropdown(e: boolean): void;
 }) {
   return showDropdown ? (
-    <div>
+    <div onMouseLeave={() => handleShowDropdown(false)}>
       <select
         className="outline-none"
         value={month}
