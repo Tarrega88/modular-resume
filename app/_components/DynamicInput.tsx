@@ -3,9 +3,12 @@ import { useState } from "react";
 type Props = {
   text: string;
   handleOnSubmit(e: string): void;
+  inputWidth: "char" | "full";
 };
 
-function DynamicInput({ text, handleOnSubmit }: Props) {
+//TODO 9/7/2025: might add a padding prop here
+
+function DynamicInput({ text, handleOnSubmit, inputWidth }: Props) {
   const [showInput, setShowInput] = useState(false);
   const [tempText, setTempText] = useState(text);
 
@@ -14,6 +17,11 @@ function DynamicInput({ text, handleOnSubmit }: Props) {
     setShowInput(false);
   }
 
+  const widths = {
+    char: `${tempText.length || 1}ch`,
+    full: "100%",
+  };
+
   return showInput ? (
     <input
       autoFocus
@@ -21,8 +29,7 @@ function DynamicInput({ text, handleOnSubmit }: Props) {
       onChange={(e) => setTempText(e.target.value)}
       onBlur={changeDisplay}
       onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-      className="px-1"
-      style={{ width: `${tempText.length + 1 || 1}ch` }}
+      style={{ width: `${widths[inputWidth]}` }}
     />
   ) : (
     <div

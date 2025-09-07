@@ -1,11 +1,10 @@
-import { PrevJobProps } from "@/state/resumeSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import JobSectionInput from "./JobSectionInput";
-import MonthDropdown from "./MonthDropdown";
 import JobStart from "./JobStart";
 import JobEnd from "./JobEnd";
 import DynamicInput from "../DynamicInput";
+import { PrevJobProps } from "@/state/types";
 
 function JobSection({
   id,
@@ -45,12 +44,14 @@ function JobSection({
           <DynamicInput
             text={yearStarted.toString()}
             handleOnSubmit={handleOnSubmit}
+            inputWidth="char"
           />
           <div> - </div>
           <JobEnd id={id} monthType={monthType} month={monthEnded} />
           <DynamicInput
             text={yearEnded.toString()}
             handleOnSubmit={handleOnSubmit}
+            inputWidth="char"
           />
         </div>
       </div>
@@ -68,14 +69,6 @@ function JobSection({
           textAlign="right"
         />
       </div>
-      {/* <ul>
-        <li className="pl-1">• Built and designed software</li>
-        <li className="pl-1">• Mentored team of customer support agents</li>
-        <li className="pl-1">
-          • Collaborated across multiple teams to ensure timely delivery of
-          product
-        </li>
-      </ul> */}
     </div>
   );
 }
