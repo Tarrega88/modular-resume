@@ -15,14 +15,9 @@ function DropdownElement({ options, kind, id, renderIndex, field }: TempProps) {
   const dispatch = useDispatch();
 
   function onChange(e: any) {
-    switch (true) {
-      case kind === "bulletPoint":
-        dispatch(changeBulletPoint({ renderIndex, id: e.target.value }));
-        break;
-      case kind === "prevJob" && field === "location":
-        break;
-    }
+    dispatch(changeBulletPoint({ renderIndex, id: e.target.value }));
   }
+
   return (
     <select
       className="w-4 focus:outline-none cursor-pointer hover:text-gray-500 transition-all duration-150"

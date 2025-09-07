@@ -2,6 +2,8 @@ import { useState } from "react";
 import DeleteElementButton from "../DeleteElementButton";
 import DropdownElement from "../DropdownElement";
 import { Kinds } from "@/state/types";
+import RelativeAbsRight from "../RelativeAbsRight";
+import RelativeAbsLeft from "../RelativeAbsLeft";
 
 type Props = {
   text: string;
@@ -41,42 +43,43 @@ function BPDisplayAndInput({
 
   return displayMode === "div" ? (
     <div
-      className="group hover:bg-sky-50 transition-all duration-150 cursor-pointer w-full flex"
+      className="group hover:bg-sky-50 transition-all duration-150 cursor-pointer w-full"
       onClick={setDisplayToInput}
     >
-      <p>
-        {/* <span className="px-2">•</span> */}
-        <span className="transition-all duration-200">{tempText}</span>
+      <RelativeAbsLeft position="bullet">
+        <DropdownElement
+          key={id}
+          options={options}
+          kind={kind}
+          id={id}
+          renderIndex={renderIndex}
+        />
+      </RelativeAbsLeft>
+      <RelativeAbsRight>
+        <DeleteElementButton renderIndex={renderIndex} />
+      </RelativeAbsRight>
+      <p className="flex">
+        <span
+          className="mx-2 group-hover:opacity-0 transition-all duration-150 pointer-events-none"
+          onClick={(e) => e.stopPropagation()}
+        >
+          •
+        </span>
+        <span className="transition-all duration-150">{tempText}</span>
       </p>
-      <div className="absolute w-full">
-        <div className="relative">
-          <div className="absolute h-full right-[116px]">
-            <div
-              className="flex bg-white gap-2 rounded-md w-14 justify-center items-center border h-5 group-hover:opacity-100 opacity-0"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <DropdownElement
-                key={id}
-                options={options}
-                kind={kind}
-                id={id}
-                renderIndex={renderIndex}
-              />
-              <DeleteElementButton renderIndex={renderIndex} />
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   ) : (
-    <input
-      className="w-full"
-      autoFocus
-      value={tempText}
-      onChange={(e) => setTempText(e.target.value)}
-      onBlur={handleBlur}
-      onKeyDown={handleEnter}
-    />
+    <div className="w-full flex">
+      <span className="mx-2">•</span>
+      <input
+        className="w-full"
+        autoFocus
+        value={tempText}
+        onChange={(e) => setTempText(e.target.value)}
+        onBlur={handleBlur}
+        onKeyDown={handleEnter}
+      />
+    </div>
   );
 }
 

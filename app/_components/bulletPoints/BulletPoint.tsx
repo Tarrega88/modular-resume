@@ -21,17 +21,14 @@ function BulletPoint({
   }
 
   return (
-    <div className="flex">
-      <span className="mx-2">•</span>
-      <BPDisplayAndInput
-        options={options}
-        kind={kind}
-        id={id}
-        renderIndex={renderIndex}
-        text={text}
-        editData={editData}
-      />
-    </div>
+    <BPDisplayAndInput
+      options={options}
+      kind={kind}
+      id={id}
+      renderIndex={renderIndex}
+      text={text}
+      editData={editData}
+    />
   );
 }
 
