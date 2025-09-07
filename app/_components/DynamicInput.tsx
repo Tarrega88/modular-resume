@@ -33,7 +33,7 @@ function DynamicInput({ text, handleOnSubmit, inputWidth }: Props) {
     />
   ) : (
     <div
-      className="hover:bg-sky-50 transition-all duration-150"
+      className="hover:bg-sky-50 transition-all duration-150 w-full"
       onClick={() => setShowInput(true)}
     >
       {tempText}

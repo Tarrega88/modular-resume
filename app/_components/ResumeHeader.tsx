@@ -1,11 +1,11 @@
 import { PersonalInfoProps } from "@/state/types";
-import HeaderDynamicInput from "./HeaderDynamicInput";
 import UserLink from "./UserLink";
 
 import { locationDefault } from "@/state/resumeSlice";
 import DeleteElementButton from "./DeleteElementButton";
 import { widthWithoutMargin } from "./SideResumeInner";
 import RelativeAbsRight from "./wrappers/RelativeAbsRight";
+import DynamicInput from "./DynamicInput";
 function ResumeHeader({
   id,
   kind,
@@ -17,6 +17,9 @@ function ResumeHeader({
   link2,
   renderIndex,
 }: PersonalInfoProps & { renderIndex: number }) {
+  //TODO 9/7/2026: hook up reducer:
+  function handleOnSubmit() {}
+
   return (
     <div className="group">
       <RelativeAbsRight>
@@ -24,13 +27,29 @@ function ResumeHeader({
       </RelativeAbsRight>
       <div>
         <span className="text-3xl font-semibold">
-          <HeaderDynamicInput text={fullName} />
+          <DynamicInput
+            text={fullName}
+            handleOnSubmit={handleOnSubmit}
+            inputWidth="full"
+          />
         </span>
       </div>
       <div className="flex gap-4">
-        <HeaderDynamicInput text={email} />
-        <HeaderDynamicInput text={phoneNumber} />
-        <HeaderDynamicInput text={location} />
+        <DynamicInput
+          text={email}
+          handleOnSubmit={handleOnSubmit}
+          inputWidth="full"
+        />
+        <DynamicInput
+          text={phoneNumber}
+          handleOnSubmit={handleOnSubmit}
+          inputWidth="full"
+        />
+        <DynamicInput
+          text={location}
+          handleOnSubmit={handleOnSubmit}
+          inputWidth="full"
+        />
       </div>
     </div>
   );
