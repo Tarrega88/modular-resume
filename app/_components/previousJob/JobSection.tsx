@@ -26,11 +26,7 @@ function JobSection({
   const state = useSelector((state: RootState) => state.resume);
   const { monthType } = state;
 
-  // state.prevJobs[id]
-
-  //TODO 9/4/2025: looks like the date will be correctly parsed by ATS like this.
-  //Will put in a separate date component in place of 2024 and 2025.
-
+  //TODO 9/6/2025: finish handleOnSubmit:
   function handleOnSubmit(e: string) {
     console.log(e);
   }
