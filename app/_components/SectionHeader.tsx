@@ -1,4 +1,4 @@
-import { SectionHeaderProps } from "@/state/resumeSlice";
+import { SectionHeaderProps } from "@/state/types";
 
 //TODO 9/6/2025: Consider whether to store section header data as oneoffs or allow
 //multiple versions of each header type

@@ -1,11 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type ID = string;
-type PrevJobEditable = Omit<PrevJobProps, "id" | "kind">;
-type PrevJobKey = keyof PrevJobEditable;
-
-
-export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "sectionHeader" | "educationHeader" | "skillsHeader" | "projectsHeader" | "summaryHeader";
+import { BulletPointProps, EducationProps, ID, Kinds, PersonalInfoProps, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, SectionHeaderProps, TextEdit, UserLinkProps } from "./types";
 
 function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
@@ -14,32 +8,6 @@ function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
 function ensurePrevJob(state: ResumeState, id: ID): PrevJobProps {
     return (state.data.prevJobs[id] ??= { ...prevJobDefault, id });
 }
-
-export type ResumeItemProps = {
-    id: ID;
-    kind: Kinds;
-    elementId: ID;
-}
-
-export type TextEdit = PayloadAction<{ id: string; text: string; }>
-export type JobSectionTextEdit = PayloadAction<{ id: string; text: string; field: "jobTitle" | "location" | "companyName"; }>
-
-export type UserLinkProps = {
-    id: string;
-    text: string;
-    url: string;
-}
-
-export type SectionHeaderProps = {
-    id: string;
-    text: string;
-    kind: string;
-}
-
-// type ResumeItem =
-//     | { id: ID; kind: "bulletPoint"; elementId: ID }
-//     | { id: ID; kind: "prevJob"; elementId: ID };
-
 
 type ResumeState = {
     currentResumeId: string;
@@ -65,44 +33,6 @@ type ResumeState = {
     resumes: Record<ID, ResumeItemProps[]>;
 }
 
-export type PersonalInfoProps = {
-    id: string;
-    kind: "personalInfo";
-    fullName: string;
-    email: string;
-    phoneNumber: string;
-    location: string;
-    link1?: UserLinkProps;
-    link2?: UserLinkProps;
-}
-
-export type PrevJobProps = {
-    id: string;
-    kind: "prevJob";
-    companyName: string;
-    jobTitle: string;
-    location: string;
-    monthStarted: number;
-    yearStarted: number;
-    monthEnded: number;
-    yearEnded: number;
-};
-
-export type BulletPointProps = { id: string; kind: "bulletPoint"; text: string; };
-
-export type EducationProps = {
-    id: string;
-    kind: "education";
-    schoolName: string;
-    degree: string;
-    fieldOfStudy: string;
-    monthStarted?: number;
-    yearStarted?: number;
-    monthEnded?: number;
-    yearEnded?: number;
-    location?: string;
-    gpa?: string;
-};
 
 export const locationDefault: string = "City, ST";
 export const prevJobDefault: PrevJobProps = { id: "0", kind: "prevJob", companyName: "Company Name", location: locationDefault, jobTitle: "Job Title", monthStarted: 0, yearStarted: 2024, monthEnded: 11, yearEnded: 2025 }

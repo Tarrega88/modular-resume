@@ -9,11 +9,11 @@ import {
   addResumeItem,
   addSectionHeaderData,
   createEmptyResume,
-  Kinds,
   prevJobDefault,
   setCurrentResume,
 } from "@/state/resumeSlice";
 import { RootState } from "@/state/store";
+import { Kinds } from "@/state/types";
 
 const newResumeRenderItems: Kinds[] = [
   "personalInfo",
