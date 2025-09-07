@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { editBulletPoint, Kinds } from "@/state/resumeSlice";
 import { useDispatch } from "react-redux";
+import { Kinds } from "@/state/types";
 
 type Props = {
   text: string;
@@ -23,6 +23,7 @@ function HeaderDynamicInput({ text, id, kind }: Props) {
     setDisplayMode("div");
   }
 
+  //TODO 9/6/2025: finish hooking up reducer:
   function handleEnter(e: any) {
     if (e.key === "Enter") {
       setDisplayMode("div");

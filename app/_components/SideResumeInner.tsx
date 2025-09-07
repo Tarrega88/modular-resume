@@ -6,10 +6,13 @@ import ResumeItemRenderer from "./ResumeItemRenderer";
 import { useParams } from "next/navigation";
 import Draggable from "./Draggable";
 
+export const pageMargin = 48;
+export const pageWidth = 850;
+export const pageHeight = 1100;
+export const widthWithoutMargin = pageWidth - pageMargin * 2;
+
 export default function SideResumeInner() {
   //TODO 8/26/2025: reliably throw an error if there's no matching id between the params and resumeIds (right now it's based off of the lack of items in renderOrder)
-  const PAGE_HEIGHT = 1100;
-  const LINE_THICKNESS = 2;
 
   const bullets = useSelector(
     (state: RootState) => state.resume.data.bulletPoints
@@ -40,12 +43,12 @@ export default function SideResumeInner() {
       style={{
         position: "relative",
         backgroundColor: "white",
-        width: "850px",
-        minHeight: "1100px",
+        width: `${pageWidth}px`,
+        height: `${pageHeight}px`,
         fontSize: "16px",
         lineHeight: 1.4,
-        paddingLeft: "48px", //TODO: will set to 48 when I'm done testing page breaks
-        paddingRight: "48px",
+        paddingLeft: `${pageMargin}px`, //TODO: will set to 48 when I'm done testing page breaks
+        paddingRight: `${pageMargin}px`,
         overflow: "hidden",
 
         // overflowY: "auto",

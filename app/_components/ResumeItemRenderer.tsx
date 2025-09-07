@@ -44,6 +44,7 @@ function ResumeItemRenderer({
           email={info.email}
           phoneNumber={info.phoneNumber}
           location={info.location}
+          renderIndex={renderIndex}
         />
       );
     case "prevJob":
@@ -101,7 +102,11 @@ function ResumeItemRenderer({
     case "summaryHeader": {
       const { summaryHeader } = data.sectionHeaders;
       return (
-        <SectionHeader text={summaryHeader.text} kind={summaryHeader.kind} />
+        <SectionHeader
+          text={summaryHeader.text}
+          kind={summaryHeader.kind}
+          renderIndex={renderIndex}
+        />
       );
     }
     case "experienceHeader": {
@@ -110,6 +115,7 @@ function ResumeItemRenderer({
         <SectionHeader
           text={experienceHeader.text}
           kind={experienceHeader.kind}
+          renderIndex={renderIndex}
         />
       );
     }
@@ -119,19 +125,28 @@ function ResumeItemRenderer({
         <SectionHeader
           text={educationHeader.text}
           kind={educationHeader.kind}
+          renderIndex={renderIndex}
         />
       );
     }
     case "projectsHeader": {
       const { projectsHeader } = data.sectionHeaders;
       return (
-        <SectionHeader text={projectsHeader.text} kind={projectsHeader.kind} />
+        <SectionHeader
+          text={projectsHeader.text}
+          kind={projectsHeader.kind}
+          renderIndex={renderIndex}
+        />
       );
     }
     case "skillsHeader": {
       const { skillsHeader } = data.sectionHeaders;
       return (
-        <SectionHeader text={skillsHeader.text} kind={skillsHeader.kind} />
+        <SectionHeader
+          text={skillsHeader.text}
+          kind={skillsHeader.kind}
+          renderIndex={renderIndex}
+        />
       );
     }
     case "education":
