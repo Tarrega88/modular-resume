@@ -67,6 +67,7 @@ export type SectionHeaderProps = {
 }
 
 export type ResumeState = {
+    scale: number;
     currentResumeId: string;
     dragFromIndex: number;
     dragToIndex: number;

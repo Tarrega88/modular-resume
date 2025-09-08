@@ -2,7 +2,6 @@
 
 import BuilderColumn from "@/app/_components/BuilderColumn";
 import SideResume from "@/app/_components/SideResume";
-import { useScale } from "@/app/_context/ScaleContext";
 
 export default function Error() {
   // const { scale } = useScale();

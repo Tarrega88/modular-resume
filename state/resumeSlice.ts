@@ -29,6 +29,7 @@ export const sectionHeaderPlaceholders = {
 //NOTE: id and object key will match except in the resumes object.
 
 const initialState: ResumeState = {
+    scale: 75,
     currentResumeId: "0",
     dragFromIndex: -1,
     dragToIndex: -1,
@@ -188,9 +189,12 @@ const resumeSlice = createSlice({
         editSectionHeader(state, action: PayloadAction<SectionHeaderProps>) {
             const { text, kind } = action.payload;
             state.data.sectionHeaders[kind].text = text;
+        },
+        setScale(state, action: PayloadAction<number>) {
+            state.scale = action.payload;
         }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, updatePrevJobField } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPersonalInfoData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale } = resumeSlice.actions;
 export default resumeSlice.reducer;
