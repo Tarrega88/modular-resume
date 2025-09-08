@@ -149,8 +149,17 @@ function ResumeItemRenderer({
         />
       );
     }
-    case "skills": {
-      return <SkillSection />;
+    case "skill": {
+      const skillData = data.skills[elementId];
+
+      return (
+        <SkillSection
+          id={skillData.id}
+          kind={skillData.kind}
+          list={skillData.list}
+          renderIndex={renderIndex}
+        />
+      );
     }
     case "education":
       return;

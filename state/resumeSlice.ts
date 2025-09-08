@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BulletPointProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, ResumeState, SectionHeaderProps, TextEdit, UserInfo, UserLinkProps } from "./types";
+import { BulletPointProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, ResumeState, SectionHeaderProps, SkillProps, TextEdit, UserInfo, UserLinkProps } from "./types";
 
 function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
@@ -70,6 +70,7 @@ const initialState: ResumeState = {
 
         },
         education: {},
+        skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"] } },
         // userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
     },
     resumes: {
@@ -86,7 +87,7 @@ const initialState: ResumeState = {
         { id: "106", kind: "bulletPoint", elementId: "4" },
         { id: "107", kind: "bulletPoint", elementId: "5" },
         { id: "108", kind: "skillsHeader", elementId: "" },
-        { id: "109", kind: "skills", elementId: "6" }
+        { id: "109", kind: "skill", elementId: "0" }
 
             // { id: "108", kind: "prevJob", elementId: "2" },
             // { id: "109", kind: "bulletPoint", elementId: "6" },
@@ -190,9 +191,27 @@ const resumeSlice = createSlice({
         editUserInfo(state, action: PayloadAction<{ field: keyof UserInfo; text: string; }>) {
             const { field, text } = action.payload;
             if (field !== "kind") state.data.userInfo[field] = text;
-        }
+        },
+        editSkills(state, action: PayloadAction<{ id: string; text: string }>) {
+
+            const { id, text } = action.payload;
+
+            state.data.skills[id].list = text.split(",").map(e => e.trim());
+
+        },
+        dragSkill(state, action: PayloadAction<{ fromIndex: number, toIndex: number; id: string }>) {
+            const { dragFromIndex, dragToIndex } = state;
+            const { fromIndex, toIndex, id } = action.payload;
+
+            if (toIndex === -1 || fromIndex === toIndex) return;
+
+            // const arr = state.resumes[currentResumeId];
+            const arr = state.data.skills[id].list;
+            const [item] = arr.splice(fromIndex, 1);
+            arr.splice(toIndex, 0, item);
+        },
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill } = resumeSlice.actions;
 export default resumeSlice.reducer;

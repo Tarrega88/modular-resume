@@ -18,7 +18,7 @@ function DynamicInput({ text, handleOnSubmit, inputWidth }: Props) {
   }
 
   const widths = {
-    char: `${tempText.length || 1}ch`,
+    char: `${tempText?.length || 1}ch`,
     full: "100%",
   };
 
@@ -36,7 +36,7 @@ function DynamicInput({ text, handleOnSubmit, inputWidth }: Props) {
       className="hover:bg-sky-50 transition-all duration-150 w-full"
       onClick={() => setShowInput(true)}
     >
-      {tempText}
+      {text}
     </div>
   );
 }
