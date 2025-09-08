@@ -47,13 +47,12 @@ export default function SideResumeInner() {
         height: `${pageHeight}px`,
         fontSize: "16px",
         lineHeight: 1.4,
-        paddingLeft: `${pageMargin}px`, //TODO: will set to 48 when I'm done testing page breaks
+        paddingLeft: `${pageMargin}px`,
         paddingRight: `${pageMargin}px`,
         overflow: "hidden",
 
         // overflowY: "auto",
       }}
-      // key={new Date().toString()} // could use to force re-rendering on changes but not a great practice
     >
       {/*
       TODO 8/29/2025: consider making the div below a component that's generated in new pages or attached to ResumeHeader
@@ -69,9 +68,6 @@ export default function SideResumeInner() {
           />
         </Draggable>
       ))}
-      {/* {bullets.map((e) => (
-        <BulletPoint key={e.id} id={e.id} text={e.text} />
-      ))} */}
 
       {/* <div className=" bg-white absolute bottom-0 h-[48px] text-center w-[802px]"></div> */}
     </div>
@@ -79,39 +75,9 @@ export default function SideResumeInner() {
 }
 
 {
-  /* {Array.from({ length: 52 }, (_, i) => (
-        <div key={i}>
-          ABCDEFGHIJKLNOPQRSTUVWXYZ ABCDEFGHIJKLNOPQRSTUVWXYZ
-          ABCDEFGHIJKLNOPQRSTUVWXYZ ABDEF
-        </div>
-      ))} */
-}
-
-{
   //dotted line spacer:
   /*
      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          zIndex: 10,
-          backgroundImage: `repeating-linear-gradient(
-            to bottom,
-            transparent,
-            transparent ${PAGE_HEIGHT - LINE_THICKNESS}px,
-            rgba(0,0,0,0.35) ${PAGE_HEIGHT - LINE_THICKNESS}px,
-            rgba(0,0,0,0.35) ${PAGE_HEIGHT}px
-          )`,
-        }}
-      />
-  */
-}
-
-{
-  /*
-        <div
         aria-hidden
         style={{
           position: "absolute",

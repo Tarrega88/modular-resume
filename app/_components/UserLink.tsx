@@ -1,4 +1,4 @@
-import { UserLinkProps } from "@/state/resumeSlice";
+import { UserLinkProps } from "@/state/types";
 
 function UserLink({ id, text, url }: UserLinkProps) {
   //TODO 8/29/2025

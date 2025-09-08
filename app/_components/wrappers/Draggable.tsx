@@ -18,6 +18,8 @@ function Draggable({
     (state: RootState) => state.resume
   );
 
+  //TODO 9/7/2025: consider adding boolean in state that determines whether an input is open- when it is, this should not be draggable
+
   const dispatch = useDispatch();
 
   const dragDirection = dragHigher

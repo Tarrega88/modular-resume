@@ -87,6 +87,7 @@ const initialState: ResumeState = {
         { id: "105", kind: "bulletPoint", elementId: "3" },
         { id: "106", kind: "bulletPoint", elementId: "4" },
         { id: "107", kind: "bulletPoint", elementId: "5" },
+        { id: "108", kind: "skillsHeader", elementId: "" }
 
             // { id: "108", kind: "prevJob", elementId: "2" },
             // { id: "109", kind: "bulletPoint", elementId: "6" },
@@ -117,7 +118,7 @@ const resumeSlice = createSlice({
         addResumeItem(state, action: PayloadAction<{ kind: Kinds, elementId: string | null }>) {
             const { currentResumeId } = state;
             const { kind, elementId } = action.payload;
-
+            //Note: May consider removing the null check and instead making elementId optional, but this is probably safer
             if (elementId === null) {
                 state.resumes[currentResumeId].push({ id: crypto.randomUUID(), kind, elementId: crypto.randomUUID() })
             } else {
