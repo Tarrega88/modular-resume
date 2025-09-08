@@ -35,7 +35,7 @@ export default function GenerateResumeButton() {
 
   const { userInfo } = state;
 
-  const { fullName, email, location, phoneNumber, userLinks } = userInfo;
+  const { fullName, email, location, phoneNumber } = userInfo;
 
   function handleClick() {
     const newResumeId = crypto.randomUUID();
@@ -47,19 +47,6 @@ export default function GenerateResumeButton() {
       const id = crypto.randomUUID();
 
       switch (kind) {
-        // case "userInfo":
-        //   dispatch(
-        //     addPersonalInfoData({
-        //       id,
-        //       kind,
-        //       fullName: fullName || "Full Name",
-        //       email: email || "email@email.com",
-        //       phoneNumber: phoneNumber || "(123) 456-7890",
-        //       location: location || "City, ST",
-        //     })
-        //   );
-        //   break;
-
         case "prevJob":
           dispatch(
             addPrevJobData({

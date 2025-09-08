@@ -1,4 +1,4 @@
-import { PersonalInfoProps, UserInfo } from "@/state/types";
+import { UserInfo, UserLinkProps } from "@/state/types";
 import UserLink from "./UserLink";
 
 import { locationDefault } from "@/state/resumeSlice";
@@ -15,7 +15,9 @@ function ResumeHeader({
   // link1,
   // link2,
   renderIndex,
-}: UserInfo & { renderIndex: number }) {
+}: UserInfo & {
+  renderIndex: number /*link1?: UserLinkProps; link2?: UserLinkProps;*/;
+}) {
   //TODO 9/7/2026: hook up reducer:
   function handleOnSubmit() {}
 

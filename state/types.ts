@@ -17,20 +17,8 @@ export type TextEdit = PayloadAction<{ id: string; text: string; }>
 export type JobSectionTextEdit = PayloadAction<{ id: string; text: string; field: "jobTitle" | "location" | "companyName"; }>
 
 export type UserLinkProps = {
-    id: string;
     text: string;
     url: string;
-}
-
-export type PersonalInfoProps = {
-    id: string;
-    kind: "personalInfo";
-    fullName: string;
-    email: string;
-    phoneNumber: string;
-    location: string;
-    link1?: UserLinkProps;
-    link2?: UserLinkProps;
 }
 
 export type PrevJobProps = {
@@ -72,7 +60,6 @@ export type UserInfo = {
     email: string;
     phoneNumber: string;
     location: string;
-    userLinks?: UserLinkProps[];
 }
 
 export type ResumeState = {
@@ -84,6 +71,8 @@ export type ResumeState = {
     monthType: "short" | "long",
     data: {
         userInfo: UserInfo,
+        userLink1?: UserLinkProps;
+        userLink2?: UserLinkProps;
         sectionHeaders: {
             summaryHeader: SectionHeaderProps;
             experienceHeader: SectionHeaderProps;
@@ -93,10 +82,7 @@ export type ResumeState = {
         };
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
-        //TODO 9/8/2025: check personalInfo - it maybe unneeded here and instead rely completely on userInfo
-        // personalInfo: Record<ID, PersonalInfoProps>;
         education: Record<ID, EducationProps>;
-        userLinks: Record<ID, UserLinkProps>
     };
     resumes: Record<ID, ResumeItemProps[]>;
 }

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BulletPointProps, EducationProps, ID, Kinds, PersonalInfoProps, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, ResumeState, SectionHeaderProps, TextEdit, UserInfo, UserLinkProps } from "./types";
+import { BulletPointProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, ResumeState, SectionHeaderProps, TextEdit, UserInfo, UserLinkProps } from "./types";
 
 function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
@@ -37,12 +37,12 @@ const initialState: ResumeState = {
     monthType: "short", //TODO 9/6/2025: store monthTypes in a "per resume" type of object
     data: {
         userInfo: {
-            fullName: "Michael See",
+            fullName: "Full Name...",
             kind: "userInfo",
-            email: "michaelseedev@gmail.com",
+            email: "email@gmail.com",
             phoneNumber: "(123) 456-7890",
-            location: "Anchorage, AK",
-            userLinks: []
+            location: "City, ST",
+            // userLinks: []
         },
         sectionHeaders: {
             summaryHeader: sectionHeaderPlaceholders.summaryHeader,
@@ -55,7 +55,6 @@ const initialState: ResumeState = {
             0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 6, yearStarted: 2023, monthEnded: 11, yearEnded: 2024 },
             1: { id: "1", kind: "prevJob", companyName: "Microsoft", location: "Los Angeles, CA", jobTitle: "UI/UX Designer", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 },
             // 2: { id: "2", kind: "prevJob", companyName: "Best Buy", location: "Los Angeles, CA", jobTitle: "Customer Support", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 }
-
         },
         bulletPoints: {
             0: { id: "0", kind: "bulletPoint", text: "Built software for ABC company" },
@@ -70,11 +69,8 @@ const initialState: ResumeState = {
             9: { id: "9", kind: "bulletPoint", text: "Designed responsive UI components using Tailwind CSS" },
 
         },
-        // personalInfo: {
-        //     0: { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: locationDefault }
-        // },
         education: {},
-        userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
+        // userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
     },
     resumes: {
         0: [{ id: "99", kind: "userInfo", elementId: "" },
@@ -128,10 +124,6 @@ const resumeSlice = createSlice({
             }
 
         },
-        // addPersonalInfoData(state, action: PayloadAction<PersonalInfoProps>) {
-        //     const { id } = action.payload;
-        //     state.data.personalInfo[id] = action.payload;
-        // },
         addBulletData(state, action: PayloadAction<BulletPointProps>) {
             const { id } = action.payload;
             state.data.bulletPoints[id] = action.payload;
@@ -194,11 +186,12 @@ const resumeSlice = createSlice({
         setScale(state, action: PayloadAction<number>) {
             state.scale = action.payload;
         },
-        // addUserInfo(state, action: PayloadAction<{ field: keyof UserInfo; data: { text: string; url?: string; } }>) {
-
-        // }
+        editUserInfo(state, action: PayloadAction<{ field: keyof UserInfo; text: string; }>) {
+            const { field, text } = action.payload;
+            if (field !== "kind") state.data.userInfo[field] = text;
+        }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo } = resumeSlice.actions;
 export default resumeSlice.reducer;
