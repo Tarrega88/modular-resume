@@ -27,10 +27,10 @@ function ResumeItemRenderer({
   //TODO 8/26/2025: Probably don't need kind on these - maybe remove from the Props, or if it's needed there then make a new Props type for these?
 
   switch (kind) {
-    case "personalInfo":
-      const info = data?.personalInfo[elementId] || {
-        id: elementId,
-        kind: "personalInfo",
+    case "userInfo":
+      const info = data?.userInfo || {
+        // id: elementId,
+        kind: "userInfo",
         fullName: "Full Name",
         email: "email@email.com",
         phoneNumber: "(123) 456-7890",
@@ -38,7 +38,6 @@ function ResumeItemRenderer({
       };
       return (
         <ResumeHeader
-          id={info.id}
           kind={info.kind}
           fullName={info.fullName}
           email={info.email}

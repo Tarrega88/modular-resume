@@ -1,4 +1,4 @@
-import { PersonalInfoProps } from "@/state/types";
+import { PersonalInfoProps, UserInfo } from "@/state/types";
 import UserLink from "./UserLink";
 
 import { locationDefault } from "@/state/resumeSlice";
@@ -7,16 +7,15 @@ import { widthWithoutMargin } from "./SideResumeInner";
 import RelativeAbsRight from "./wrappers/RelativeAbsRight";
 import DynamicInput from "./DynamicInput";
 function ResumeHeader({
-  id,
   kind,
   fullName = "Full Name",
   email = "email@email.com",
   phoneNumber = "(123) 123-4567",
   location = locationDefault,
-  link1,
-  link2,
+  // link1,
+  // link2,
   renderIndex,
-}: PersonalInfoProps & { renderIndex: number }) {
+}: UserInfo & { renderIndex: number }) {
   //TODO 9/7/2026: hook up reducer:
   function handleOnSubmit() {}
 

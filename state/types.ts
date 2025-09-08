@@ -5,7 +5,7 @@ export type ID = string;
 export type PrevJobEditable = Omit<PrevJobProps, "id" | "kind">;
 export type PrevJobKey = keyof PrevJobEditable;
 
-export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "sectionHeader" | "educationHeader" | "skillsHeader" | "projectsHeader" | "summaryHeader" | "skills";
+export type Kinds = "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "sectionHeader" | "educationHeader" | "skillsHeader" | "projectsHeader" | "summaryHeader" | "skills" | "userInfo";
 
 export type ResumeItemProps = {
     id: ID;
@@ -66,6 +66,15 @@ export type SectionHeaderProps = {
     kind: "summaryHeader" | "experienceHeader" | "educationHeader" | "skillsHeader" | "projectsHeader";
 }
 
+export type UserInfo = {
+    fullName: string;
+    kind: "userInfo";
+    email: string;
+    phoneNumber: string;
+    location: string;
+    userLinks?: UserLinkProps[];
+}
+
 export type ResumeState = {
     scale: number;
     currentResumeId: string;
@@ -74,13 +83,7 @@ export type ResumeState = {
     dragHigher: boolean;
     monthType: "short" | "long",
     data: {
-        userInfo: {
-            fullName: string;
-            email: string;
-            phoneNumber: string;
-            location: string;
-            userLinks: UserLinkProps[];
-        },
+        userInfo: UserInfo,
         sectionHeaders: {
             summaryHeader: SectionHeaderProps;
             experienceHeader: SectionHeaderProps;
@@ -91,7 +94,7 @@ export type ResumeState = {
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
         //TODO 9/8/2025: check personalInfo - it maybe unneeded here and instead rely completely on userInfo
-        personalInfo: Record<ID, PersonalInfoProps>;
+        // personalInfo: Record<ID, PersonalInfoProps>;
         education: Record<ID, EducationProps>;
         userLinks: Record<ID, UserLinkProps>
     };

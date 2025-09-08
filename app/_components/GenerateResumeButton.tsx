@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import {
   addBulletData,
-  addPersonalInfoData,
   addPrevJobData,
   addResumeItem,
   createEmptyResume,
@@ -15,7 +14,7 @@ import { RootState } from "@/state/store";
 import { Kinds } from "@/state/types";
 
 const newResumeRenderItems: Kinds[] = [
-  "personalInfo",
+  "userInfo",
   "summaryHeader",
   "experienceHeader",
   // "sectionHeader",
@@ -48,18 +47,18 @@ export default function GenerateResumeButton() {
       const id = crypto.randomUUID();
 
       switch (kind) {
-        case "personalInfo":
-          dispatch(
-            addPersonalInfoData({
-              id,
-              kind,
-              fullName: fullName || "Full Name",
-              email: email || "email@email.com",
-              phoneNumber: phoneNumber || "(123) 456-7890",
-              location: location || "City, ST",
-            })
-          );
-          break;
+        // case "userInfo":
+        //   dispatch(
+        //     addPersonalInfoData({
+        //       id,
+        //       kind,
+        //       fullName: fullName || "Full Name",
+        //       email: email || "email@email.com",
+        //       phoneNumber: phoneNumber || "(123) 456-7890",
+        //       location: location || "City, ST",
+        //     })
+        //   );
+        //   break;
 
         case "prevJob":
           dispatch(
