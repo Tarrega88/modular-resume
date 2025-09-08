@@ -85,7 +85,8 @@ const initialState: ResumeState = {
         { id: "105", kind: "bulletPoint", elementId: "3" },
         { id: "106", kind: "bulletPoint", elementId: "4" },
         { id: "107", kind: "bulletPoint", elementId: "5" },
-        { id: "108", kind: "skillsHeader", elementId: "" }
+        { id: "108", kind: "skillsHeader", elementId: "" },
+        { id: "109", kind: "skills", elementId: "6" }
 
             // { id: "108", kind: "prevJob", elementId: "2" },
             // { id: "109", kind: "bulletPoint", elementId: "6" },

@@ -6,6 +6,7 @@ import JobSection from "./previousJob/JobSection";
 import ResumeHeader from "./ResumeHeader";
 import SectionHeader from "./SectionHeader";
 import { ResumeItemProps } from "@/state/types";
+import SkillSection from "./skills/SkillSection";
 
 function ResumeItemRenderer({
   id,
@@ -147,6 +148,9 @@ function ResumeItemRenderer({
           renderIndex={renderIndex}
         />
       );
+    }
+    case "skills": {
+      return <SkillSection />;
     }
     case "education":
       return;
