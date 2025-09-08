@@ -151,6 +151,8 @@ function ResumeItemRenderer({
     }
     case "education":
       return;
+    default:
+      return;
   }
 }
 

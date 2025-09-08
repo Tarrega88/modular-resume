@@ -5,7 +5,7 @@ export type ID = string;
 export type PrevJobEditable = Omit<PrevJobProps, "id" | "kind">;
 export type PrevJobKey = keyof PrevJobEditable;
 
-export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "sectionHeader" | "educationHeader" | "skillsHeader" | "projectsHeader" | "summaryHeader";
+export type Kinds = "personalInfo" | "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "sectionHeader" | "educationHeader" | "skillsHeader" | "projectsHeader" | "summaryHeader" | "skills";
 
 export type ResumeItemProps = {
     id: ID;
@@ -90,6 +90,7 @@ export type ResumeState = {
         };
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
+        //TODO 9/8/2025: check personalInfo - it maybe unneeded here and instead rely completely on userInfo
         personalInfo: Record<ID, PersonalInfoProps>;
         education: Record<ID, EducationProps>;
         userLinks: Record<ID, UserLinkProps>
