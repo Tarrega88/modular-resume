@@ -33,11 +33,11 @@ function JobSection({
   }
 
   return (
-    <div className="group">
+    <div className="group mt-2 mb-1">
       <RelativeAbsRight>
         <DeleteElementButton renderIndex={renderIndex} />
       </RelativeAbsRight>
-      <div className="flex font-semibold justify-between mt-2">
+      <div className="flex font-semibold justify-between">
         <JobSectionInput
           text={companyName}
           id={id}
