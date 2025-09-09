@@ -1,5 +1,5 @@
 import { dragSkill } from "@/state/resumeSlice";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 type Props = {
@@ -21,6 +21,8 @@ function SkillDynamicInput({
 }: Props) {
   const [showInput, setShowInput] = useState(false);
 
+  const [activeI, setActiveI] = useState(-1);
+
   const [dragFromIndex, setDragFromIndex] = useState(-1);
   const [dragToIndex, setDragToIndex] = useState(-1);
 
@@ -32,24 +34,12 @@ function SkillDynamicInput({
   function changeDisplay() {
     handleOnSubmit(tempText);
     setShowInput(false);
-    //this works but I'm not a fan of mimicking the state - it violates the one source of truth concept
-    // setTempText(
-    //   tempText
-    //     .split(",")
-    //     .map((e) => e.trim())
-    //     .join(", ")
-    // );
   }
 
   const widths = {
     char: `${tempText.length || 1}ch`,
     full: "100%",
   };
-
-  function handleOnKeyDown(e) {
-    if (e.key === "Space" && tempText[tempText.length - 2] === " ")
-      if (e.key === "Enter") changeDisplay();
-  }
 
   function handleOnChange(e: any) {
     const sanitized = e.target.value.replace(/\s{2,}/g, " ");
@@ -76,9 +66,11 @@ function SkillDynamicInput({
       onClick={() => setShowInput(true)}
     >
       <ul className="flex">
+        <li className="pr-2 font-semibold">Technologies:</li>
         {list.map((e, i) => (
           <li
             key={i}
+            onClick={() => setActiveI(i)}
             onDragEnter={() => setDragToIndex(i)}
             className={i === dragFromIndex ? "opacity-25" : ""}
           >

@@ -16,7 +16,7 @@ function SectionHeader({
   function handleOnSubmit() {}
 
   return (
-    <div className="group text-xl font-semibold my-4">
+    <div className="group text-xl font-semibold mt-5">
       <RelativeAbsRight>
         <DeleteElementButton renderIndex={renderIndex} />
       </RelativeAbsRight>

@@ -27,13 +27,13 @@ function ResumeHeader({
         <DeleteElementButton renderIndex={renderIndex} />
       </RelativeAbsRight>
       <div>
-        <span className="text-3xl font-semibold">
+        <div className="text-3xl font-semibold">
           <DynamicInput
             text={fullName}
             handleOnSubmit={handleOnSubmit}
             inputWidth="full"
           />
-        </span>
+        </div>
       </div>
       <div className="flex gap-4">
         <DynamicInput

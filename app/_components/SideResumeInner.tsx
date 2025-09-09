@@ -37,20 +37,22 @@ export default function SideResumeInner() {
     // console.log("rect height:", ref.current.getBoundingClientRect().height); // precise, decimals
   });
 
+  //TODO 9/9/2025: Build in a global fontSize setting that scales the whole resume up or down
   return (
     <div
+      className="resume-font text-base"
       ref={ref}
       style={{
         position: "relative",
         backgroundColor: "white",
         width: `${pageWidth}px`,
         height: `${pageHeight}px`,
-        fontSize: "16px",
+        // fontSize: "16px",
         lineHeight: 1.4,
         paddingLeft: `${pageMargin}px`,
         paddingRight: `${pageMargin}px`,
         overflow: "hidden",
-
+        // "--resume-fs": `${pageFontSize}px`,
         // overflowY: "auto",
       }}
     >

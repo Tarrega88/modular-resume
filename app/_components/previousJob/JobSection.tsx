@@ -37,7 +37,7 @@ function JobSection({
       <RelativeAbsRight>
         <DeleteElementButton renderIndex={renderIndex} />
       </RelativeAbsRight>
-      <div className="flex font-semibold justify-between">
+      <div className="flex font-semibold justify-between pt-2">
         <JobSectionInput
           text={companyName}
           id={id}
