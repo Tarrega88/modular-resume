@@ -25,6 +25,13 @@ function SkillDynamicInput({ list, handleOnSubmit, inputWidth, id }: Props) {
   function changeDisplay() {
     handleOnSubmit(tempText);
     setShowInput(false);
+    //this works but I'm not a fan of mimicking the state - it violates the one source of truth concept
+    // setTempText(
+    //   tempText
+    //     .split(",")
+    //     .map((e) => e.trim())
+    //     .join(", ")
+    // );
   }
 
   const widths = {
