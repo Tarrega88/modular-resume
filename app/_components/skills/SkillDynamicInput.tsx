@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 type Props = {
+  text: string;
   handleOnSubmit(e: string): void;
   inputWidth: "char" | "full";
   list: string[];
@@ -11,13 +12,19 @@ type Props = {
 
 //TODO 9/7/2025: might add a padding prop here
 
-function SkillDynamicInput({ list, handleOnSubmit, inputWidth, id }: Props) {
+function SkillDynamicInput({
+  text,
+  list,
+  handleOnSubmit,
+  inputWidth,
+  id,
+}: Props) {
   const [showInput, setShowInput] = useState(false);
 
   const [dragFromIndex, setDragFromIndex] = useState(-1);
   const [dragToIndex, setDragToIndex] = useState(-1);
 
-  const [tempText, setTempText] = useState(list.join(", "));
+  const [tempText, setTempText] = useState(text);
   const isDragging = dragFromIndex > -1;
 
   const dispatch = useDispatch();
@@ -39,6 +46,16 @@ function SkillDynamicInput({ list, handleOnSubmit, inputWidth, id }: Props) {
     full: "100%",
   };
 
+  function handleOnKeyDown(e) {
+    if (e.key === "Space" && tempText[tempText.length - 2] === " ")
+      if (e.key === "Enter") changeDisplay();
+  }
+
+  function handleOnChange(e: any) {
+    const sanitized = e.target.value.replace(/\s{2,}/g, " ");
+    setTempText(sanitized);
+  }
+
   function handleOnDragEnd(fromIndex: number, toIndex: number, id: string) {
     dispatch(dragSkill({ fromIndex, toIndex, id }));
     setDragToIndex(-1);
@@ -49,7 +66,7 @@ function SkillDynamicInput({ list, handleOnSubmit, inputWidth, id }: Props) {
       style={{ width: widths[inputWidth] }}
       autoFocus
       value={tempText}
-      onChange={(e) => setTempText(e.target.value)}
+      onChange={handleOnChange}
       onBlur={changeDisplay}
       onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
     />

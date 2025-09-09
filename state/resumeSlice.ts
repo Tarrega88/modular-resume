@@ -196,7 +196,7 @@ const resumeSlice = createSlice({
 
             const { id, text } = action.payload;
 
-            state.data.skills[id].list = text.split(",").map(e => e.trim());
+            state.data.skills[id].list = text.split(",").filter(e => e.length > 1).map(e => e.trim());
 
         },
         dragSkill(state, action: PayloadAction<{ fromIndex: number, toIndex: number; id: string }>) {

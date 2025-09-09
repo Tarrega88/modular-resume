@@ -9,6 +9,8 @@ import SkillDynamicInput from "./SkillDynamicInput";
 import { useDispatch } from "react-redux";
 import { dragSkill, editSkills } from "@/state/resumeSlice";
 import { useState } from "react";
+import RelativeAbsRight from "../wrappers/RelativeAbsRight";
+import DeleteElementButton from "../DeleteElementButton";
 
 //Also, I think I want to allow for creation of categories, like:
 //Technologies, Software, etc.
@@ -29,20 +31,24 @@ function SkillSection({
   const text = list.join(", ");
 
   return (
-    <div className="w-full">
-      <DynamicInput
+    <div className="group w-full">
+      {/* <DynamicInput
         text={text}
         handleOnSubmit={handleOnSubmit}
         inputWidth="full"
         key={text}
-      />
-      {/* <SkillDynamicInput
+      /> */}
+      <RelativeAbsRight>
+        <DeleteElementButton renderIndex={renderIndex} />
+      </RelativeAbsRight>
+      <SkillDynamicInput
+        text={text}
         list={list}
         handleOnSubmit={handleOnSubmit}
         inputWidth="full"
         id={id}
         key={text}
-      /> */}
+      />
     </div>
   );
 }
