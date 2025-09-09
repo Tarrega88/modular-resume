@@ -78,7 +78,7 @@ function SkillDynamicInput({ list, handleOnSubmit, inputWidth, id }: Props) {
             >
               {e}
             </span>
-            {isDragging && dragToIndex === i && dragFromIndex < dragToIndex ? (
+            {isDragging && dragToIndex === i && dragFromIndex <= dragToIndex ? (
               <span>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </span>

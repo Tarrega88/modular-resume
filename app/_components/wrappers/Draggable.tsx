@@ -18,15 +18,19 @@ function Draggable({
     (state: RootState) => state.resume
   );
 
-  //TODO 9/7/2025: consider adding boolean in state that determines whether an input is open- when it is, this should not be draggable
-
   const dispatch = useDispatch();
 
   const dragDirection = dragHigher
     ? dragToIndex < renderIndex
     : dragToIndex <= renderIndex;
 
-  function handleDragStart() {
+  function handleDragStart(e: React.DragEvent<HTMLDivElement>) {
+    const a = document.activeElement as HTMLElement | null;
+    if (a?.closest('input, textarea, select, [contenteditable="true"]')) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
     dispatch(setDragFromIndex(renderIndex));
   }
 

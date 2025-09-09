@@ -30,17 +30,19 @@ function SkillSection({
 
   return (
     <div className="w-full">
-      {/* <DynamicInput
+      <DynamicInput
         text={text}
         handleOnSubmit={handleOnSubmit}
         inputWidth="full"
-      /> */}
-      <SkillDynamicInput
+        key={text}
+      />
+      {/* <SkillDynamicInput
         list={list}
         handleOnSubmit={handleOnSubmit}
         inputWidth="full"
         id={id}
-      />
+        key={text}
+      /> */}
     </div>
   );
 }
