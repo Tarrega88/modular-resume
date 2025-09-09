@@ -156,6 +156,8 @@ function ResumeItemRenderer({
         <SkillSection
           id={skillData.id}
           kind={skillData.kind}
+          showCategory={skillData.showCategory}
+          category={skillData.category}
           list={skillData.list}
           renderIndex={renderIndex}
         />

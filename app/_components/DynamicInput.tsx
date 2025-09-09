@@ -3,12 +3,13 @@ import { useState } from "react";
 type Props = {
   text: string;
   handleOnSubmit(e: string): void;
-  inputWidth: "char" | "full";
+  inputWidth: "char" | "full" | "max";
+  divWidth?: "char" | "full" | "max";
 };
 
 //TODO 9/7/2025: might add a padding prop here
 
-function DynamicInput({ text, handleOnSubmit, inputWidth }: Props) {
+function DynamicInput({ text, handleOnSubmit, inputWidth, divWidth }: Props) {
   const [showInput, setShowInput] = useState(false);
   const [tempText, setTempText] = useState(text);
 
@@ -20,6 +21,7 @@ function DynamicInput({ text, handleOnSubmit, inputWidth }: Props) {
   const widths = {
     char: `${tempText?.length || 1}ch`,
     full: "100%",
+    max: "max-content",
   };
 
   return showInput ? (
@@ -33,7 +35,8 @@ function DynamicInput({ text, handleOnSubmit, inputWidth }: Props) {
     />
   ) : (
     <div
-      className="hover:bg-sky-50 transition-all duration-150 w-full"
+      style={divWidth ? { width: `${widths[divWidth]}` } : { width: "100%" }}
+      className="hover:bg-sky-50 transition-all duration-150"
       onClick={() => setShowInput(true)}
     >
       {text}

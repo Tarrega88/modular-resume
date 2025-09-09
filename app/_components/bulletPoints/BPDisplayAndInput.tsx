@@ -46,7 +46,7 @@ function BPDisplayAndInput({
       className="group hover:bg-sky-50 transition-all duration-150 cursor-pointer w-full"
       onClick={setDisplayToInput}
     >
-      <RelativeAbsLeft position="bullet">
+      <RelativeAbsLeft hPosition="bullet">
         <DropdownElement
           key={id}
           options={options}

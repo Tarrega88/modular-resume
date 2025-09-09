@@ -2,7 +2,6 @@ import { SectionHeaderProps } from "@/state/types";
 import DynamicInput from "./DynamicInput";
 import DeleteElementButton from "./DeleteElementButton";
 import { widthWithoutMargin } from "./SideResumeInner";
-import RelativeAbsLeft from "./wrappers/RelativeAbsLeft";
 import RelativeAbsRight from "./wrappers/RelativeAbsRight";
 
 //TODO 9/6/2025: Consider whether to store section header data as oneoffs or allow

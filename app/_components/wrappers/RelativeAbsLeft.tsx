@@ -2,15 +2,16 @@ import { pageWidth } from "../SideResumeInner";
 
 function RelativeAbsLeft({
   children,
-  position,
+  hPosition,
 }: {
   children: React.ReactNode;
-  position: "normal" | "bullet";
+  hPosition: "normal" | "bullet";
 }) {
-  const positions = {
+  const hPositions = {
     normal: 24,
     bullet: 51,
   };
+
   return (
     <div
       style={{ width: pageWidth }}
@@ -19,7 +20,7 @@ function RelativeAbsLeft({
     >
       <div className="relative">
         <div
-          style={{ left: `${positions[position]}px` }}
+          style={{ left: `${hPositions[hPosition]}px` }}
           className="absolute group-hover:opacity-100 opacity-0 transition-all duration-150"
         >
           {children}

@@ -66,6 +66,8 @@ export type SkillProps = {
     id: string;
     kind: "skill";
     list: string[];
+    showCategory: boolean;
+    category: string;
 }
 
 export type ResumeState = {

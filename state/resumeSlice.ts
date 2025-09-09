@@ -70,7 +70,7 @@ const initialState: ResumeState = {
 
         },
         education: {},
-        skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"] } },
+        skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Category" } },
         // userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
     },
     resumes: {
@@ -210,8 +210,21 @@ const resumeSlice = createSlice({
             const [item] = arr.splice(fromIndex, 1);
             arr.splice(toIndex, 0, item);
         },
+        editSkillCategory(state, action: PayloadAction<{ id: string; text: string; }>) {
+            const { id, text } = action.payload;
+            if (text.length === 0) {
+                state.data.skills[id].showCategory = false;
+                state.data.skills[id].category = "Category";
+            } else {
+                state.data.skills[id].category = text;
+            }
+        },
+        setShowCategory(state, action: PayloadAction<{ id: string; showCategory: boolean }>) {
+            const { id, showCategory } = action.payload;
+            state.data.skills[id].showCategory = showCategory;
+        }
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory } = resumeSlice.actions;
 export default resumeSlice.reducer;
