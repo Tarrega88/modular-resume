@@ -1,6 +1,7 @@
 import { dragSkill } from "@/state/resumeSlice";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import DynamicInput from "../DynamicInput";
 
 type Props = {
   text: string;
@@ -21,7 +22,9 @@ function SkillDynamicInput({
 }: Props) {
   const [showInput, setShowInput] = useState(false);
 
-  const [activeI, setActiveI] = useState(-1);
+  //TODO 9/9/2025: This state needs to be either in the slice or the idea of a category needs to be up one component
+  // const [categoryName, setCategoryName] = useState("Category");
+  const [showCategory, setShowCategory] = useState(true);
 
   const [dragFromIndex, setDragFromIndex] = useState(-1);
   const [dragToIndex, setDragToIndex] = useState(-1);
@@ -66,11 +69,23 @@ function SkillDynamicInput({
       onClick={() => setShowInput(true)}
     >
       <ul className="flex">
-        <li className="pr-2 font-semibold">Technologies:</li>
+        {/* {showCategory ? (
+          <li
+            className="pr-2 font-semibold"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <DynamicInput
+              text={categoryName}
+              handleOnSubmit={(e) => setCategoryName(e)}
+              inputWidth="char"
+            />
+          </li>
+        ) : 
+        null} */}
+
         {list.map((e, i) => (
           <li
             key={i}
-            onClick={() => setActiveI(i)}
             onDragEnter={() => setDragToIndex(i)}
             className={i === dragFromIndex ? "opacity-25" : ""}
           >

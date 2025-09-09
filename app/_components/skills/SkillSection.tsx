@@ -26,6 +26,22 @@ function SkillSection({
 
   const text = list.join(", ");
 
+  /*
+          {showCategory ? (
+          <li
+            className="pr-2 font-semibold"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <DynamicInput
+              text={categoryName}
+              handleOnSubmit={(e) => setCategoryName(e)}
+              inputWidth="char"
+            />
+          </li>
+        ) : // <li className="pr-2 font-semibold">Technologies:</li>
+        null}
+  */
+
   return (
     <div className="group w-full">
       {/* <DynamicInput
