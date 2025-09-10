@@ -75,8 +75,11 @@ function Draggable({
           <IoIosAdd />
         </div>
       </RelativeAbsLeft> */}
+      <RelativeAbsLeft hPosition="normal">
+        <DuplicateButton />
+      </RelativeAbsLeft>
       <RelativeAbsRight hPosition="normal">
-        <div className="flex gap-[2px]">
+        <div className="flex gap-[1px]">
           <AddBelowButton />
           <DeleteElementButton renderIndex={renderIndex} />
           {/* <DuplicateButton /> */}

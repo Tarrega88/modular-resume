@@ -9,9 +9,9 @@ function RelativeAbsLeft({
   vPosition?: "normal";
 }) {
   const hPositions = {
-    normal: 24,
+    normal: 22,
     bullet: 51,
-    far: 12,
+    far: 2,
   };
 
   // vPositions = {

@@ -40,7 +40,7 @@ function SkillSection({
 
   return (
     <div className="group w-full">
-      <RelativeAbsLeft hPosition="normal">
+      <RelativeAbsLeft hPosition="far">
         <div className="text-lg">
           <button
             className={`cursor-pointer ${labelColor} transition-all duration-150`}
