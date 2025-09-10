@@ -2,7 +2,6 @@ import { SectionHeaderProps } from "@/state/types";
 import DynamicInput from "./DynamicInput";
 import DeleteElementButton from "./DeleteElementButton";
 import { widthWithoutMargin } from "./SideResumeInner";
-import RelativeAbsRight from "./wrappers/RelativeAbsRight";
 import { useDispatch } from "react-redux";
 import { editSectionHeader } from "@/state/resumeSlice";
 
@@ -19,10 +18,7 @@ function SectionHeader({
   }
 
   return (
-    <div className="group text-xl font-semibold mt-5">
-      <RelativeAbsRight>
-        <DeleteElementButton renderIndex={renderIndex} />
-      </RelativeAbsRight>
+    <div className="text-xl font-semibold mt-5">
       <DynamicInput
         text={text}
         handleOnSubmit={handleOnSubmit}

@@ -6,6 +6,12 @@ import {
 } from "@/state/resumeSlice";
 import { RootState } from "@/state/store";
 import { useDispatch, useSelector } from "react-redux";
+import RelativeAbsLeft from "./RelativeAbsLeft";
+import AddAboveButton from "../AddAboveButton";
+import AddBelowButton from "../AddBelowButton";
+import { IoIosAdd } from "react-icons/io";
+import RelativeAbsRight from "./RelativeAbsRight";
+import DeleteElementButton from "../DeleteElementButton";
 
 function Draggable({
   children,
@@ -59,11 +65,21 @@ function Draggable({
   return (
     <div
       draggable
-      className={`${outerDragStyle} ${dragStyle} hover:outline-2 outline-sky-200 cursor-pointer rounded`}
+      className={`${outerDragStyle} ${dragStyle} hover:outline-2 outline-sky-200 cursor-pointer rounded group`}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onDragEnter={handleDragEnter}
     >
+      {/* <RelativeAbsLeft hPosition="normal">
+        <div className="flex">
+          <IoIosAdd />
+        </div>
+      </RelativeAbsLeft> */}
+      <RelativeAbsRight>
+        <div className="flex">
+          <DeleteElementButton renderIndex={renderIndex} />
+        </div>
+      </RelativeAbsRight>
       <div>{children}</div>
     </div>
   );

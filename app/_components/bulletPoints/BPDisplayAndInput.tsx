@@ -2,7 +2,6 @@ import { useState } from "react";
 import DeleteElementButton from "../DeleteElementButton";
 import DropdownElement from "../DropdownElement";
 import { Kinds } from "@/state/types";
-import RelativeAbsRight from "../wrappers/RelativeAbsRight";
 import RelativeAbsLeft from "../wrappers/RelativeAbsLeft";
 
 type Props = {
@@ -55,9 +54,6 @@ function BPDisplayAndInput({
           renderIndex={renderIndex}
         />
       </RelativeAbsLeft>
-      <RelativeAbsRight>
-        <DeleteElementButton renderIndex={renderIndex} />
-      </RelativeAbsRight>
       <p className="flex">
         <span
           className="mx-2 group-hover:opacity-0 transition-all duration-150 pointer-events-none"

@@ -4,7 +4,6 @@ import UserLink from "./UserLink";
 import { editUserInfo, locationDefault } from "@/state/resumeSlice";
 import DeleteElementButton from "./DeleteElementButton";
 import { widthWithoutMargin } from "./SideResumeInner";
-import RelativeAbsRight from "./wrappers/RelativeAbsRight";
 import DynamicInput from "./DynamicInput";
 import { useDispatch } from "react-redux";
 function ResumeHeader({
@@ -23,10 +22,7 @@ function ResumeHeader({
   const dispatch = useDispatch();
 
   return (
-    <div className="group">
-      <RelativeAbsRight>
-        <DeleteElementButton renderIndex={renderIndex} />
-      </RelativeAbsRight>
+    <div>
       <div>
         <div className="text-3xl font-semibold">
           <DynamicInput

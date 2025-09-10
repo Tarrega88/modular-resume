@@ -4,8 +4,6 @@ import JobStart from "./JobStart";
 import JobEnd from "./JobEnd";
 import DynamicInput from "../DynamicInput";
 import { PrevJobProps } from "@/state/types";
-import RelativeAbsRight from "../wrappers/RelativeAbsRight";
-import DeleteElementButton from "../DeleteElementButton";
 import { updatePrevJobField } from "@/state/resumeSlice";
 
 function JobSection({
@@ -26,10 +24,7 @@ function JobSection({
   const dispatch = useDispatch();
 
   return (
-    <div className="group mt-2 mb-1">
-      <RelativeAbsRight>
-        <DeleteElementButton renderIndex={renderIndex} />
-      </RelativeAbsRight>
+    <div className="mt-2 mb-1">
       <div className="flex font-semibold justify-between">
         <DynamicInput
           text={companyName}

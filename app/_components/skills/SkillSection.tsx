@@ -3,14 +3,10 @@ import DynamicInput from "../DynamicInput";
 import SkillDynamicInput from "./SkillDynamicInput";
 import { useDispatch } from "react-redux";
 import {
-  dragSkill,
   editSkillCategory,
   editSkills,
   setShowCategory,
 } from "@/state/resumeSlice";
-import { useState } from "react";
-import RelativeAbsRight from "../wrappers/RelativeAbsRight";
-import DeleteElementButton from "../DeleteElementButton";
 import RelativeAbsLeft from "../wrappers/RelativeAbsLeft";
 import { MdLabel } from "react-icons/md";
 
@@ -56,15 +52,6 @@ function SkillSection({
 
   return (
     <div className="group w-full">
-      {/* <DynamicInput
-        text={text}
-        handleOnSubmit={handleOnSubmit}
-        inputWidth="full"
-        key={text}
-      /> */}
-      <RelativeAbsRight>
-        <DeleteElementButton renderIndex={renderIndex} />
-      </RelativeAbsRight>
       <RelativeAbsLeft hPosition="normal">
         <div className="text-lg">
           <button

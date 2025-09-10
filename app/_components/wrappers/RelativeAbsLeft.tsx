@@ -5,12 +5,18 @@ function RelativeAbsLeft({
   hPosition,
 }: {
   children: React.ReactNode;
-  hPosition: "normal" | "bullet";
+  hPosition: "normal" | "bullet" | "far";
+  vPosition?: "normal";
 }) {
   const hPositions = {
     normal: 24,
     bullet: 51,
+    far: 12,
   };
+
+  // vPositions = {
+  //   normal:
+  // }
 
   return (
     <div
