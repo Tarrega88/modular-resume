@@ -227,9 +227,10 @@ const resumeSlice = createSlice({
         setShowCategory(state, action: PayloadAction<{ id: string; showCategory: boolean }>) {
             const { id, showCategory } = action.payload;
             state.data.skills[id].showCategory = showCategory;
-        }
+        },
+
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader } = resumeSlice.actions;
 export default resumeSlice.reducer;

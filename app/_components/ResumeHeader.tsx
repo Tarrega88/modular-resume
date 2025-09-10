@@ -1,11 +1,12 @@
 import { UserInfo, UserLinkProps } from "@/state/types";
 import UserLink from "./UserLink";
 
-import { locationDefault } from "@/state/resumeSlice";
+import { editUserInfo, locationDefault } from "@/state/resumeSlice";
 import DeleteElementButton from "./DeleteElementButton";
 import { widthWithoutMargin } from "./SideResumeInner";
 import RelativeAbsRight from "./wrappers/RelativeAbsRight";
 import DynamicInput from "./DynamicInput";
+import { useDispatch } from "react-redux";
 function ResumeHeader({
   kind,
   fullName = "Full Name",
@@ -19,7 +20,7 @@ function ResumeHeader({
   renderIndex: number /*link1?: UserLinkProps; link2?: UserLinkProps;*/;
 }) {
   //TODO 9/7/2026: hook up reducer:
-  function handleOnSubmit() {}
+  const dispatch = useDispatch();
 
   return (
     <div className="group">
@@ -30,7 +31,9 @@ function ResumeHeader({
         <div className="text-3xl font-semibold">
           <DynamicInput
             text={fullName}
-            handleOnSubmit={handleOnSubmit}
+            handleOnSubmit={(text: string) =>
+              dispatch(editUserInfo({ text, field: "fullName" }))
+            }
             inputWidth="full"
           />
         </div>
@@ -38,17 +41,23 @@ function ResumeHeader({
       <div className="flex gap-4">
         <DynamicInput
           text={email}
-          handleOnSubmit={handleOnSubmit}
+          handleOnSubmit={(text: string) =>
+            dispatch(editUserInfo({ text, field: "email" }))
+          }
           inputWidth="full"
         />
         <DynamicInput
           text={phoneNumber}
-          handleOnSubmit={handleOnSubmit}
+          handleOnSubmit={(text: string) =>
+            dispatch(editUserInfo({ text, field: "phoneNumber" }))
+          }
           inputWidth="full"
         />
         <DynamicInput
           text={location}
-          handleOnSubmit={handleOnSubmit}
+          handleOnSubmit={(text: string) =>
+            dispatch(editUserInfo({ text, field: "location" }))
+          }
           inputWidth="full"
         />
       </div>
