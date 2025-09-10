@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
-import JobSectionInput from "./JobSectionInput";
 import JobStart from "./JobStart";
 import JobEnd from "./JobEnd";
 import DynamicInput from "../DynamicInput";
@@ -21,20 +20,10 @@ function JobSection({
   yearEnded,
   renderIndex,
 }: PrevJobProps & { renderIndex: number }) {
-  // const { data, resumes, currentResumeId } = useSelector(
-  //   (state: RootState) => state.resume
-  // );
-
   const state = useSelector((state: RootState) => state.resume);
   const { monthType } = state;
 
   const dispatch = useDispatch();
-
-  //TODO 9/6/2025: finish handleOnSubmit:
-  function handleOnSubmit(e: string) {
-    console.log(e);
-    // dispatch(updatePrevJobField({id}));
-  }
 
   return (
     <div className="group mt-2 mb-1">
@@ -42,12 +31,6 @@ function JobSection({
         <DeleteElementButton renderIndex={renderIndex} />
       </RelativeAbsRight>
       <div className="flex font-semibold justify-between">
-        {/* <JobSectionInput
-          text={companyName}
-          id={id}
-          field="companyName"
-          textAlign="left"
-        /> */}
         <DynamicInput
           text={companyName}
           handleOnSubmit={(text: string) =>
@@ -82,12 +65,6 @@ function JobSection({
         </div>
       </div>
       <div className="flex justify-between">
-        {/* <JobSectionInput
-          text={jobTitle}
-          id={id}
-          field="jobTitle"
-          textAlign="left"
-        /> */}
         <DynamicInput
           text={jobTitle}
           handleOnSubmit={(text: string) =>
@@ -96,12 +73,6 @@ function JobSection({
           textAlign="left"
           inputWidth="full"
         />
-        {/* <JobSectionInput
-          text={location}
-          id={id}
-          field="location"
-          textAlign="right"
-        /> */}
         <DynamicInput
           text={location}
           handleOnSubmit={(text: string) =>
