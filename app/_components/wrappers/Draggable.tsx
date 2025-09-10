@@ -12,13 +12,16 @@ import { IoIosAdd } from "react-icons/io";
 import RelativeAbsRight from "./RelativeAbsRight";
 import DeleteElementButton from "../DeleteElementButton";
 import DuplicateButton from "../DuplicateButton";
+import { Kinds } from "@/state/types";
 
 function Draggable({
   children,
   renderIndex,
+  kind,
 }: {
   children: React.ReactNode;
   renderIndex: number;
+  kind: Kinds;
 }) {
   const { dragFromIndex, dragToIndex, dragHigher } = useSelector(
     (state: RootState) => state.resume
@@ -76,7 +79,7 @@ function Draggable({
         </div>
       </RelativeAbsLeft> */}
       <RelativeAbsLeft hPosition="normal">
-        <DuplicateButton />
+        <DuplicateButton kind={kind} renderIndex={renderIndex}/>
       </RelativeAbsLeft>
       <RelativeAbsRight hPosition="normal">
         <div className="flex gap-[1px]">

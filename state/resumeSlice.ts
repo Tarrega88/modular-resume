@@ -228,6 +228,11 @@ const resumeSlice = createSlice({
             const { id, showCategory } = action.payload;
             state.data.skills[id].showCategory = showCategory;
         },
+        duplicateSection(state, action: PayloadAction<{ kind: Kinds, index: number }>) {
+            const { currentResumeId } = state;
+            //TODO 9/10/2025: should probably write addData function that's not a reducer to put in here.
+            // state.resumes[currentResumeId] = 
+        }
 
     },
 });
