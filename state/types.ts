@@ -5,7 +5,7 @@ export type ID = string;
 export type PrevJobEditable = Omit<PrevJobProps, "id" | "kind">;
 export type PrevJobKey = keyof PrevJobEditable;
 
-export type Kinds = "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "educationHeader" | "skillsHeader" | "projectsHeader" | "summaryHeader" | "skill" | "userInfo";
+export type Kinds = "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "educationHeader" | "skillsHeader" | "projectsHeader" | "summaryHeader" | "skill" | "userInfo" | "customHeader";
 
 export type ResumeItemProps = {
     id: ID;
@@ -54,6 +54,12 @@ export type SectionHeaderProps = {
     kind: "summaryHeader" | "experienceHeader" | "educationHeader" | "skillsHeader" | "projectsHeader";
 }
 
+export type CustomHeaderProps = {
+    id: string;
+    text: string;
+    kind: "customHeader";
+}
+
 export type UserInfoProps = {
     fullName: string;
     kind: "userInfo";
@@ -92,6 +98,7 @@ export type ResumeState = {
         bulletPoints: Record<ID, BulletPointProps>;
         education: Record<ID, EducationProps>;
         skills: Record<ID, SkillProps>;
+        customHeaders: Record<ID, CustomHeaderProps>;
     };
     resumes: Record<ID, ResumeItemProps[]>;
 }

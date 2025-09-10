@@ -79,13 +79,12 @@ function Draggable({
         </div>
       </RelativeAbsLeft> */}
       <RelativeAbsLeft hPosition="normal">
-        <DuplicateButton kind={kind} renderIndex={renderIndex}/>
+        <DuplicateButton kind={kind} renderIndex={renderIndex} />
       </RelativeAbsLeft>
       <RelativeAbsRight hPosition="normal">
         <div className="flex gap-[1px]">
           <AddBelowButton />
           <DeleteElementButton renderIndex={renderIndex} />
-          {/* <DuplicateButton /> */}
         </div>
       </RelativeAbsRight>
       <div>{children}</div>

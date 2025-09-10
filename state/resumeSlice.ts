@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BulletPointProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, ResumeState, SectionHeaderProps, SkillProps, TextEdit, UserInfoProps, UserLinkProps } from "./types";
+import { BulletPointProps, CustomHeaderProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, ResumeState, SectionHeaderProps, SkillProps, TextEdit, UserInfoProps, UserLinkProps } from "./types";
 
 function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
@@ -71,7 +71,7 @@ const initialState: ResumeState = {
         },
         education: {},
         skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Technology" }, 1: { id: "1", kind: "skill", list: ["Docker", "VSCode", "Excel", "Word"], showCategory: true, category: "Software" } },
-
+        customHeaders: {},
         // userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
     },
     resumes: {
@@ -148,6 +148,14 @@ const resumeSlice = createSlice({
         addEducationData(state, action: PayloadAction<EducationProps>) {
             const { id } = action.payload;
             state.data.education[id] = action.payload;
+        },
+        addSkillData(state, action: PayloadAction<SkillProps>) {
+            const { id } = action.payload;
+            state.data.skills[id] = action.payload;
+        },
+        addCustomHeaderData(state, action: PayloadAction<CustomHeaderProps>) {
+            const { id } = action.payload;
+            state.data.customHeaders[id] = action.payload;
         },
         editBulletPoint(state, action: TextEdit) {
             const { id, text } = action.payload;
@@ -230,12 +238,20 @@ const resumeSlice = createSlice({
         },
         duplicateSection(state, action: PayloadAction<{ kind: Kinds, index: number }>) {
             const { currentResumeId } = state;
-            //TODO 9/10/2025: should probably write addData function that's not a reducer to put in here.
-            // state.resumes[currentResumeId] = 
-        }
+            const { kind, index } = action.payload;
+
+            const id = crypto.randomUUID();
+
+            //TODO 9/10/2025: I think I might add in a CustomHeader section, where it's treated more like normal data instead (using ids) of the permanent header data I have
+
+
+            state.resumes[currentResumeId].splice(index, 0,);
+            // state.resumes[currentResumeId] = [...state.resumes[currentResumeId]]
+        },
+
 
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, addCustomHeaderData } = resumeSlice.actions;
 export default resumeSlice.reducer;
