@@ -7,11 +7,11 @@ import {
 import { RootState } from "@/state/store";
 import { useDispatch, useSelector } from "react-redux";
 import RelativeAbsLeft from "./RelativeAbsLeft";
-import AddAboveButton from "../AddAboveButton";
 import AddBelowButton from "../AddBelowButton";
 import { IoIosAdd } from "react-icons/io";
 import RelativeAbsRight from "./RelativeAbsRight";
 import DeleteElementButton from "../DeleteElementButton";
+import DuplicateButton from "../DuplicateButton";
 
 function Draggable({
   children,
@@ -75,9 +75,11 @@ function Draggable({
           <IoIosAdd />
         </div>
       </RelativeAbsLeft> */}
-      <RelativeAbsRight>
-        <div className="flex">
+      <RelativeAbsRight hPosition="normal">
+        <div className="flex gap-[2px]">
+          <AddBelowButton />
           <DeleteElementButton renderIndex={renderIndex} />
+          {/* <DuplicateButton /> */}
         </div>
       </RelativeAbsRight>
       <div>{children}</div>

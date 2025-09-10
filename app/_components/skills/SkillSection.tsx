@@ -30,32 +30,20 @@ function SkillSection({
 
   const text = list.join(", ");
 
+  const labelColor = showCategory
+    ? "text-sky-500 hover:text-sky-400"
+    : "text-gray-300 hover:text-sky-300";
+
   function handleCategorySubmit(catText: string) {
     dispatch(editSkillCategory({ id, text: catText }));
   }
-
-  /*
-          {showCategory ? (
-          <li
-            className="pr-2 font-semibold"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <DynamicInput
-              text={categoryName}
-              handleOnSubmit={(e) => setCategoryName(e)}
-              inputWidth="char"
-            />
-          </li>
-        ) : // <li className="pr-2 font-semibold">Technologies:</li>
-        null}
-  */
 
   return (
     <div className="group w-full">
       <RelativeAbsLeft hPosition="normal">
         <div className="text-lg">
           <button
-            className="cursor-pointer text-sky-500"
+            className={`cursor-pointer ${labelColor} transition-all duration-150`}
             onClick={() =>
               dispatch(setShowCategory({ id, showCategory: !showCategory }))
             }

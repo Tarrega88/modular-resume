@@ -1,8 +1,7 @@
 import { TiDelete } from "react-icons/ti";
-import { TiDeleteOutline } from "react-icons/ti";
-import { IoIosRemoveCircle } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { removeResumeItem } from "@/state/resumeSlice";
+import { IoAddCircle } from "react-icons/io5";
 
 function DeleteElementButton({ renderIndex }: { renderIndex: number }) {
   const dispatch = useDispatch();
@@ -12,10 +11,10 @@ function DeleteElementButton({ renderIndex }: { renderIndex: number }) {
   }
   return (
     <button
-      className="text-red-600 text-xl cursor-pointer hover:text-red-800"
+      className="text-red-600 text-xl cursor-pointer hover:text-red-500 duration-200"
       onClick={handleRemove}
     >
-      <TiDelete />
+      <IoAddCircle className="rotate-45" />
     </button>
   );
 }
