@@ -81,7 +81,7 @@ function SkillSection({
         {showCategory ? (
           <div className="flex font-semibold">
             <DynamicInput
-              text={category}
+              text={category + ":"}
               handleOnSubmit={handleCategorySubmit}
               inputWidth="char"
               divWidth="max"

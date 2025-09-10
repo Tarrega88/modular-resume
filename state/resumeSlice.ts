@@ -70,7 +70,8 @@ const initialState: ResumeState = {
 
         },
         education: {},
-        skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Category" } },
+        skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Technology" }, 1: { id: "1", kind: "skill", list: ["Docker", "VSCode", "Excel", "Word"], showCategory: true, category: "Software" } },
+
         // userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
     },
     resumes: {
@@ -87,7 +88,9 @@ const initialState: ResumeState = {
         { id: "106", kind: "bulletPoint", elementId: "4" },
         { id: "107", kind: "bulletPoint", elementId: "5" },
         { id: "108", kind: "skillsHeader", elementId: "" },
-        { id: "109", kind: "skill", elementId: "0" }
+        { id: "109", kind: "skill", elementId: "0" },
+        { id: "110", kind: "skill", elementId: "1" }
+
 
             // { id: "108", kind: "prevJob", elementId: "2" },
             // { id: "109", kind: "bulletPoint", elementId: "6" },
@@ -212,11 +215,13 @@ const resumeSlice = createSlice({
         },
         editSkillCategory(state, action: PayloadAction<{ id: string; text: string; }>) {
             const { id, text } = action.payload;
-            if (text.length === 0) {
+            if (text.length <= 1) {
                 state.data.skills[id].showCategory = false;
                 state.data.skills[id].category = "Category";
             } else {
-                state.data.skills[id].category = text;
+                let sanitizedText = text.trim();
+                sanitizedText = sanitizedText[sanitizedText.length - 1] === ":" ? sanitizedText.slice(0, -1) : sanitizedText;
+                state.data.skills[id].category = sanitizedText;
             }
         },
         setShowCategory(state, action: PayloadAction<{ id: string; showCategory: boolean }>) {
