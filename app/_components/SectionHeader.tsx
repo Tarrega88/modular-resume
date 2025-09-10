@@ -6,8 +6,7 @@ import RelativeAbsRight from "./wrappers/RelativeAbsRight";
 import { useDispatch } from "react-redux";
 import { editSectionHeader } from "@/state/resumeSlice";
 
-//TODO 9/6/2025: Consider whether to store section header data as oneoffs or allow
-//multiple versions of each header type
+//TODO 9/10/2025: Add a few of these in the slice and type that are something like userHeader1 (2, 3, 4, etc.)
 
 function SectionHeader({
   text,

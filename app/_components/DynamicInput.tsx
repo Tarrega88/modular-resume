@@ -5,11 +5,18 @@ type Props = {
   handleOnSubmit(e: string): void;
   inputWidth: "char" | "full" | "max";
   divWidth?: "char" | "full" | "max";
+  textAlign?: "left" | "center" | "right";
 };
 
 //TODO 9/7/2025: might add a padding prop here
 
-function DynamicInput({ text, handleOnSubmit, inputWidth, divWidth }: Props) {
+function DynamicInput({
+  text,
+  handleOnSubmit,
+  inputWidth,
+  divWidth,
+  textAlign = "left",
+}: Props) {
   const [showInput, setShowInput] = useState(false);
   const [tempText, setTempText] = useState(text);
 
@@ -24,6 +31,12 @@ function DynamicInput({ text, handleOnSubmit, inputWidth, divWidth }: Props) {
     max: "max-content",
   };
 
+  // const alignments = {
+  //   left: "left",
+  //   right: "right",
+  //   center: "center"
+  // }
+
   return showInput ? (
     <input
       autoFocus
@@ -31,11 +44,15 @@ function DynamicInput({ text, handleOnSubmit, inputWidth, divWidth }: Props) {
       onChange={(e) => setTempText(e.target.value)}
       onBlur={changeDisplay}
       onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-      style={{ width: `${widths[inputWidth]}` }}
+      style={{ width: `${widths[inputWidth]}`, textAlign }}
     />
   ) : (
     <div
-      style={divWidth ? { width: `${widths[divWidth]}` } : { width: "100%" }}
+      style={
+        divWidth
+          ? { width: `${widths[divWidth]}`, textAlign }
+          : { width: "100%", textAlign }
+      }
       className="hover:bg-sky-50 transition-all duration-150"
       onClick={() => setShowInput(true)}
     >
