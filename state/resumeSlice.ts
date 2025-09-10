@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BulletPointProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, ResumeState, SectionHeaderProps, SkillProps, TextEdit, UserInfo, UserLinkProps } from "./types";
+import { BulletPointProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, ResumeState, SectionHeaderProps, SkillProps, TextEdit, UserInfoProps, UserLinkProps } from "./types";
 
 function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
@@ -191,7 +191,7 @@ const resumeSlice = createSlice({
         setScale(state, action: PayloadAction<number>) {
             state.scale = action.payload;
         },
-        editUserInfo(state, action: PayloadAction<{ field: keyof UserInfo; text: string; }>) {
+        editUserInfo(state, action: PayloadAction<{ field: keyof UserInfoProps; text: string; }>) {
             const { field, text } = action.payload;
             if (field !== "kind") state.data.userInfo[field] = text;
         },

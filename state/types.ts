@@ -5,7 +5,7 @@ export type ID = string;
 export type PrevJobEditable = Omit<PrevJobProps, "id" | "kind">;
 export type PrevJobKey = keyof PrevJobEditable;
 
-export type Kinds = "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "sectionHeader" | "educationHeader" | "skillsHeader" | "projectsHeader" | "summaryHeader" | "skill" | "userInfo";
+export type Kinds = "prevJob" | "education" | "bulletPoint" | "experienceHeader" | "educationHeader" | "skillsHeader" | "projectsHeader" | "summaryHeader" | "skill" | "userInfo";
 
 export type ResumeItemProps = {
     id: ID;
@@ -54,7 +54,7 @@ export type SectionHeaderProps = {
     kind: "summaryHeader" | "experienceHeader" | "educationHeader" | "skillsHeader" | "projectsHeader";
 }
 
-export type UserInfo = {
+export type UserInfoProps = {
     fullName: string;
     kind: "userInfo";
     email: string;
@@ -78,7 +78,7 @@ export type ResumeState = {
     dragHigher: boolean;
     monthType: "short" | "long",
     data: {
-        userInfo: UserInfo,
+        userInfo: UserInfoProps,
         userLink1?: UserLinkProps;
         userLink2?: UserLinkProps;
         sectionHeaders: {
