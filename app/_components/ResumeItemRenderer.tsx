@@ -99,70 +99,19 @@ function ResumeItemRenderer({
           renderIndex={renderIndex}
         />
       );
-    case "summaryHeader": {
-      const { summaryHeader } = data.sectionHeaders;
+    case "sectionHeader": {
+      const sectionHeaderData = data.sectionHeaders[elementId];
       return (
         <SectionHeader
-          text={summaryHeader.text}
-          kind={summaryHeader.kind}
-          renderIndex={renderIndex}
-        />
-      );
-    }
-    case "experienceHeader": {
-      const { experienceHeader } = data.sectionHeaders;
-      return (
-        <SectionHeader
-          text={experienceHeader.text}
-          kind={experienceHeader.kind}
-          renderIndex={renderIndex}
-        />
-      );
-    }
-    case "educationHeader": {
-      const { educationHeader } = data.sectionHeaders;
-      return (
-        <SectionHeader
-          text={educationHeader.text}
-          kind={educationHeader.kind}
-          renderIndex={renderIndex}
-        />
-      );
-    }
-    case "projectsHeader": {
-      const { projectsHeader } = data.sectionHeaders;
-      return (
-        <SectionHeader
-          text={projectsHeader.text}
-          kind={projectsHeader.kind}
-          renderIndex={renderIndex}
-        />
-      );
-    }
-    case "skillsHeader": {
-      const { skillsHeader } = data.sectionHeaders;
-      return (
-        <SectionHeader
-          text={skillsHeader.text}
-          kind={skillsHeader.kind}
-          renderIndex={renderIndex}
-        />
-      );
-    }
-    case "customHeader": {
-      const customHeaderData = data.customHeaders[elementId];
-      return (
-        <SectionHeader
-          text={customHeaderData.text}
-          id={customHeaderData.id}
-          kind="customHeader"
+          id={sectionHeaderData.id}
+          kind="sectionHeader"
+          text={sectionHeaderData.text}
           renderIndex={renderIndex}
         />
       );
     }
     case "skill": {
       const skillData = data.skills[elementId];
-
       return (
         <SkillSection
           id={skillData.id}

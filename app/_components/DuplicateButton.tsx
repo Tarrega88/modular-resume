@@ -1,9 +1,9 @@
 import {
   addBulletData,
-  addCustomHeaderData,
   addEducationData,
   addPrevJobData,
   addResumeItem,
+  addSectionHeaderData,
   addSkillData,
   duplicateSection,
 } from "@/state/resumeSlice";
@@ -79,17 +79,12 @@ function DuplicateButton({
         );
         break;
 
-      case "projectsHeader":
-      case "educationHeader":
-      case "experienceHeader":
-      case "skillsHeader":
-      case "summaryHeader":
-      case "customHeader":
+      case "sectionHeader":
         dispatch(
-          addCustomHeaderData({
+          addSectionHeaderData({
             id,
+            kind,
             text: "Custom Header",
-            kind: "customHeader",
           })
         );
 
@@ -97,11 +92,9 @@ function DuplicateButton({
         break;
     }
 
-    let duplicationKind = kind.endsWith("Header") ? "customHeader" : kind;
-
     dispatch(
       duplicateSection({
-        kind: duplicationKind,
+        kind,
         elementId: id,
         index: renderIndex,
       })

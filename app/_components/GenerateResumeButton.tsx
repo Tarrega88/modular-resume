@@ -6,6 +6,7 @@ import {
   addBulletData,
   addPrevJobData,
   addResumeItem,
+  addSectionHeaderData,
   createEmptyResume,
   prevJobDefault,
   setCurrentResume,
@@ -13,18 +14,38 @@ import {
 import { RootState } from "@/state/store";
 import { Kinds } from "@/state/types";
 
-const newResumeRenderItems: Kinds[] = [
-  "userInfo",
-  "summaryHeader",
-  "experienceHeader",
-  // "sectionHeader",
-  "prevJob",
-  "bulletPoint",
-  "bulletPoint",
-  "bulletPoint",
-  "educationHeader",
-  "skillsHeader",
-  "projectsHeader",
+// const newResumeRenderItems: Kinds[] = [
+//   "userInfo",
+//   "summaryHeader",
+//   "experienceHeader",
+//   // "sectionHeader",
+//   "prevJob",
+//   "bulletPoint",
+//   "bulletPoint",
+//   "bulletPoint",
+//   "educationHeader",
+//   "skillsHeader",
+//   "projectsHeader",
+// ];
+
+//TODO 9/11/2025: try switching to using this logic instead and check for text:
+
+type RenderProps = {
+  kind: Kinds;
+  text?: string;
+};
+
+const newResumeRenderItems: RenderProps[] = [
+  { kind: "userInfo" },
+  { kind: "sectionHeader", text: "Summary" },
+  { kind: "sectionHeader", text: "Experience" },
+  { kind: "prevJob" },
+  { kind: "bulletPoint" },
+  { kind: "bulletPoint" },
+  { kind: "bulletPoint" },
+  { kind: "sectionHeader", text: "Education" },
+  { kind: "sectionHeader", text: "Skills" },
+  { kind: "sectionHeader", text: "Projects" },
 ];
 
 export default function GenerateResumeButton() {
@@ -43,7 +64,8 @@ export default function GenerateResumeButton() {
     dispatch(createEmptyResume());
 
     //TODO 9/2/2025: create a file of defaults instead of using the strings for the fallbacks
-    for (const kind of newResumeRenderItems) {
+    for (const item of newResumeRenderItems) {
+      const kind = item.kind;
       const id = crypto.randomUUID();
 
       switch (kind) {
@@ -67,18 +89,16 @@ export default function GenerateResumeButton() {
             addBulletData({ id, kind, text: "Enter Bullet Point Text..." })
           );
           break;
-        // case "summaryHeader":
-        // case "experienceHeader":
-        // case "educationHeader":
-        // case "projectsHeader":
-        // case "skillsHeader": {
-        //   dispatch(
-        //     addSectionHeaderData({
-        //       text: kind[0].toUpperCase() + kind.slice(1, -6),
-        //       kind,
-        //     })
-        //   );
-        // }
+        //TODO 9/11/2025: for headers, could replace the kind with the general kind here
+        case "sectionHeader":
+          dispatch(
+            addSectionHeaderData({
+              id,
+              kind: "sectionHeader",
+              text: item.text || "",
+            })
+          );
+          break;
       }
 
       dispatch(addResumeItem({ kind, elementId: id }));

@@ -9,21 +9,13 @@ function ensurePrevJob(state: ResumeState, id: ID): PrevJobProps {
     return (state.data.prevJobs[id] ??= { ...prevJobDefault, id });
 }
 
-
+//TODO 9/11/2025: Going to revamp section header logic to behave the way most data behaves
 //TODO 9/10/2025: add checks for 0 length text and insert a placeholder if so.
 
 export const locationDefault: string = "City, ST";
 export const prevJobDefault: PrevJobProps = { id: "0", kind: "prevJob", companyName: "Company Name", location: locationDefault, jobTitle: "Job Title", monthStarted: 0, yearStarted: 2024, monthEnded: 11, yearEnded: 2025 }
 // export const personalInfoDefault: PersonalInfoProps = { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: locationDefault }
 export const bulletPointDefault: BulletPointProps = { id: "0", kind: "bulletPoint", text: "Enter Bullet Point Text Here" }
-
-export const sectionHeaderPlaceholders = {
-    summaryHeader: { kind: "summaryHeader", text: "Summary" },
-    experienceHeader: { kind: "experienceHeader", text: "Experience" },
-    educationHeader: { kind: "educationHeader", text: "Education" },
-    projectsHeader: { kind: "projectsHeader", text: "Projects" },
-    skillsHeader: { kind: "skillsHeader", text: "Skills" }
-} as const;
 
 //data will store all data across multiple resumes - might add a "hidden" boolean to everything,
 //which would start as false, but the user could mark anything to be hidden from not being an option to pick for that resume.
@@ -47,11 +39,7 @@ const initialState: ResumeState = {
             // userLinks: []
         },
         sectionHeaders: {
-            summaryHeader: sectionHeaderPlaceholders.summaryHeader,
-            experienceHeader: sectionHeaderPlaceholders.experienceHeader,
-            educationHeader: sectionHeaderPlaceholders.educationHeader,
-            projectsHeader: sectionHeaderPlaceholders.projectsHeader,
-            skillsHeader: sectionHeaderPlaceholders.skillsHeader,
+            0: { id: "0", kind: "sectionHeader", text: "Experience" }
         },
         prevJobs: {
             0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 6, yearStarted: 2023, monthEnded: 11, yearEnded: 2024 },
@@ -73,12 +61,11 @@ const initialState: ResumeState = {
         },
         education: {},
         skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Technology" }, 1: { id: "1", kind: "skill", list: ["Docker", "VSCode", "Excel", "Word"], showCategory: true, category: "Software" } },
-        customHeaders: {},
         // userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
     },
     resumes: {
         0: [{ id: "99", kind: "userInfo", elementId: "" },
-        { id: "", kind: "experienceHeader", elementId: "" },
+        { id: "98", kind: "sectionHeader", elementId: "0" },
         { id: "100", kind: "prevJob", elementId: "0" },
 
         { id: "101", kind: "bulletPoint", elementId: "0" },
@@ -89,7 +76,6 @@ const initialState: ResumeState = {
         { id: "105", kind: "bulletPoint", elementId: "3" },
         { id: "106", kind: "bulletPoint", elementId: "4" },
         { id: "107", kind: "bulletPoint", elementId: "5" },
-        { id: "108", kind: "skillsHeader", elementId: "" },
         { id: "109", kind: "skill", elementId: "0" },
         { id: "110", kind: "skill", elementId: "1" }
 
@@ -155,9 +141,9 @@ const resumeSlice = createSlice({
             const { id } = action.payload;
             state.data.skills[id] = action.payload;
         },
-        addCustomHeaderData(state, action: PayloadAction<CustomHeaderProps>) {
+        addSectionHeaderData(state, action: PayloadAction<SectionHeaderProps>) {
             const { id } = action.payload;
-            state.data.customHeaders[id] = action.payload;
+            state.data.sectionHeaders[id] = action.payload;
         },
         editBulletPoint(state, action: TextEdit) {
             const { id, text } = action.payload;
@@ -195,12 +181,9 @@ const resumeSlice = createSlice({
             state.dragHigher = action.payload;
         },
         editSectionHeader(state, action: PayloadAction<SectionHeaderProps>) {
+            //TODO 9/11/2025: this needs to be changed
             const { text, kind } = action.payload;
             state.data.sectionHeaders[kind].text = text;
-        },
-        editCustomHeader(state, action: PayloadAction<CustomHeaderProps>) {
-            const { text, id } = action.payload;
-            state.data.customHeaders[id].text = text;
         },
         setScale(state, action: PayloadAction<number>) {
             state.scale = action.payload;
@@ -245,9 +228,6 @@ const resumeSlice = createSlice({
 
             const id = crypto.randomUUID();
 
-            //TODO 9/10/2025: I think I might add in a CustomHeader section, where it's treated more like normal data instead (using ids) of the permanent header data I have
-
-
             state.resumes[currentResumeId].splice(index, 0, { kind, id, elementId });
             // state.resumes[currentResumeId] = [...state.resumes[currentResumeId]]
         },
@@ -256,5 +236,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, addCustomHeaderData, duplicateSection, editCustomHeader } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData } = resumeSlice.actions;
 export default resumeSlice.reducer;
