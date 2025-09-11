@@ -49,6 +49,7 @@ function SkillDynamicInput({
   }
   return showInput ? (
     <input
+      className="outline-1 rounded-xs"
       style={{ width: widths[inputWidth] }}
       autoFocus
       value={tempText}

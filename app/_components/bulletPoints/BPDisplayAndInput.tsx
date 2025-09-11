@@ -80,7 +80,7 @@ function BPDisplayAndInput({
     <div className="w-full flex">
       <span className="mx-2">•</span>
       <input
-        className="w-full"
+        className="w-full outline-1 rounded-xs"
         autoFocus
         value={tempText}
         onChange={(e) => setTempText(e.target.value)}

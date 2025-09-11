@@ -5,7 +5,8 @@ import { editUserInfo, locationDefault } from "@/state/resumeSlice";
 import DeleteElementButton from "./DeleteElementButton";
 import { widthWithoutMargin } from "./SideResumeInner";
 import DynamicInput from "./DynamicInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/state/store";
 function ResumeHeader({
   kind,
   fullName = "Full Name",
@@ -20,6 +21,12 @@ function ResumeHeader({
   link1?: UserLinkProps /*link1?: UserLinkProps; link2?: UserLinkProps;*/;
 }) {
   const dispatch = useDispatch();
+
+  const { userLinks } = useSelector((state: RootState) => state.resume.data);
+
+  const userLinkData = userLinks[0];
+
+  function handleUrlSubmit() {}
 
   return (
     <div>
@@ -59,6 +66,12 @@ function ResumeHeader({
           }
           inputWidth="full"
           placeholderText="Enter location"
+        />
+        <UserLink
+          id={userLinkData.id}
+          text={userLinkData.text}
+          url={userLinkData.url}
+          handleOnSubmit={handleUrlSubmit}
         />
       </div>
     </div>

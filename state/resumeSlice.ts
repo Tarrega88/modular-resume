@@ -38,11 +38,11 @@ const initialState: ResumeState = {
         userLinks: {
             0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" }
         },
-        summaries: { 0: { id: "0", kind: "summary", text: "This is a test summary" } },
+        summaries: { 0: { id: "0", kind: "summary", text: "Results-driven professional with a proven ability to adapt quickly, solve problems, and contribute effectively in collaborative environments. Skilled at learning new technologies, managing multiple priorities, and delivering high-quality work under deadlines. Strong communicator with a balance of technical knowledge and interpersonal skills, seeking opportunities to apply expertise while continuing to grow and add value to the organization." } },
         sectionHeaders: {
-            0: { id: "0", kind: "sectionHeader", text: "Experience" },
-            1: { id: "1", kind: "sectionHeader", text: "Skills" },
-            2: { id: "2", kind: "sectionHeader", text: "Summary" },
+            0: { id: "0", kind: "sectionHeader", text: "EXPERIENCE" },
+            1: { id: "1", kind: "sectionHeader", text: "SKILLS" },
+            2: { id: "2", kind: "sectionHeader", text: "SUMMARY" },
 
 
         },

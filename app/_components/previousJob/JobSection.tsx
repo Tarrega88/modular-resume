@@ -24,18 +24,20 @@ function JobSection({
   const dispatch = useDispatch();
 
   return (
-    <div className="my-1">
-      <div className="flex font-semibold justify-between">
-        <DynamicInput
-          text={companyName}
-          handleOnSubmit={(text: string) =>
-            dispatch(
-              updatePrevJobField({ id, field: "companyName", value: text })
-            )
-          }
-          inputWidth="full"
-          placeholderText="Enter company name"
-        />
+    <div className="mt-2 mb-1">
+      <div className="flex justify-between">
+        <div className="font-semibold pb-1 w-full">
+          <DynamicInput
+            text={companyName}
+            handleOnSubmit={(text: string) =>
+              dispatch(
+                updatePrevJobField({ id, field: "companyName", value: text })
+              )
+            }
+            inputWidth="full"
+            placeholderText="Enter company name"
+          />
+        </div>
         <div className="flex w-max gap-1">
           <JobStart id={id} monthType={monthType} month={monthStarted} />
           <DynamicInput

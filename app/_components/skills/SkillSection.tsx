@@ -52,9 +52,10 @@ function SkillSection({
           </button>
         </div>
       </RelativeAbsLeft>
-      <div className="flex gap-1">
+      <div className="flex mb-1">
+        {/* <span className="mx-2">•</span> */}
         {showCategory ? (
-          <div className="flex font-semibold">
+          <div className="flex font-semibold mr-1">
             <DynamicInput
               text={category + ":"}
               handleOnSubmit={handleCategorySubmit}

@@ -38,19 +38,11 @@ function UserLink({ id, text, url, handleOnSubmit, placeholderText }: Props) {
 
   return showInput ? (
     <div>
+      {/* <label>URL Display Text:</label> */}
       <input
         autoFocus
         value={tempText}
         onChange={(e) => setTempText(e.target.value)}
-        onBlur={changeDisplay}
-        onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-        // style={{ width: `${widths[inputWidth]}`, textAlign }}
-      />
-      <input
-        autoFocus
-        value={tempText}
-        onChange={(e) => setTempUrlText(e.target.value)}
-        onBlur={changeDisplay}
         onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
         // style={{ width: `${widths[inputWidth]}`, textAlign }}
       />

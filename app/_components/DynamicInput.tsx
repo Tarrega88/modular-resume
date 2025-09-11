@@ -34,6 +34,7 @@ function DynamicInput({
   return showInput ? (
     <input
       autoFocus
+      className="outline-1 rounded-xs"
       value={tempText}
       onChange={(e) => setTempText(e.target.value)}
       onBlur={changeDisplay}

@@ -20,6 +20,8 @@ function DynamicTextArea({
   const [showInput, setShowInput] = useState(false);
   const [tempText, setTempText] = useState(text);
 
+  // TODO 9/11/2025: consider tying input height to div height
+
   function changeDisplay() {
     handleOnSubmit(tempText);
     setShowInput(false);
@@ -34,11 +36,17 @@ function DynamicTextArea({
   return showInput ? (
     <textarea
       autoFocus
+      className="min-h-36 outline-1"
       value={tempText}
       onChange={(e) => setTempText(e.target.value)}
       onBlur={changeDisplay}
-      onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-      style={{ width: `${widths[inputWidth]}`, textAlign }}
+      onKeyDown={(e) => {
+        e.key === "Enter" && e.shiftKey && changeDisplay();
+      }}
+      style={{
+        width: `${widths[inputWidth]}`,
+        textAlign,
+      }}
     />
   ) : (
     <div
@@ -47,7 +55,7 @@ function DynamicTextArea({
           ? { width: `${widths[divWidth]}`, textAlign }
           : { width: "100%", textAlign }
       }
-      className="group hover:bg-sky-50 transition-all duration-150"
+      className="group hover:bg-sky-50 transition-all duration-150 whitespace-pre-wrap"
       onClick={() => setShowInput(true)}
     >
       {text.length > 0 ? (
