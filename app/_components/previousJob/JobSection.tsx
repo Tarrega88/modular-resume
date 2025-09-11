@@ -34,6 +34,7 @@ function JobSection({
             )
           }
           inputWidth="full"
+          placeholderText="Enter company name"
         />
         <div className="flex w-max gap-1">
           <JobStart id={id} monthType={monthType} month={monthStarted} />
@@ -45,6 +46,7 @@ function JobSection({
               )
             }
             inputWidth="char"
+            placeholderText="Year"
           />
           <div> - </div>
           <JobEnd id={id} monthType={monthType} month={monthEnded} />
@@ -56,6 +58,7 @@ function JobSection({
               )
             }
             inputWidth="char"
+            placeholderText="Year"
           />
         </div>
       </div>
@@ -67,6 +70,7 @@ function JobSection({
           }
           textAlign="left"
           inputWidth="full"
+          placeholderText="Enter job title"
         />
         <DynamicInput
           text={location}
@@ -75,6 +79,7 @@ function JobSection({
           }
           textAlign="right"
           inputWidth="full"
+          placeholderText="Enter location"
         />
       </div>
     </div>

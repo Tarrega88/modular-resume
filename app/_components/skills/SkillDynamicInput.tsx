@@ -68,48 +68,44 @@ function SkillDynamicInput({
       onClick={() => setShowInput(true)}
     >
       <ul className="flex">
-        {/* {showCategory ? (
-          <li
-            className="pr-2 font-semibold"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <DynamicInput
-              text={categoryName}
-              handleOnSubmit={(e) => setCategoryName(e)}
-              inputWidth="char"
-            />
-          </li>
-        ) : 
-        null} */}
-
-        {list.map((e, i) => (
-          <li
-            key={i}
-            onDragEnter={() => setDragToIndex(i)}
-            className={i === dragFromIndex ? "opacity-25" : ""}
-          >
-            {isDragging && dragToIndex === i && dragFromIndex > dragToIndex ? (
-              <span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </span>
-            ) : null}
-            <span
-              className={`transition-transform duration-150 outline-sky-400 hover:outline-1 rounded-sm`}
-              draggable
-              onDragStart={() => setDragFromIndex(i)}
-              onDragEnd={() => handleOnDragEnd(i, dragToIndex, id)}
+        {list.length > 0 ? (
+          list.map((e, i) => (
+            <li
+              key={i}
+              onDragEnter={() => setDragToIndex(i)}
+              className={i === dragFromIndex ? "opacity-25" : ""}
             >
-              {e}
-            </span>
-            {isDragging && dragToIndex === i && dragFromIndex <= dragToIndex ? (
-              <span>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {isDragging &&
+              dragToIndex === i &&
+              dragFromIndex > dragToIndex ? (
+                <span>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              ) : null}
+              <span
+                className={`transition-transform duration-150 outline-sky-400 hover:outline-1 rounded-sm`}
+                draggable
+                onDragStart={() => setDragFromIndex(i)}
+                onDragEnd={() => handleOnDragEnd(i, dragToIndex, id)}
+              >
+                {e}
               </span>
-            ) : null}
+              {isDragging &&
+              dragToIndex === i &&
+              dragFromIndex <= dragToIndex ? (
+                <span>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+              ) : null}
 
-            {i < list.length - 1 && <span>,&nbsp;</span>}
+              {i < list.length - 1 && <span>,&nbsp;</span>}
+            </li>
+          ))
+        ) : (
+          <li className="italic text-gray-500">
+            Enter skills here and separate them by comma
           </li>
-        ))}
+        )}
       </ul>
     </div>
   );

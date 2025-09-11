@@ -11,6 +11,7 @@ type Props = {
   kind: Kinds;
   renderIndex: number;
   editData(id: string, text: string): void;
+  placeholderText?: string;
 };
 
 function BPDisplayAndInput({
@@ -20,6 +21,7 @@ function BPDisplayAndInput({
   kind,
   renderIndex,
   editData,
+  placeholderText,
 }: Props) {
   const [tempText, setTempText] = useState(text);
   const [displayMode, setDisplayMode] = useState<"div" | "input">("div");
@@ -61,7 +63,17 @@ function BPDisplayAndInput({
         >
           •
         </span>
-        <span className="transition-all duration-150">{tempText}</span>
+        <span className="transition-all duration-150">
+          {text.length ? (
+            text
+          ) : placeholderText ? (
+            <span className="opacity-0 group-hover:opacity-75 transition-all duration-200">
+              {placeholderText}
+            </span>
+          ) : (
+            <span>...</span>
+          )}
+        </span>
       </p>
     </div>
   ) : (

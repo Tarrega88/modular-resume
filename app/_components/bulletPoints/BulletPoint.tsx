@@ -28,6 +28,7 @@ function BulletPoint({
       renderIndex={renderIndex}
       text={text}
       editData={editData}
+      placeholderText="Enter bullet point"
     />
   );
 }

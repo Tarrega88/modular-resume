@@ -6,6 +6,7 @@ type Props = {
   inputWidth: "char" | "full" | "max";
   divWidth?: "char" | "full" | "max";
   textAlign?: "left" | "center" | "right";
+  placeholderText?: string;
 };
 
 //TODO 9/7/2025: might add a padding prop here
@@ -16,6 +17,7 @@ function DynamicInput({
   inputWidth,
   divWidth,
   textAlign = "left",
+  placeholderText,
 }: Props) {
   const [showInput, setShowInput] = useState(false);
   const [tempText, setTempText] = useState(text);
@@ -53,10 +55,16 @@ function DynamicInput({
           ? { width: `${widths[divWidth]}`, textAlign }
           : { width: "100%", textAlign }
       }
-      className="hover:bg-sky-50 transition-all duration-150"
+      className="group hover:bg-sky-50 transition-all duration-150"
       onClick={() => setShowInput(true)}
     >
-      {text}
+      {text.length > 0 ? (
+        text
+      ) : (
+        <span className="opacity-0 group-hover:opacity-75 transition-all duration-200">
+          {placeholderText ? placeholderText : "..."}
+        </span>
+      )}
     </div>
   );
 }

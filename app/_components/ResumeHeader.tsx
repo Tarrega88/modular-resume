@@ -31,6 +31,7 @@ function ResumeHeader({
               dispatch(editUserInfo({ text, field: "fullName" }))
             }
             inputWidth="full"
+            placeholderText="Enter name"
           />
         </div>
       </div>
@@ -41,6 +42,7 @@ function ResumeHeader({
             dispatch(editUserInfo({ text, field: "email" }))
           }
           inputWidth="full"
+          placeholderText="Enter email"
         />
         <DynamicInput
           text={phoneNumber}
@@ -48,6 +50,7 @@ function ResumeHeader({
             dispatch(editUserInfo({ text, field: "phoneNumber" }))
           }
           inputWidth="full"
+          placeholderText="Enter phone number"
         />
         <DynamicInput
           text={location}
@@ -55,6 +58,7 @@ function ResumeHeader({
             dispatch(editUserInfo({ text, field: "location" }))
           }
           inputWidth="full"
+          placeholderText="Enter location"
         />
       </div>
     </div>

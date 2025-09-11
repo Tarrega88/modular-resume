@@ -38,6 +38,7 @@ function SectionHeader({ text, kind, id }: Props) {
         text={text}
         handleOnSubmit={handleOnSubmit}
         inputWidth="full"
+        placeholderText={"Enter Header Text"}
       />
     </div>
   );
