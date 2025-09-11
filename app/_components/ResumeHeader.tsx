@@ -12,11 +12,12 @@ function ResumeHeader({
   email = "email@email.com",
   phoneNumber = "(123) 123-4567",
   location = locationDefault,
-  // link1,
+  link1,
   // link2,
   renderIndex,
 }: UserInfoProps & {
-  renderIndex: number /*link1?: UserLinkProps; link2?: UserLinkProps;*/;
+  renderIndex: number;
+  link1?: UserLinkProps /*link1?: UserLinkProps; link2?: UserLinkProps;*/;
 }) {
   const dispatch = useDispatch();
 

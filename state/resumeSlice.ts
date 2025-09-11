@@ -35,7 +35,9 @@ const initialState: ResumeState = {
             location: "City, ST",
             // userLinks: []
         },
-        userLinks: {},
+        userLinks: {
+            0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" }
+        },
         summaries: { 0: { id: "0", kind: "summary", text: "This is a test summary" } },
         sectionHeaders: {
             0: { id: "0", kind: "sectionHeader", text: "Experience" },

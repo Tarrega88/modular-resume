@@ -86,7 +86,7 @@ export type ResumeState = {
     monthType: "short" | "long",
     data: {
         userInfo: UserInfoProps,
-        userLinks: Record<ID, UserInfoProps>;
+        userLinks: Record<ID, UserLinkProps>;
         summaries: Record<ID, SummaryProps>;
         sectionHeaders: Record<ID, SectionHeaderProps>;
         prevJobs: Record<ID, PrevJobProps>;
