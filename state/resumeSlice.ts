@@ -248,7 +248,7 @@ const resumeSlice = createSlice({
             //TODO 9/10/2025: I think I might add in a CustomHeader section, where it's treated more like normal data instead (using ids) of the permanent header data I have
 
 
-            state.resumes[currentResumeId].splice(index + 1, 0, { kind, id, elementId });
+            state.resumes[currentResumeId].splice(index, 0, { kind, id, elementId });
             // state.resumes[currentResumeId] = [...state.resumes[currentResumeId]]
         },
 

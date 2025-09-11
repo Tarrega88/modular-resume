@@ -62,13 +62,13 @@ function Draggable({
 
   const dragStyle =
     dragFromIndex !== -1 && dragFromIndex !== renderIndex && dragDirection
-      ? "translate-y-3"
+      ? "translate-y-4"
       : "";
 
   return (
     <div
       draggable
-      className={`${outerDragStyle} ${dragStyle} hover:outline-2 outline-sky-200 cursor-pointer rounded group`}
+      className={`${outerDragStyle} ${dragStyle} hover:outline-2 outline-sky-200 cursor-pointer rounded group transition-all duration-150`}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onDragEnter={handleDragEnter}
