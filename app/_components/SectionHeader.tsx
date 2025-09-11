@@ -17,13 +17,7 @@ type Props = {
 function SectionHeader({ text, kind, id }: Props) {
   const dispatch = useDispatch();
   function handleOnSubmit(text: string) {
-    // if (kind === "customHeader") {
-    //   if (id !== undefined) {
-    //     dispatch(editCustomHeader({ text, kind: "customHeader", id }));
-    //   }
-    // } else {
-    //   dispatch(editSectionHeader({ text, kind }));
-    // }
+    dispatch(editSectionHeader({ id, text }));
   }
 
   return (

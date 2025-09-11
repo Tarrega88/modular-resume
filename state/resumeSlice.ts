@@ -180,10 +180,10 @@ const resumeSlice = createSlice({
         setDragHigher(state, action: PayloadAction<boolean>) {
             state.dragHigher = action.payload;
         },
-        editSectionHeader(state, action: PayloadAction<SectionHeaderProps>) {
+        editSectionHeader(state, action: PayloadAction<{ id: string; text: string; }>) {
             //TODO 9/11/2025: this needs to be changed
-            const { text, kind } = action.payload;
-            state.data.sectionHeaders[kind].text = text;
+            const { id, text } = action.payload;
+            state.data.sectionHeaders[id].text = text;
         },
         setScale(state, action: PayloadAction<number>) {
             state.scale = action.payload;
