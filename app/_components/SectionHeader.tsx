@@ -17,7 +17,7 @@ function SectionHeader({ text, kind, id }: Props) {
   }
 
   return (
-    <div className="text-xl font-semibold mt-5">
+    <div className="text-xl font-semibold mt-4 mb-2">
       <DynamicInput
         text={text}
         handleOnSubmit={handleOnSubmit}

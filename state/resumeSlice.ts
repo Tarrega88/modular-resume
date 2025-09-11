@@ -36,7 +36,9 @@ const initialState: ResumeState = {
             // userLinks: []
         },
         sectionHeaders: {
-            0: { id: "0", kind: "sectionHeader", text: "Experience" }
+            0: { id: "0", kind: "sectionHeader", text: "Experience" },
+            1: { id: "1", kind: "sectionHeader", text: "Skills" }
+
         },
         prevJobs: {
             0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 6, yearStarted: 2023, monthEnded: 11, yearEnded: 2024 },
@@ -73,6 +75,7 @@ const initialState: ResumeState = {
         { id: "105", kind: "bulletPoint", elementId: "3" },
         { id: "106", kind: "bulletPoint", elementId: "4" },
         { id: "107", kind: "bulletPoint", elementId: "5" },
+        { id: "108", kind: "sectionHeader", elementId: "1" },
         { id: "109", kind: "skill", elementId: "0" },
         { id: "110", kind: "skill", elementId: "1" }
 

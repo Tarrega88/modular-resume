@@ -24,7 +24,7 @@ function JobSection({
   const dispatch = useDispatch();
 
   return (
-    <div className="mt-2 mb-1">
+    <div className="my-1">
       <div className="flex font-semibold justify-between">
         <DynamicInput
           text={companyName}
