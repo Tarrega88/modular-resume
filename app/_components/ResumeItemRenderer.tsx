@@ -7,6 +7,7 @@ import ResumeHeader from "./ResumeHeader";
 import SectionHeader from "./SectionHeader";
 import { ResumeItemProps } from "@/state/types";
 import SkillSection from "./skills/SkillSection";
+import Summary from "./summaries/Summary";
 
 function ResumeItemRenderer({
   id,
@@ -120,6 +121,16 @@ function ResumeItemRenderer({
           category={skillData.category}
           list={skillData.list}
           renderIndex={renderIndex}
+        />
+      );
+    }
+    case "summary": {
+      const summaryData = data.summaries[elementId];
+      return (
+        <Summary
+          id={summaryData.id}
+          text={summaryData.text}
+          kind={summaryData.kind}
         />
       );
     }

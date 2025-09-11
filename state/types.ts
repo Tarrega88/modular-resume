@@ -3,7 +3,7 @@ export type ID = string;
 export type PrevJobEditable = Omit<PrevJobProps, "id" | "kind">;
 export type PrevJobKey = keyof PrevJobEditable;
 
-export type Kinds = "prevJob" | "education" | "bulletPoint" | "skill" | "userInfo" | "sectionHeader";
+export type Kinds = "prevJob" | "education" | "bulletPoint" | "skill" | "userInfo" | "sectionHeader" | "summary";
 
 export type ResumeItemProps = {
     id: ID;
@@ -14,10 +14,17 @@ export type ResumeItemProps = {
 export type TextEdit = PayloadAction<{ id: string; text: string; }>
 export type JobSectionTextEdit = PayloadAction<{ id: string; text: string; field: "jobTitle" | "location" | "companyName"; }>
 
+//Note 9/11/2025: Consider whether UserLinkProps should have kind prop
 export type UserLinkProps = {
     id: string;
     text: string;
     url: string;
+}
+
+export type SummaryProps = {
+    id: string;
+    kind: "summary";
+    text: string;
 }
 
 export type PrevJobProps = {
@@ -79,8 +86,8 @@ export type ResumeState = {
     monthType: "short" | "long",
     data: {
         userInfo: UserInfoProps,
-        userLink1?: UserLinkProps;
-        userLink2?: UserLinkProps;
+        userLinks: Record<ID, UserInfoProps>;
+        summaries: Record<ID, SummaryProps>;
         sectionHeaders: Record<ID, SectionHeaderProps>;
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;

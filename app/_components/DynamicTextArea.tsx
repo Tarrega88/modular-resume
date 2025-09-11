@@ -9,7 +9,7 @@ type Props = {
   placeholderText?: string;
 };
 
-function DynamicInput({
+function DynamicTextArea({
   text,
   handleOnSubmit,
   inputWidth,
@@ -32,7 +32,7 @@ function DynamicInput({
   };
 
   return showInput ? (
-    <input
+    <textarea
       autoFocus
       value={tempText}
       onChange={(e) => setTempText(e.target.value)}
@@ -61,4 +61,4 @@ function DynamicInput({
   );
 }
 
-export default DynamicInput;
+export default DynamicTextArea;

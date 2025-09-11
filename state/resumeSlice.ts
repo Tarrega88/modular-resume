@@ -35,9 +35,13 @@ const initialState: ResumeState = {
             location: "City, ST",
             // userLinks: []
         },
+        userLinks: {},
+        summaries: { 0: { id: "0", kind: "summary", text: "This is a test summary" } },
         sectionHeaders: {
             0: { id: "0", kind: "sectionHeader", text: "Experience" },
-            1: { id: "1", kind: "sectionHeader", text: "Skills" }
+            1: { id: "1", kind: "sectionHeader", text: "Skills" },
+            2: { id: "2", kind: "sectionHeader", text: "Summary" },
+
 
         },
         prevJobs: {
@@ -64,6 +68,8 @@ const initialState: ResumeState = {
     },
     resumes: {
         0: [{ id: "99", kind: "userInfo", elementId: "" },
+        { id: "97", kind: "sectionHeader", elementId: "2" },
+        { id: "96", kind: "summary", elementId: "0" },
         { id: "98", kind: "sectionHeader", elementId: "0" },
         { id: "100", kind: "prevJob", elementId: "0" },
 
@@ -184,6 +190,10 @@ const resumeSlice = createSlice({
             const { id, text } = action.payload;
             state.data.sectionHeaders[id].text = text;
         },
+        editSummary(state, action: PayloadAction<{ id: string; text: string; }>) {
+            const { id, text } = action.payload;
+            state.data.summaries[id].text = text;
+        },
         setScale(state, action: PayloadAction<number>) {
             state.scale = action.payload;
         },
@@ -192,11 +202,8 @@ const resumeSlice = createSlice({
             if (field !== "kind") state.data.userInfo[field] = text;
         },
         editSkills(state, action: PayloadAction<{ id: string; text: string }>) {
-
             const { id, text } = action.payload;
-
             state.data.skills[id].list = text.split(",").filter(e => e.length > 1).map(e => e.trim());
-
         },
         dragSkill(state, action: PayloadAction<{ fromIndex: number, toIndex: number; id: string }>) {
             const { fromIndex, toIndex, id } = action.payload;
@@ -229,8 +236,9 @@ const resumeSlice = createSlice({
             state.resumes[currentResumeId].splice(index, 0, { kind, id, elementId });
             // state.resumes[currentResumeId] = [...state.resumes[currentResumeId]]
         },
+
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, editSummary } = resumeSlice.actions;
 export default resumeSlice.reducer;
