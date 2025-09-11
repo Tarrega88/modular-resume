@@ -16,6 +16,7 @@ function Summary({ id, text }: SummaryProps) {
       text={text}
       handleOnSubmit={handleOnSubmit}
       inputWidth="full"
+      placeholderText="Enter summary text..."
     />
   );
 }

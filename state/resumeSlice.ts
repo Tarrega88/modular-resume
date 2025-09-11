@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BulletPointProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeState, SectionHeaderProps, SkillProps, TextEdit, UserInfoProps } from "./types";
+import { BulletPointProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeState, SectionHeaderProps, SkillProps, SummaryProps, TextEdit, UserInfoProps } from "./types";
 
 function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
@@ -151,6 +151,10 @@ const resumeSlice = createSlice({
             const { id } = action.payload;
             state.data.sectionHeaders[id] = action.payload;
         },
+        addSummaryData(state, action: PayloadAction<SummaryProps>) {
+            const { id } = action.payload;
+            state.data.summaries[id] = action.payload;
+        },
         editBulletPoint(state, action: TextEdit) {
             const { id, text } = action.payload;
             if (id in state.data.bulletPoints) {
@@ -240,5 +244,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, editSummary } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, addSummaryData, editSummary } = resumeSlice.actions;
 export default resumeSlice.reducer;

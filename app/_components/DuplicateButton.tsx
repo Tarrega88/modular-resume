@@ -5,6 +5,7 @@ import {
   addResumeItem,
   addSectionHeaderData,
   addSkillData,
+  addSummaryData,
   duplicateSection,
 } from "@/state/resumeSlice";
 import { Kinds } from "@/state/types";
@@ -31,7 +32,7 @@ function DuplicateButton({
           addBulletData({
             id,
             kind,
-            text: "Enter Bullet Point Text or select one from the dropdown",
+            text: "Enter bullet point text or choose from the dropdown",
           })
         );
         break;
@@ -87,7 +88,9 @@ function DuplicateButton({
             text: "Custom Header",
           })
         );
-
+        break;
+      case "summary":
+        dispatch(addSummaryData({ id, kind, text: "Enter summary text..." }));
       default:
         break;
     }

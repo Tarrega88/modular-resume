@@ -7,6 +7,7 @@ import {
   addPrevJobData,
   addResumeItem,
   addSectionHeaderData,
+  addSummaryData,
   createEmptyResume,
   prevJobDefault,
   setCurrentResume,
@@ -70,7 +71,7 @@ export default function GenerateResumeButton() {
           break;
         case "bulletPoint":
           dispatch(
-            addBulletData({ id, kind, text: "Enter Bullet Point Text..." })
+            addBulletData({ id, kind, text: "Enter bullet point Text..." })
           );
           break;
         case "sectionHeader":
@@ -82,6 +83,9 @@ export default function GenerateResumeButton() {
             })
           );
           break;
+
+        case "summary":
+          dispatch(addSummaryData({ id, kind, text: "Enter summary text..." }));
       }
 
       dispatch(addResumeItem({ kind, elementId: id }));
