@@ -11,8 +11,6 @@ type Props = {
   id: string;
 };
 
-//TODO 9/7/2025: might add a padding prop here
-
 function SkillDynamicInput({
   text,
   list,
@@ -21,10 +19,6 @@ function SkillDynamicInput({
   id,
 }: Props) {
   const [showInput, setShowInput] = useState(false);
-
-  //TODO 9/9/2025: This state needs to be either in the slice or the idea of a category needs to be up one component
-  // const [categoryName, setCategoryName] = useState("Category");
-
   const [dragFromIndex, setDragFromIndex] = useState(-1);
   const [dragToIndex, setDragToIndex] = useState(-1);
 

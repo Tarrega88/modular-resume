@@ -9,8 +9,6 @@ type Props = {
   placeholderText?: string;
 };
 
-//TODO 9/7/2025: might add a padding prop here
-
 function DynamicInput({
   text,
   handleOnSubmit,

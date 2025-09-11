@@ -18,7 +18,6 @@ function ResumeHeader({
 }: UserInfoProps & {
   renderIndex: number /*link1?: UserLinkProps; link2?: UserLinkProps;*/;
 }) {
-  //TODO 9/7/2026: hook up reducer:
   const dispatch = useDispatch();
 
   return (

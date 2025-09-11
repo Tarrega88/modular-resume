@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BulletPointProps, CustomHeaderProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeItemProps, ResumeState, SectionHeaderProps, SkillProps, TextEdit, UserInfoProps, UserLinkProps } from "./types";
+import { BulletPointProps, EducationProps, ID, Kinds, PrevJobEditable, PrevJobKey, PrevJobProps, ResumeState, SectionHeaderProps, SkillProps, TextEdit, UserInfoProps } from "./types";
 
 function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     (obj as Record<K, T[K]>)[key] = value; //obj as any is an option for testing
@@ -8,9 +8,6 @@ function setField<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
 function ensurePrevJob(state: ResumeState, id: ID): PrevJobProps {
     return (state.data.prevJobs[id] ??= { ...prevJobDefault, id });
 }
-
-//TODO 9/11/2025: Going to revamp section header logic to behave the way most data behaves
-//TODO 9/10/2025: add checks for 0 length text and insert a placeholder if so.
 
 export const locationDefault: string = "City, ST";
 export const prevJobDefault: PrevJobProps = { id: "0", kind: "prevJob", companyName: "Company Name", location: locationDefault, jobTitle: "Job Title", monthStarted: 0, yearStarted: 2024, monthEnded: 11, yearEnded: 2025 }
@@ -181,7 +178,6 @@ const resumeSlice = createSlice({
             state.dragHigher = action.payload;
         },
         editSectionHeader(state, action: PayloadAction<{ id: string; text: string; }>) {
-            //TODO 9/11/2025: this needs to be changed
             const { id, text } = action.payload;
             state.data.sectionHeaders[id].text = text;
         },
@@ -225,14 +221,11 @@ const resumeSlice = createSlice({
         duplicateSection(state, action: PayloadAction<{ kind: Kinds, index: number, elementId: string; }>) {
             const { currentResumeId } = state;
             const { kind, index, elementId } = action.payload;
-
             const id = crypto.randomUUID();
 
             state.resumes[currentResumeId].splice(index, 0, { kind, id, elementId });
             // state.resumes[currentResumeId] = [...state.resumes[currentResumeId]]
         },
-
-
     },
 });
 

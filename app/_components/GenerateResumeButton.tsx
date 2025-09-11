@@ -14,22 +14,6 @@ import {
 import { RootState } from "@/state/store";
 import { Kinds } from "@/state/types";
 
-// const newResumeRenderItems: Kinds[] = [
-//   "userInfo",
-//   "summaryHeader",
-//   "experienceHeader",
-//   // "sectionHeader",
-//   "prevJob",
-//   "bulletPoint",
-//   "bulletPoint",
-//   "bulletPoint",
-//   "educationHeader",
-//   "skillsHeader",
-//   "projectsHeader",
-// ];
-
-//TODO 9/11/2025: try switching to using this logic instead and check for text:
-
 type RenderProps = {
   kind: Kinds;
   text?: string;
@@ -89,7 +73,6 @@ export default function GenerateResumeButton() {
             addBulletData({ id, kind, text: "Enter Bullet Point Text..." })
           );
           break;
-        //TODO 9/11/2025: for headers, could replace the kind with the general kind here
         case "sectionHeader":
           dispatch(
             addSectionHeaderData({

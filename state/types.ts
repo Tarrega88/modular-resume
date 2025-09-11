@@ -1,6 +1,4 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-
-
 export type ID = string;
 export type PrevJobEditable = Omit<PrevJobProps, "id" | "kind">;
 export type PrevJobKey = keyof PrevJobEditable;
@@ -17,6 +15,7 @@ export type TextEdit = PayloadAction<{ id: string; text: string; }>
 export type JobSectionTextEdit = PayloadAction<{ id: string; text: string; field: "jobTitle" | "location" | "companyName"; }>
 
 export type UserLinkProps = {
+    id: string;
     text: string;
     url: string;
 }
@@ -53,12 +52,6 @@ export type SectionHeaderProps = {
     id: string;
     text: string;
     kind: "sectionHeader";
-}
-
-export type CustomHeaderProps = {
-    id: string;
-    text: string;
-    kind: "customHeader";
 }
 
 export type UserInfoProps = {
