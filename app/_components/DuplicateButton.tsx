@@ -5,6 +5,7 @@ import {
   addPrevJobData,
   addResumeItem,
   addSkillData,
+  duplicateSection,
 } from "@/state/resumeSlice";
 import { Kinds } from "@/state/types";
 import { IoDuplicate, IoDuplicateSharp } from "react-icons/io5";
@@ -71,7 +72,7 @@ function DuplicateButton({
           addSkillData({
             id,
             kind,
-            list: [],
+            list: ["List skills here and separate them with commas"],
             showCategory: true,
             category: "Category",
           })
@@ -96,7 +97,16 @@ function DuplicateButton({
         break;
     }
 
-    dispatch(addResumeItem({ kind, elementId: id }));
+    let duplicationKind = kind.endsWith("Header") ? "customHeader" : kind;
+
+    dispatch(
+      duplicateSection({
+        kind: duplicationKind,
+        elementId: id,
+        index: renderIndex,
+      })
+    );
+    // dispatch(addResumeItem({ kind, elementId: id }));
   }
 
   return (

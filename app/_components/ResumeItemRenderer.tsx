@@ -149,6 +149,17 @@ function ResumeItemRenderer({
         />
       );
     }
+    case "customHeader": {
+      const customHeaderData = data.customHeaders[elementId];
+      return (
+        <SectionHeader
+          text={customHeaderData.text}
+          id={customHeaderData.id}
+          kind="customHeader"
+          renderIndex={renderIndex}
+        />
+      );
+    }
     case "skill": {
       const skillData = data.skills[elementId];
 

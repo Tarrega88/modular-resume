@@ -10,6 +10,8 @@ function ensurePrevJob(state: ResumeState, id: ID): PrevJobProps {
 }
 
 
+//TODO 9/10/2025: add checks for 0 length text and insert a placeholder if so.
+
 export const locationDefault: string = "City, ST";
 export const prevJobDefault: PrevJobProps = { id: "0", kind: "prevJob", companyName: "Company Name", location: locationDefault, jobTitle: "Job Title", monthStarted: 0, yearStarted: 2024, monthEnded: 11, yearEnded: 2025 }
 // export const personalInfoDefault: PersonalInfoProps = { id: "0", kind: "personalInfo", fullName: "Full Name", email: "email@email.com", phoneNumber: "(123) 456-7890", location: locationDefault }
@@ -196,6 +198,10 @@ const resumeSlice = createSlice({
             const { text, kind } = action.payload;
             state.data.sectionHeaders[kind].text = text;
         },
+        editCustomHeader(state, action: PayloadAction<CustomHeaderProps>) {
+            const { text, id } = action.payload;
+            state.data.customHeaders[id].text = text;
+        },
         setScale(state, action: PayloadAction<number>) {
             state.scale = action.payload;
         },
@@ -211,12 +217,9 @@ const resumeSlice = createSlice({
 
         },
         dragSkill(state, action: PayloadAction<{ fromIndex: number, toIndex: number; id: string }>) {
-            const { dragFromIndex, dragToIndex } = state;
             const { fromIndex, toIndex, id } = action.payload;
 
             if (toIndex === -1 || fromIndex === toIndex) return;
-
-            // const arr = state.resumes[currentResumeId];
             const arr = state.data.skills[id].list;
             const [item] = arr.splice(fromIndex, 1);
             arr.splice(toIndex, 0, item);
@@ -236,16 +239,16 @@ const resumeSlice = createSlice({
             const { id, showCategory } = action.payload;
             state.data.skills[id].showCategory = showCategory;
         },
-        duplicateSection(state, action: PayloadAction<{ kind: Kinds, index: number }>) {
+        duplicateSection(state, action: PayloadAction<{ kind: Kinds, index: number, elementId: string; }>) {
             const { currentResumeId } = state;
-            const { kind, index } = action.payload;
+            const { kind, index, elementId } = action.payload;
 
             const id = crypto.randomUUID();
 
             //TODO 9/10/2025: I think I might add in a CustomHeader section, where it's treated more like normal data instead (using ids) of the permanent header data I have
 
 
-            state.resumes[currentResumeId].splice(index, 0,);
+            state.resumes[currentResumeId].splice(index + 1, 0, { kind, id, elementId });
             // state.resumes[currentResumeId] = [...state.resumes[currentResumeId]]
         },
 
@@ -253,5 +256,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, addCustomHeaderData } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, addCustomHeaderData, duplicateSection, editCustomHeader } = resumeSlice.actions;
 export default resumeSlice.reducer;
