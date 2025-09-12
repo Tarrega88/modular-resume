@@ -35,7 +35,8 @@ const initialState: ResumeState = {
             location: "City, ST",
             userLink1: "0",
             userLink2: "1",
-            showLinks: 2,
+            showLink1: true,
+            showLink2: true
         },
         // userLinks: {
         //     0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" }
@@ -212,7 +213,11 @@ const resumeSlice = createSlice({
         },
         editUserInfo(state, action: PayloadAction<{ field: keyof UserInfoProps; text: string; }>) {
             const { field, text } = action.payload;
-            if (field !== "kind" && field !== "userLink1" && field !== "userLink2" && field !== "showLinks") state.data.userInfo[field] = text;
+            if (field !== "kind" && field !== "userLink1" && field !== "userLink2" && field !== "showLink1" && field !== "showLink2") state.data.userInfo[field] = text;
+        },
+        editShowUserLink(state, action: PayloadAction<{ field: "showLink1" | "showLink2", show: boolean }>) {
+            const { field, show } = action.payload;
+            state.data.userInfo[field] = show;
         },
         editSkills(state, action: PayloadAction<{ id: string; text: string }>) {
             const { id, text } = action.payload;
@@ -258,5 +263,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, addSummaryData, editSummary, editUserLink } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, addSummaryData, editSummary, editUserLink, editShowUserLink } = resumeSlice.actions;
 export default resumeSlice.reducer;

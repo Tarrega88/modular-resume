@@ -49,7 +49,8 @@ function ResumeItemRenderer({
           renderIndex={renderIndex}
           userLink1={info.userLink1}
           userLink2={info.userLink2}
-          showLinks={info.showLinks}
+          showLink1={info.showLink1}
+          showLink2={info.showLink2}
         />
       );
     case "prevJob":

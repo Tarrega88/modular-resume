@@ -13,7 +13,8 @@ export type UserInfoProps = {
     location: string;
     userLink1: string;
     userLink2: string;
-    showLinks: number;
+    showLink1: boolean;
+    showLink2: boolean;
 }
 
 export type ResumeItemProps = {

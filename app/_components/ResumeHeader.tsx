@@ -1,12 +1,16 @@
 import { UserInfoProps } from "@/state/types";
 import UserLink from "./UserLink";
 
-import { editUserInfo, locationDefault } from "@/state/resumeSlice";
+import {
+  editShowUserLink,
+  editUserInfo,
+  locationDefault,
+} from "@/state/resumeSlice";
 import { widthWithoutMargin } from "./SideResumeInner";
 import DynamicInput from "./DynamicInput";
 import { useDispatch, useSelector } from "react-redux";
 import RelativeAbsRight from "./wrappers/RelativeAbsRight";
-import LinkCountButton from "./LinkCountButton";
+import SideLinkButton from "./SideLinkButton";
 
 function ResumeHeader({
   kind,
@@ -17,17 +21,41 @@ function ResumeHeader({
   renderIndex,
   userLink1,
   userLink2,
-  showLinks,
+  showLink1,
+  showLink2,
 }: // children,
 UserInfoProps & {
   renderIndex: number;
 }) {
   const dispatch = useDispatch();
+
+  function handleShowLink({
+    field,
+    show,
+  }: {
+    field: "showLink1" | "showLink2";
+    show: boolean;
+  }) {
+    dispatch(editShowUserLink({ field, show }));
+  }
   //TODO 9/12/2025: add in absolutely positioned buttons on the right to switch the links on/off
   return (
     <div className="mb-8 group">
       <RelativeAbsRight vPosition="low" hPosition="normal">
-        <LinkCountButton min={0} max={2} count={showLinks} />
+        <SideLinkButton
+          id={userLink1}
+          handleOnClick={() =>
+            handleShowLink({ field: "showLink1", show: !showLink1 })
+          }
+          active={showLink1}
+        />
+        <SideLinkButton
+          id={userLink2}
+          handleOnClick={() =>
+            handleShowLink({ field: "showLink2", show: !showLink2 })
+          }
+          active={showLink2}
+        />
       </RelativeAbsRight>
       <div className="flex justify-between">
         <div className="text-3xl font-semibold">
@@ -68,7 +96,7 @@ UserInfoProps & {
         />
 
         <div className="flex gap-4">
-          {showLinks > 0 ? (
+          {showLink1 ? (
             <UserLink
               id={userLink1}
               inputWidth="char"
@@ -76,7 +104,7 @@ UserInfoProps & {
               textAlign="left"
             />
           ) : null}
-          {showLinks === 2 ? (
+          {showLink2 ? (
             <UserLink
               id={userLink2}
               inputWidth="char"
