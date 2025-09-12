@@ -1,4 +1,4 @@
-import { UserInfoProps, UserLinkProps } from "@/state/types";
+import { UserInfoProps } from "@/state/types";
 import UserLink from "./UserLink";
 
 import { editUserInfo, locationDefault } from "@/state/resumeSlice";
@@ -14,16 +14,21 @@ function ResumeHeader({
   phoneNumber = "(123) 123-4567",
   location = locationDefault,
   renderIndex,
+  userLink1,
+  userLink2,
+  showLinks,
 }: // children,
 UserInfoProps & {
   renderIndex: number;
-  // children: React.ReactNode;
 }) {
   const dispatch = useDispatch();
 
+  function handleUrlTextSubmit() {}
+  function handleUrlSubmit() {}
+
   return (
     <div className="mb-8">
-      <div>
+      <div className="flex justify-between">
         <div className="text-3xl font-semibold">
           <DynamicInput
             text={fullName}
@@ -60,7 +65,24 @@ UserInfoProps & {
           inputWidth="full"
           placeholderText="Enter location"
         />
-        {/* {children} */}
+        <div className="flex gap-4">
+          {showLinks > 0 ? (
+            <UserLink
+              id={userLink1}
+              inputWidth="char"
+              divWidth="full"
+              textAlign="right"
+            />
+          ) : null}
+          {showLinks === 2 ? (
+            <UserLink
+              id={userLink2}
+              inputWidth="char"
+              divWidth="full"
+              textAlign="right"
+            />
+          ) : null}
+        </div>
       </div>
     </div>
   );

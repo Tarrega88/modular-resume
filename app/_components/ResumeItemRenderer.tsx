@@ -40,22 +40,17 @@ function ResumeItemRenderer({
         location: locationDefault,
       };
       return (
-        <>
-          <ResumeHeader
-            kind={info.kind}
-            fullName={info.fullName}
-            email={info.email}
-            phoneNumber={info.phoneNumber}
-            location={info.location}
-            renderIndex={renderIndex}
-          />
-          <UserLink
-            id="99"
-            text="Portfolio"
-            url="www.example.com"
-            handleOnSubmit={() => console.log("Submit")}
-          />
-        </>
+        <ResumeHeader
+          kind={info.kind}
+          fullName={info.fullName}
+          email={info.email}
+          phoneNumber={info.phoneNumber}
+          location={info.location}
+          renderIndex={renderIndex}
+          userLink1={info.userLink1}
+          userLink2={info.userLink2}
+          showLinks={info.showLinks}
+        />
       );
     case "prevJob":
       const {

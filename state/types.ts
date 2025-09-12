@@ -5,6 +5,17 @@ export type PrevJobKey = keyof PrevJobEditable;
 
 export type Kinds = "prevJob" | "education" | "bulletPoint" | "skill" | "userInfo" | "sectionHeader" | "summary";
 
+export type UserInfoProps = {
+    fullName: string;
+    kind: "userInfo";
+    email: string;
+    phoneNumber: string;
+    location: string;
+    userLink1: string;
+    userLink2: string;
+    showLinks: number;
+}
+
 export type ResumeItemProps = {
     id: ID;
     kind: Kinds;
@@ -15,7 +26,7 @@ export type TextEdit = PayloadAction<{ id: string; text: string; }>
 export type JobSectionTextEdit = PayloadAction<{ id: string; text: string; field: "jobTitle" | "location" | "companyName"; }>
 
 //Note 9/11/2025: Consider whether UserLinkProps should have kind prop
-export type UserLinkProps = {
+export type UserLinkData = {
     id: string;
     text: string;
     url: string;
@@ -61,14 +72,6 @@ export type SectionHeaderProps = {
     kind: "sectionHeader";
 }
 
-export type UserInfoProps = {
-    fullName: string;
-    kind: "userInfo";
-    email: string;
-    phoneNumber: string;
-    location: string;
-}
-
 export type SkillProps = {
     id: string;
     kind: "skill";
@@ -86,7 +89,7 @@ export type ResumeState = {
     monthType: "short" | "long",
     data: {
         userInfo: UserInfoProps,
-        userLinks: Record<ID, UserLinkProps>;
+        userLinks: Record<ID, UserLinkData>;
         summaries: Record<ID, SummaryProps>;
         sectionHeaders: Record<ID, SectionHeaderProps>;
         prevJobs: Record<ID, PrevJobProps>;

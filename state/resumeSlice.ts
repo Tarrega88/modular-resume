@@ -33,10 +33,13 @@ const initialState: ResumeState = {
             email: "email@gmail.com",
             phoneNumber: "(123) 456-7890",
             location: "City, ST",
+            userLink1: "0",
+            userLink2: "1",
+            showLinks: 2,
         },
-        userLinks: {
-            0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" }
-        },
+        // userLinks: {
+        //     0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" }
+        // },
         summaries: {
             0: {
                 id: "0", kind: "summary", text: `Results-driven professional with a proven ability to adapt quickly, solve problems, and contribute effectively in collaborative environments. Skilled at learning new technologies, managing multiple priorities, and delivering high-quality work under deadlines.`
@@ -69,7 +72,7 @@ const initialState: ResumeState = {
         },
         education: {},
         skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Technology" }, 1: { id: "1", kind: "skill", list: ["Docker", "VSCode", "Excel", "Word"], showCategory: true, category: "Software" } },
-        // userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" } },
+        userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" }, 1: { id: "1", text: "Github", url: "www.github.com" } },
     },
     resumes: {
         0: [{ id: "99", kind: "userInfo", elementId: "" },
@@ -208,7 +211,7 @@ const resumeSlice = createSlice({
         },
         editUserInfo(state, action: PayloadAction<{ field: keyof UserInfoProps; text: string; }>) {
             const { field, text } = action.payload;
-            if (field !== "kind") state.data.userInfo[field] = text;
+            if (field !== "kind" && field !== "userLink1" && field !== "userLink2" && field !== "showLinks") state.data.userInfo[field] = text;
         },
         editSkills(state, action: PayloadAction<{ id: string; text: string }>) {
             const { id, text } = action.payload;
@@ -245,9 +248,14 @@ const resumeSlice = createSlice({
             state.resumes[currentResumeId].splice(index, 0, { kind, id, elementId });
             // state.resumes[currentResumeId] = [...state.resumes[currentResumeId]]
         },
+        editUserLink(state, action: PayloadAction<{ id: string; text: string; url: string; }>) {
+            const { id, text, url } = action.payload;
+            state.data.userLinks[id].text = text;
+            state.data.userLinks[id].url = url;
+        }
 
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, addSummaryData, editSummary } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, addSummaryData, editSummary, editUserLink } = resumeSlice.actions;
 export default resumeSlice.reducer;
