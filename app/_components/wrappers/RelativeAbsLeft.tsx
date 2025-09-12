@@ -6,7 +6,6 @@ function RelativeAbsLeft({
 }: {
   children: React.ReactNode;
   hPosition: "normal" | "bullet" | "far";
-  vPosition?: "normal";
 }) {
   const hPositions = {
     normal: 22,
@@ -14,23 +13,17 @@ function RelativeAbsLeft({
     far: 2,
   };
 
-  // vPositions = {
-  //   normal:
-  // }
-
   return (
     <div
       style={{ width: pageWidth }}
-      className="-translate-x-[48px]"
+      className="-translate-x-[48px] relative"
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="relative">
-        <div
-          style={{ left: `${hPositions[hPosition]}px` }}
-          className="absolute group-hover:opacity-100 opacity-0 transition-all duration-150"
-        >
-          {children}
-        </div>
+      <div
+        style={{ left: `${hPositions[hPosition]}px` }}
+        className="absolute group-hover:opacity-100 opacity-0 transition-all duration-150"
+      >
+        {children}
       </div>
     </div>
   );

@@ -2,11 +2,12 @@ import { UserInfoProps } from "@/state/types";
 import UserLink from "./UserLink";
 
 import { editUserInfo, locationDefault } from "@/state/resumeSlice";
-import DeleteElementButton from "./DeleteElementButton";
 import { widthWithoutMargin } from "./SideResumeInner";
 import DynamicInput from "./DynamicInput";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/state/store";
+import RelativeAbsRight from "./wrappers/RelativeAbsRight";
+import LinkCountButton from "./LinkCountButton";
+
 function ResumeHeader({
   kind,
   fullName = "Full Name",
@@ -22,9 +23,12 @@ UserInfoProps & {
   renderIndex: number;
 }) {
   const dispatch = useDispatch();
-
+  //TODO 9/12/2025: add in absolutely positioned buttons on the right to switch the links on/off
   return (
-    <div className="mb-8">
+    <div className="mb-8 group">
+      <RelativeAbsRight vPosition="low" hPosition="normal">
+        <LinkCountButton min={0} max={2} count={showLinks} />
+      </RelativeAbsRight>
       <div className="flex justify-between">
         <div className="text-3xl font-semibold">
           <DynamicInput
@@ -62,6 +66,7 @@ UserInfoProps & {
           inputWidth="full"
           placeholderText="Enter location"
         />
+
         <div className="flex gap-4">
           {showLinks > 0 ? (
             <UserLink

@@ -3,30 +3,36 @@ import { pageWidth, widthWithoutMargin } from "../SideResumeInner";
 function RelativeAbsRight({
   children,
   hPosition,
-}: // vPosition,
-{
+  vPosition = "high",
+}: {
   children: React.ReactNode;
   hPosition: "normal" | "far";
-  // vPosition?: "normal" | "far";
+  vPosition?: "high" | "low";
 }) {
   const hPositions = {
     normal: 50,
     far: 12,
   };
 
-  //          style={{ left: `${hPositions[hPosition]}px` }}
+  const vPositions = {
+    high: 0,
+    low: 40,
+  };
+
   return (
     <div
       style={{ width: pageWidth }}
+      className="relative"
       // className="-translate-x-[48px]"
     >
-      <div className="relative">
-        <div
-          style={{ right: `${hPositions[hPosition]}px` }}
-          className="absolute right-6 group-hover:opacity-100 opacity-0 transition-all duration-150"
-        >
-          {children}
-        </div>
+      <div
+        style={{
+          right: `${hPositions[hPosition]}px`,
+          top: `${vPositions[vPosition]}px`,
+        }}
+        className="absolute group-hover:opacity-100 opacity-0 transition-all duration-150"
+      >
+        {children}
       </div>
     </div>
   );

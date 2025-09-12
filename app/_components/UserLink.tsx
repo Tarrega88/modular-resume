@@ -56,7 +56,7 @@ function UserLink({ id, inputWidth, divWidth, textAlign }: Props) {
           value={tempText}
           onChange={(e) => setTempText(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-          placeholder="Enter Display Text"
+          placeholder="Link Name"
           style={{ width: `${widths[inputWidth]}`, textAlign }}
         />
       </div>
@@ -68,7 +68,7 @@ function UserLink({ id, inputWidth, divWidth, textAlign }: Props) {
           value={tempUrl}
           onChange={(e) => setTempUrl(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-          placeholder="Enter URL"
+          placeholder="URL"
           style={{ width: `${widths[inputWidth]}`, textAlign }}
         />
       </div>
@@ -91,7 +91,7 @@ function UserLink({ id, inputWidth, divWidth, textAlign }: Props) {
         text
       ) : (
         <span className="opacity-0 group-hover:opacity-75 transition-all duration-200">
-          Enter Link Name...
+          Enter Link Name
         </span>
       )}
     </a>

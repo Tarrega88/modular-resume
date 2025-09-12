@@ -72,7 +72,8 @@ const initialState: ResumeState = {
         },
         education: {},
         skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Technology" }, 1: { id: "1", kind: "skill", list: ["Docker", "VSCode", "Excel", "Word"], showCategory: true, category: "Software" } },
-        userLinks: { 0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" }, 1: { id: "1", text: "Github", url: "www.github.com" } },
+        //Note: userLinks should remain hardcoded in with at least 0 and 1 at all times.
+        userLinks: { 0: { id: "0", text: "", url: "" }, 1: { id: "1", text: "", url: "" } },
     },
     resumes: {
         0: [{ id: "99", kind: "userInfo", elementId: "" },
