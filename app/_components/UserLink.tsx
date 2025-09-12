@@ -1,26 +1,17 @@
+import { editUserLink } from "@/state/resumeSlice";
 import { RootState } from "@/state/store";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 type Props = {
   id: string;
   inputWidth: "char" | "full" | "max";
   divWidth?: "char" | "full" | "max";
   textAlign?: "left" | "center" | "right";
-  placeholderText?: string;
 };
 
-function UserLink({
-  id,
-  inputWidth,
-  divWidth,
-  textAlign,
-  placeholderText,
-}: Props) {
-  //TODO 8/29/2025
-  //This will have:
-  //1. Possibly dynamic div/input
-  //2. Two inputs, one for the display text, one for the link
+function UserLink({ id, inputWidth, divWidth, textAlign }: Props) {
+  const dispatch = useDispatch();
 
   const { userLinks } = useSelector((state: RootState) => state.resume.data);
 
@@ -30,12 +21,24 @@ function UserLink({
   const [tempText, setTempText] = useState(text);
   const [tempUrl, setTempUrl] = useState(url);
 
+  const input1 = useRef<HTMLInputElement>(null);
+  const input2 = useRef<HTMLInputElement>(null);
+
   function changeDisplay() {
-    // handleOnSubmit({ displayText: tempText, urlText: tempUrlText });
-    setShowInput(false);
+    dispatch(editUserLink({ id, text: tempText, url: tempUrl }));
+    const a = document.activeElement;
+    if (a === input1.current) input2.current?.focus();
+    else if (a === input2.current) setShowInput(false);
   }
 
-  const maxLength = Math.max(tempText?.length, tempUrl?.length);
+  const onWrapperBlur: React.FocusEventHandler<HTMLDivElement> = (e) => {
+    dispatch(editUserLink({ id, text: tempText, url: tempUrl }));
+    if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+      setShowInput(false);
+    }
+  };
+
+  const maxLength = Math.max(11, Math.max(tempText?.length, tempUrl?.length));
 
   const widths = {
     char: `${maxLength || 1}ch`,
@@ -44,27 +47,27 @@ function UserLink({
   };
 
   return showInput ? (
-    <div className="relative">
+    <div className="relative" onBlur={onWrapperBlur}>
       <div>
         <input
+          ref={input1}
           autoFocus
           className="outline-1 rounded-xs"
           value={tempText}
           onChange={(e) => setTempText(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-          // onBlur={changeDisplay}
           placeholder="Enter Display Text"
           style={{ width: `${widths[inputWidth]}`, textAlign }}
         />
       </div>
       <div>
         <input
+          ref={input2}
           type="url"
           className="absolute outline-1 rounded-xs"
           value={tempUrl}
           onChange={(e) => setTempUrl(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-          // onBlur={changeDisplay}
           placeholder="Enter URL"
           style={{ width: `${widths[inputWidth]}`, textAlign }}
         />
@@ -78,7 +81,7 @@ function UserLink({
           ? { width: `${widths[divWidth]}`, textAlign }
           : { width: "100%", textAlign }
       }
-      className="group hover:bg-sky-50 transition-all duration-150"
+      className="group hover:bg-sky-50 transition-all duration-150 underline underline-offset-2"
       onClick={(e) => {
         e.preventDefault();
         setShowInput(true);
@@ -96,105 +99,3 @@ function UserLink({
 }
 
 export default UserLink;
-
-// import { RootState } from "@/state/store";
-// import { useState } from "react";
-// import { useSelector } from "react-redux";
-
-// type Props = {
-//   id: string;
-//   inputWidth: "char" | "full" | "max";
-//   divWidth?: "char" | "full" | "max";
-//   textAlign?: "left" | "center" | "right";
-//   placeholderText?: string;
-// };
-
-// function UserLink({
-//   id,
-//   inputWidth,
-//   divWidth,
-//   textAlign,
-//   placeholderText,
-// }: Props) {
-//   //TODO 8/29/2025
-//   //This will have:
-//   //1. Possibly dynamic div/input
-//   //2. Two inputs, one for the display text, one for the link
-
-//   const { userLinks } = useSelector((state: RootState) => state.resume.data);
-
-//   const { text, url } = userLinks[id];
-
-//   const [displayMode, setDisplayMode] = useState("div");
-//   const [tempText, setTempText] = useState(text);
-//   const [tempUrl, setTempUrl] = useState(url);
-
-//   function changeDisplay() {
-//     switch (displayMode) {
-//       case "div":
-//         setDisplayMode("textInput");
-//         break;
-//       case "textInput":
-//         setDisplayMode("urlInput");
-//         break;
-//       case "urlInput":
-//         setDisplayMode("div");
-//         break;
-//     }
-//   }
-
-//   // function changeDisplay() {
-//   //   handleOnSubmit({ displayText: tempText, urlText: tempUrlText });
-//   //   setShowInput(false);
-//   // }
-
-//   const widths = {
-//     char: `${tempText?.length >= 12 ? tempText.length : 12}ch`,
-//     full: "100%",
-//     max: "max-content",
-//   };
-
-//   return displayMode === "textInput" ? (
-//     <input
-//       autoFocus
-//       className="outline-1 rounded-xs"
-//       value={tempText}
-//       onChange={(e) => setTempText(e.target.value)}
-//       onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-//       onBlur={() => setDisplayMode("div")}
-//       placeholder="Enter Display Text"
-//       style={{ width: `${widths[inputWidth]}`, textAlign }}
-//     />
-//   ) : displayMode === "urlInput" ? (
-//     <input
-//       autoFocus
-//       className="outline-1 rounded-xs"
-//       value={tempUrl}
-//       onChange={(e) => setTempUrl(e.target.value)}
-//       onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-//       onBlur={() => setDisplayMode("div")}
-//       placeholder="Enter URL"
-//       style={{ width: `${widths[inputWidth]}`, textAlign }}
-//     />
-//   ) : (
-//     <div
-//       style={
-//         divWidth
-//           ? { width: `${widths[divWidth]}`, textAlign }
-//           : { width: "100%", textAlign }
-//       }
-//       className="group hover:bg-sky-50 transition-all duration-150"
-//       onClick={() => changeDisplay()}
-//     >
-//       {text.length > 0 ? (
-//         text
-//       ) : (
-//         <span className="opacity-0 group-hover:opacity-75 transition-all duration-200">
-//           Enter Link Name...
-//         </span>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default UserLink;

@@ -23,9 +23,6 @@ UserInfoProps & {
 }) {
   const dispatch = useDispatch();
 
-  function handleUrlTextSubmit() {}
-  function handleUrlSubmit() {}
-
   return (
     <div className="mb-8">
       <div className="flex justify-between">
@@ -70,15 +67,15 @@ UserInfoProps & {
             <UserLink
               id={userLink1}
               inputWidth="char"
-              divWidth="full"
-              textAlign="right"
+              divWidth="max"
+              textAlign="left"
             />
           ) : null}
           {showLinks === 2 ? (
             <UserLink
               id={userLink2}
               inputWidth="char"
-              divWidth="full"
+              divWidth="max"
               textAlign="right"
             />
           ) : null}
