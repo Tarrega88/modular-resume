@@ -8,6 +8,7 @@ import SectionHeader from "./SectionHeader";
 import { ResumeItemProps } from "@/state/types";
 import SkillSection from "./skills/SkillSection";
 import Summary from "./summaries/Summary";
+import UserLink from "./UserLink";
 
 function ResumeItemRenderer({
   id,
@@ -39,14 +40,22 @@ function ResumeItemRenderer({
         location: locationDefault,
       };
       return (
-        <ResumeHeader
-          kind={info.kind}
-          fullName={info.fullName}
-          email={info.email}
-          phoneNumber={info.phoneNumber}
-          location={info.location}
-          renderIndex={renderIndex}
-        />
+        <>
+          <ResumeHeader
+            kind={info.kind}
+            fullName={info.fullName}
+            email={info.email}
+            phoneNumber={info.phoneNumber}
+            location={info.location}
+            renderIndex={renderIndex}
+          />
+          <UserLink
+            id="99"
+            text="Portfolio"
+            url="www.example.com"
+            handleOnSubmit={() => console.log("Submit")}
+          />
+        </>
       );
     case "prevJob":
       const {

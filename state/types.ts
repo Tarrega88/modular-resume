@@ -67,8 +67,6 @@ export type UserInfoProps = {
     email: string;
     phoneNumber: string;
     location: string;
-    showLink1: boolean;
-    showLink2: boolean;
 }
 
 export type SkillProps = {

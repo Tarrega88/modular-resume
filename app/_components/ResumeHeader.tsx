@@ -13,23 +13,13 @@ function ResumeHeader({
   email = "email@email.com",
   phoneNumber = "(123) 123-4567",
   location = locationDefault,
-  link1,
-  link2,
   renderIndex,
-  showLink1,
-  showLink2,
-}: UserInfoProps & {
+}: // children,
+UserInfoProps & {
   renderIndex: number;
-  link1?: UserLinkProps;
-  link2?: UserLinkProps;
+  // children: React.ReactNode;
 }) {
   const dispatch = useDispatch();
-
-  const { userLinks } = useSelector((state: RootState) => state.resume.data);
-
-  const userLinkData = userLinks[0];
-
-  function handleUrlSubmit() {}
 
   return (
     <div className="mb-8">
@@ -70,12 +60,7 @@ function ResumeHeader({
           inputWidth="full"
           placeholderText="Enter location"
         />
-        {/* {showLink1 ? <UserLink
-          id={link1?.id}
-          text={link1?.text}
-          url={link1?.url}
-          handleOnSubmit={handleUrlSubmit}
-        /> : null} */}
+        {/* {children} */}
       </div>
     </div>
   );

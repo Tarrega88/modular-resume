@@ -33,9 +33,6 @@ const initialState: ResumeState = {
             email: "email@gmail.com",
             phoneNumber: "(123) 456-7890",
             location: "City, ST",
-            showLink1: true,
-            showLink2: true,
-            // userLinks: []
         },
         userLinks: {
             0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" }
@@ -211,7 +208,7 @@ const resumeSlice = createSlice({
         },
         editUserInfo(state, action: PayloadAction<{ field: keyof UserInfoProps; text: string; }>) {
             const { field, text } = action.payload;
-            if (field !== "kind" && field !== "showLink1" && field !== "showLink2") state.data.userInfo[field] = text;
+            if (field !== "kind") state.data.userInfo[field] = text;
         },
         editSkills(state, action: PayloadAction<{ id: string; text: string }>) {
             const { id, text } = action.payload;

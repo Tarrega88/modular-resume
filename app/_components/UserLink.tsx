@@ -20,15 +20,28 @@ function UserLink({ id, text, url, handleOnSubmit, placeholderText }: Props) {
   //This will have:
   //1. Possibly dynamic div/input
   //2. Two inputs, one for the display text, one for the link
-  const [showInput, setShowInput] = useState(false);
+  const [displayMode, setDisplayMode] = useState("div");
   const [tempText, setTempText] = useState(text);
-
-  const [tempUrlText, setTempUrlText] = useState(url);
+  const [tempUrl, setTempUrl] = useState(url);
 
   function changeDisplay() {
-    handleOnSubmit({ displayText: tempText, urlText: tempUrlText });
-    setShowInput(false);
+    switch (displayMode) {
+      case "div":
+        setDisplayMode("textInput");
+        break;
+      case "textInput":
+        setDisplayMode("urlInput");
+        break;
+      case "urlInput":
+        setDisplayMode("div");
+        break;
+    }
   }
+
+  // function changeDisplay() {
+  //   handleOnSubmit({ displayText: tempText, urlText: tempUrlText });
+  //   setShowInput(false);
+  // }
 
   // const widths = {
   //   char: `${tempText?.length || 1}ch`,
@@ -36,17 +49,24 @@ function UserLink({ id, text, url, handleOnSubmit, placeholderText }: Props) {
   //   max: "max-content",
   // };
 
-  return showInput ? (
-    <div>
-      {/* <label>URL Display Text:</label> */}
-      <input
-        autoFocus
-        value={tempText}
-        onChange={(e) => setTempText(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
-        // style={{ width: `${widths[inputWidth]}`, textAlign }}
-      />
-    </div>
+  return displayMode === "textInput" ? (
+    <input
+      autoFocus
+      value={tempText}
+      onChange={(e) => setTempText(e.target.value)}
+      onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
+      onBlur={changeDisplay}
+      // style={{ width: `${widths[inputWidth]}`, textAlign }}
+    />
+  ) : displayMode === "urlInput" ? (
+    <input
+      autoFocus
+      value={tempUrl}
+      onChange={(e) => setTempUrl(e.target.value)}
+      onKeyDown={(e) => e.key === "Enter" && changeDisplay()}
+      onBlur={changeDisplay}
+      // style={{ width: `${widths[inputWidth]}`, textAlign }}
+    />
   ) : (
     <div
       // style={
@@ -55,7 +75,7 @@ function UserLink({ id, text, url, handleOnSubmit, placeholderText }: Props) {
       //     : { width: "100%", textAlign }
       // }
       className="group hover:bg-sky-50 transition-all duration-150"
-      onClick={() => setShowInput(true)}
+      onClick={() => changeDisplay()}
     >
       {text.length > 0 ? (
         text
