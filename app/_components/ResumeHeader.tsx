@@ -14,11 +14,14 @@ function ResumeHeader({
   phoneNumber = "(123) 123-4567",
   location = locationDefault,
   link1,
-  // link2,
+  link2,
   renderIndex,
+  showLink1,
+  showLink2,
 }: UserInfoProps & {
   renderIndex: number;
-  link1?: UserLinkProps /*link1?: UserLinkProps; link2?: UserLinkProps;*/;
+  link1?: UserLinkProps;
+  link2?: UserLinkProps;
 }) {
   const dispatch = useDispatch();
 
@@ -29,7 +32,7 @@ function ResumeHeader({
   function handleUrlSubmit() {}
 
   return (
-    <div>
+    <div className="mb-8">
       <div>
         <div className="text-3xl font-semibold">
           <DynamicInput
@@ -67,12 +70,12 @@ function ResumeHeader({
           inputWidth="full"
           placeholderText="Enter location"
         />
-        <UserLink
-          id={userLinkData.id}
-          text={userLinkData.text}
-          url={userLinkData.url}
+        {/* {showLink1 ? <UserLink
+          id={link1?.id}
+          text={link1?.text}
+          url={link1?.url}
           handleOnSubmit={handleUrlSubmit}
-        />
+        /> : null} */}
       </div>
     </div>
   );

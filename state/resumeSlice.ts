@@ -28,17 +28,23 @@ const initialState: ResumeState = {
     monthType: "short", //TODO 9/6/2025: store monthTypes in a "per resume" type of object
     data: {
         userInfo: {
-            fullName: "Full Name...",
+            fullName: "Full Name",
             kind: "userInfo",
             email: "email@gmail.com",
             phoneNumber: "(123) 456-7890",
             location: "City, ST",
+            showLink1: true,
+            showLink2: true,
             // userLinks: []
         },
         userLinks: {
             0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" }
         },
-        summaries: { 0: { id: "0", kind: "summary", text: "Results-driven professional with a proven ability to adapt quickly, solve problems, and contribute effectively in collaborative environments. Skilled at learning new technologies, managing multiple priorities, and delivering high-quality work under deadlines. Strong communicator with a balance of technical knowledge and interpersonal skills, seeking opportunities to apply expertise while continuing to grow and add value to the organization." } },
+        summaries: {
+            0: {
+                id: "0", kind: "summary", text: `Results-driven professional with a proven ability to adapt quickly, solve problems, and contribute effectively in collaborative environments. Skilled at learning new technologies, managing multiple priorities, and delivering high-quality work under deadlines.`
+            }
+        },
         sectionHeaders: {
             0: { id: "0", kind: "sectionHeader", text: "EXPERIENCE" },
             1: { id: "1", kind: "sectionHeader", text: "SKILLS" },
@@ -70,7 +76,7 @@ const initialState: ResumeState = {
     },
     resumes: {
         0: [{ id: "99", kind: "userInfo", elementId: "" },
-        { id: "97", kind: "sectionHeader", elementId: "2" },
+        // { id: "97", kind: "sectionHeader", elementId: "2" },
         { id: "96", kind: "summary", elementId: "0" },
         { id: "98", kind: "sectionHeader", elementId: "0" },
         { id: "100", kind: "prevJob", elementId: "0" },
@@ -205,7 +211,7 @@ const resumeSlice = createSlice({
         },
         editUserInfo(state, action: PayloadAction<{ field: keyof UserInfoProps; text: string; }>) {
             const { field, text } = action.payload;
-            if (field !== "kind") state.data.userInfo[field] = text;
+            if (field !== "kind" && field !== "showLink1" && field !== "showLink2") state.data.userInfo[field] = text;
         },
         editSkills(state, action: PayloadAction<{ id: string; text: string }>) {
             const { id, text } = action.payload;
