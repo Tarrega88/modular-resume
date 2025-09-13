@@ -93,7 +93,7 @@ UserInfoProps & {
           ) : null}
         </div>
       </div>
-      <div className="font-semibold border-b-1 pb-1">
+      <div className="font-semibold border-b border-b-neutral-400 pb-1">
         <DynamicInput
           text={professionTitle}
           handleOnSubmit={(text: string) =>

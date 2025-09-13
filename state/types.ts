@@ -72,6 +72,7 @@ export type SectionHeaderProps = {
     id: string;
     text: string;
     kind: "sectionHeader";
+    underline: boolean;
 }
 
 export type SkillProps = {

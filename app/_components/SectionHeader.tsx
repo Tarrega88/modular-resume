@@ -1,23 +1,48 @@
 import DynamicInput from "./DynamicInput";
 import { widthWithoutMargin } from "./SideResumeInner";
 import { useDispatch } from "react-redux";
-import { editSectionHeader } from "@/state/resumeSlice";
+import {
+  editSectionHeader,
+  toggleSectionHeaderUnderline,
+} from "@/state/resumeSlice";
+import RelativeAbsLeft from "./wrappers/RelativeAbsLeft";
+import { FaUnderline } from "react-icons/fa";
+import { MdFormatUnderlined } from "react-icons/md";
+import { FiUnderline } from "react-icons/fi";
+import { SectionHeaderProps } from "@/state/types";
 
-type Props = {
-  text: string;
-  kind: "sectionHeader";
-  renderIndex: number;
-  id: string;
-};
-
-function SectionHeader({ text, kind, id }: Props) {
+function SectionHeader({
+  text,
+  kind,
+  id,
+  underline,
+  renderIndex,
+}: SectionHeaderProps & { renderIndex: number }) {
   const dispatch = useDispatch();
   function handleOnSubmit(text: string) {
     dispatch(editSectionHeader({ id, text }));
   }
 
+  function handleToggleUnderline() {
+    dispatch(toggleSectionHeaderUnderline({ id, underline: !underline }));
+  }
+
+  const underlineStyle = underline ? "border-b" : "";
+
+  const underlineButtonStyle = underline
+    ? "text-slate-800 hover:text-slate-600"
+    : "text-gray-400 hover:text-slate-500";
+
   return (
-    <div className="text-lg font-semibold mt-4 mb-3">
+    <div
+      className={`text-lg font-semibold mt-4 mb-3 border-b-neutral-400 group ${underlineStyle}`}
+    >
+      <RelativeAbsLeft hPosition="far">
+        <FiUnderline
+          className={`text-xl translate-y-0.5 ${underlineButtonStyle} transition-all duration-200`}
+          onClick={handleToggleUnderline}
+        />
+      </RelativeAbsLeft>
       <DynamicInput
         text={text}
         handleOnSubmit={handleOnSubmit}

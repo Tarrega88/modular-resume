@@ -45,9 +45,9 @@ const initialState: ResumeState = {
             }
         },
         sectionHeaders: {
-            0: { id: "0", kind: "sectionHeader", text: "EXPERIENCE" },
-            1: { id: "1", kind: "sectionHeader", text: "SKILLS" },
-            2: { id: "2", kind: "sectionHeader", text: "SUMMARY" },
+            0: { id: "0", kind: "sectionHeader", text: "EXPERIENCE", underline: true },
+            1: { id: "1", kind: "sectionHeader", text: "SKILLS", underline: true },
+            2: { id: "2", kind: "sectionHeader", text: "SUMMARY", underline: true },
 
 
         },
@@ -202,6 +202,10 @@ const resumeSlice = createSlice({
             const { id, text } = action.payload;
             state.data.sectionHeaders[id].text = text;
         },
+        toggleSectionHeaderUnderline(state, action: PayloadAction<{ id: string; underline: boolean; }>) {
+            const { id, underline } = action.payload;
+            state.data.sectionHeaders[id].underline = underline;
+        },
         editSummary(state, action: PayloadAction<{ id: string; text: string; }>) {
             const { id, text } = action.payload;
             state.data.summaries[id].text = text;
@@ -261,5 +265,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, addSummaryData, editSummary, editUserLink, editShowUserLink } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, addSummaryData, editSummary, editUserLink, editShowUserLink, toggleSectionHeaderUnderline } = resumeSlice.actions;
 export default resumeSlice.reducer;

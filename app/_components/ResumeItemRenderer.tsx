@@ -113,6 +113,7 @@ function ResumeItemRenderer({
           id={sectionHeaderData.id}
           kind="sectionHeader"
           text={sectionHeaderData.text}
+          underline={sectionHeaderData.underline}
           renderIndex={renderIndex}
         />
       );

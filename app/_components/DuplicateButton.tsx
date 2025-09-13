@@ -86,6 +86,7 @@ function DuplicateButton({
             id,
             kind,
             text: "Custom Header",
+            underline: false,
           })
         );
         break;
