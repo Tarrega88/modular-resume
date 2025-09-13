@@ -11,6 +11,11 @@ import DynamicInput from "./DynamicInput";
 import { useDispatch, useSelector } from "react-redux";
 import RelativeAbsRight from "./wrappers/RelativeAbsRight";
 import SideLinkButton from "./SideLinkButton";
+import IconWrapper from "./wrappers/IconWrapper";
+import { FaPhone } from "react-icons/fa";
+import { IoIosMail } from "react-icons/io";
+import { CiLocationOn, CiMail } from "react-icons/ci";
+import { FaLocationPin } from "react-icons/fa6";
 
 function ResumeHeader({
   kind,
@@ -40,13 +45,6 @@ UserInfoProps & {
     dispatch(editShowUserLink({ field, show }));
   }
 
-  const gridClass =
-    showLink1 && showLink2
-      ? "grid-cols-[8fr_5fr_5fr_1fr_1fr]"
-      : showLink1 || showLink2
-      ? ""
-      : "";
-  //TODO 9/12/2025: add in absolutely positioned buttons on the right to switch the links on/off
   return (
     <div className="mb-8 group">
       <RelativeAbsRight vPosition="low" hPosition="normal">
@@ -105,52 +103,49 @@ UserInfoProps & {
           placeholderText="Profession"
         />
       </div>
-      {/* <div className="flex mt-2 justify-between"> */}
-      <div className="flex justify-between gap-4 mt-2">
-        <DynamicInput
-          text={email}
-          handleOnSubmit={(text: string) =>
-            dispatch(editUserInfo({ text, field: "email" }))
-          }
-          inputWidth="full"
-          divWidth="full"
-          placeholderText="Enter email"
-        />
-        <DynamicInput
-          text={phoneNumber}
-          handleOnSubmit={(text: string) =>
-            dispatch(editUserInfo({ text, field: "phoneNumber" }))
-          }
-          inputWidth="full"
-          divWidth="full"
-          placeholderText="Enter phone number"
-        />
-        <DynamicInput
-          text={location}
-          handleOnSubmit={(text: string) =>
-            dispatch(editUserInfo({ text, field: "location" }))
-          }
-          inputWidth="full"
-          divWidth="full"
-          placeholderText="Enter location"
-        />
-
-        {/* {showLink1 ? (
-          <UserLink
-            id={userLink1}
-            inputWidth="char"
+      <div className="flex justify-between mt-2">
+        <div className="flex w-full">
+          <IconWrapper>
+            <CiMail className="text-xl" />
+          </IconWrapper>
+          <DynamicInput
+            text={email}
+            handleOnSubmit={(text: string) =>
+              dispatch(editUserInfo({ text, field: "email" }))
+            }
+            inputWidth="full"
             divWidth="full"
-            textAlign="right"
+            placeholderText="Enter email"
           />
-        ) : null}
-        {showLink2 ? (
-          <UserLink
-            id={userLink2}
-            inputWidth="char"
+        </div>
+        <div className="flex w-full">
+          <IconWrapper>
+            <FaPhone />
+          </IconWrapper>
+          <DynamicInput
+            text={phoneNumber}
+            handleOnSubmit={(text: string) =>
+              dispatch(editUserInfo({ text, field: "phoneNumber" }))
+            }
+            inputWidth="full"
             divWidth="full"
-            textAlign="right"
+            placeholderText="Enter phone number"
           />
-        ) : null} */}
+        </div>
+        <div className="flex w-full">
+          <IconWrapper>
+            <CiLocationOn className="text-xl" />
+          </IconWrapper>
+          <DynamicInput
+            text={location}
+            handleOnSubmit={(text: string) =>
+              dispatch(editUserInfo({ text, field: "location" }))
+            }
+            inputWidth="full"
+            divWidth="full"
+            placeholderText="Enter location"
+          />
+        </div>
       </div>
     </div>
   );

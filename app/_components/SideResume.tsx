@@ -20,6 +20,7 @@ export default function SideResume() {
     if (resumeId) dispatch(setCurrentResume(resumeId));
   }, [resumeId, dispatch]);
 
+  console.log("RESUME");
   console.log(resumes[currentResumeId]);
   console.log("DATA");
   console.log(data);

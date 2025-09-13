@@ -12,12 +12,14 @@ function Summary({ id, text }: SummaryProps) {
   //TODO 9/11/2025: consider string literal interpretation of summary.
 
   return (
-    <DynamicTextArea
-      text={text}
-      handleOnSubmit={handleOnSubmit}
-      inputWidth="full"
-      placeholderText="Enter summary text..."
-    />
+    <div className="mb-6">
+      <DynamicTextArea
+        text={text}
+        handleOnSubmit={handleOnSubmit}
+        inputWidth="full"
+        placeholderText="Enter summary text..."
+      />
+    </div>
   );
 }
 

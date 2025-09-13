@@ -17,12 +17,12 @@ function SectionHeader({ text, kind, id }: Props) {
   }
 
   return (
-    <div className="text-lg font-semibold mt-4 mb-2">
+    <div className="text-lg font-semibold mt-4 mb-3">
       <DynamicInput
         text={text}
         handleOnSubmit={handleOnSubmit}
         inputWidth="full"
-        placeholderText={"Enter Header Text"}
+        placeholderText="Enter Header Text"
       />
     </div>
   );
