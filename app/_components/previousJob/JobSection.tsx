@@ -52,16 +52,18 @@ function JobSection({
           />
           <div> - </div>
           <JobEnd id={id} monthType={monthType} month={monthEnded} />
-          <DynamicInput
-            text={yearEnded.toString()}
-            handleOnSubmit={(text: string) =>
-              dispatch(
-                updatePrevJobField({ id, field: "yearEnded", value: text })
-              )
-            }
-            inputWidth="char"
-            placeholderText="Year"
-          />
+          {monthEnded != 12 ? (
+            <DynamicInput
+              text={yearEnded.toString()}
+              handleOnSubmit={(text: string) =>
+                dispatch(
+                  updatePrevJobField({ id, field: "yearEnded", value: text })
+                )
+              }
+              inputWidth="char"
+              placeholderText="Year"
+            />
+          ) : null}
         </div>
       </div>
       <div className="flex justify-between">

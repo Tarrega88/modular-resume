@@ -43,6 +43,8 @@ function ResumeItemRenderer({
         <ResumeHeader
           kind={info.kind}
           professionTitle={info.professionTitle}
+          showProfession={info.showProfession}
+          hasUnderline={info.hasUnderline}
           fullName={info.fullName}
           email={info.email}
           phoneNumber={info.phoneNumber}

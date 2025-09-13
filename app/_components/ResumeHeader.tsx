@@ -2,7 +2,7 @@ import { UserInfoProps } from "@/state/types";
 import UserLink from "./UserLink";
 
 import {
-  editShowUserLink,
+  toggleUserBool,
   editUserInfo,
   locationDefault,
 } from "@/state/resumeSlice";
@@ -16,11 +16,16 @@ import { FaPhone } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { CiLocationOn, CiMail } from "react-icons/ci";
 import { FaLocationPin } from "react-icons/fa6";
+import { FiUnderline } from "react-icons/fi";
+import RelativeAbsLeft from "./wrappers/RelativeAbsLeft";
+import { MdOutlineTitle } from "react-icons/md";
 
 function ResumeHeader({
   kind,
   fullName = "Full Name",
   professionTitle,
+  showProfession,
+  hasUnderline,
   email = "email@email.com",
   phoneNumber = "(123) 123-4567",
   location = locationDefault,
@@ -42,8 +47,14 @@ UserInfoProps & {
     field: "showLink1" | "showLink2";
     show: boolean;
   }) {
-    dispatch(editShowUserLink({ field, show }));
+    dispatch(toggleUserBool({ field, show }));
   }
+
+  const underlineStyle = hasUnderline ? "border-b" : "";
+
+  const underlineButtonStyle = hasUnderline
+    ? "text-slate-800 hover:text-slate-600"
+    : "text-gray-400 hover:text-slate-500";
 
   return (
     <div className="mb-8 group">
@@ -63,8 +74,28 @@ UserInfoProps & {
           active={showLink2}
         />
       </RelativeAbsRight>
+      <RelativeAbsLeft hPosition="normal" vPosition="med">
+        <MdOutlineTitle
+          className="text-xl"
+          onClick={() =>
+            dispatch(
+              toggleUserBool({ field: "showProfession", show: !showProfession })
+            )
+          }
+        />
+      </RelativeAbsLeft>
+      <RelativeAbsLeft hPosition="normal" vPosition="low">
+        <FiUnderline
+          className={`text-xl translate-y-0.5 ${underlineButtonStyle}`}
+          onClick={() =>
+            dispatch(
+              toggleUserBool({ field: "hasUnderline", show: !hasUnderline })
+            )
+          }
+        />
+      </RelativeAbsLeft>
       <div className="flex justify-between">
-        <div className="text-3xl font-semibold">
+        <div className="text-3xl font-semibold w-full">
           <DynamicInput
             text={fullName}
             handleOnSubmit={(text: string) =>
@@ -93,15 +124,19 @@ UserInfoProps & {
           ) : null}
         </div>
       </div>
-      <div className="font-semibold border-b border-b-neutral-400 pb-1">
-        <DynamicInput
-          text={professionTitle}
-          handleOnSubmit={(text: string) =>
-            dispatch(editUserInfo({ text, field: "professionTitle" }))
-          }
-          inputWidth="full"
-          placeholderText="Profession"
-        />
+      <div
+        className={`font-semibold ${underlineStyle} border-b-neutral-400 pb-1`}
+      >
+        {showProfession ? (
+          <DynamicInput
+            text={professionTitle}
+            handleOnSubmit={(text: string) =>
+              dispatch(editUserInfo({ text, field: "professionTitle" }))
+            }
+            inputWidth="full"
+            placeholderText="Profession"
+          />
+        ) : null}
       </div>
       <div className="flex justify-between mt-2">
         <div className="flex w-full">

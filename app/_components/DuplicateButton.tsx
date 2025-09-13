@@ -9,8 +9,7 @@ import {
   duplicateSection,
 } from "@/state/resumeSlice";
 import { Kinds } from "@/state/types";
-import { IoDuplicate, IoDuplicateSharp } from "react-icons/io5";
-import { TbCircleLetterDFilled } from "react-icons/tb";
+import { IoDuplicate } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 
 function DuplicateButton({
@@ -43,9 +42,6 @@ function DuplicateButton({
             kind,
             schoolName: "University Name",
             degree: "Degree",
-            fieldOfStudy: "Field of Study",
-            monthStarted: 7,
-            yearStarted: 2000,
             monthEnded: 4,
             yearEnded: 2004,
             location: "City, ST",
@@ -103,7 +99,6 @@ function DuplicateButton({
         index: renderIndex,
       })
     );
-    // dispatch(addResumeItem({ kind, elementId: id }));
   }
 
   return (

@@ -30,6 +30,8 @@ const initialState: ResumeState = {
         userInfo: {
             fullName: "Michael",
             professionTitle: "Software Developer",
+            showProfession: true,
+            hasUnderline: true,
             kind: "userInfo",
             email: "email@gmail.com",
             phoneNumber: "(123) 456-7890",
@@ -37,7 +39,7 @@ const initialState: ResumeState = {
             userLink1: "0",
             userLink2: "1",
             showLink1: false,
-            showLink2: false
+            showLink2: false,
         },
         summaries: {
             0: {
@@ -215,9 +217,9 @@ const resumeSlice = createSlice({
         },
         editUserInfo(state, action: PayloadAction<{ field: keyof UserInfoProps; text: string; }>) {
             const { field, text } = action.payload;
-            if (field !== "kind" && field !== "userLink1" && field !== "userLink2" && field !== "showLink1" && field !== "showLink2") state.data.userInfo[field] = text;
+            if (field !== "kind" && field !== "userLink1" && field !== "userLink2" && field !== "showLink1" && field !== "showLink2" && field !== "showProfession") state.data.userInfo[field] = text;
         },
-        editShowUserLink(state, action: PayloadAction<{ field: "showLink1" | "showLink2", show: boolean }>) {
+        toggleUserBool(state, action: PayloadAction<{ field: "showLink1" | "showLink2" | "hasUnderline" | "showProfession", show: boolean }>) {
             const { field, show } = action.payload;
             state.data.userInfo[field] = show;
         },
@@ -265,5 +267,5 @@ const resumeSlice = createSlice({
     },
 });
 
-export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, addSummaryData, editSummary, editUserLink, editShowUserLink, toggleSectionHeaderUnderline } = resumeSlice.actions;
+export const { setCurrentResume, editBulletPoint, changeBulletPoint, removeResumeItem, setDragToIndex, setDragFromIndex, dragResumeItem, setDragHigher, addResumeItem, addBulletData, addEducationData, addPrevJobData, createEmptyResume, updatePrevJobField, setScale, editUserInfo, editSkills, dragSkill, editSkillCategory, setShowCategory, editSectionHeader, addSkillData, duplicateSection, addSectionHeaderData, addSummaryData, editSummary, editUserLink, toggleUserBool, toggleSectionHeaderUnderline } = resumeSlice.actions;
 export default resumeSlice.reducer;

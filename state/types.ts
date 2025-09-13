@@ -8,6 +8,8 @@ export type Kinds = "prevJob" | "education" | "bulletPoint" | "skill" | "userInf
 export type UserInfoProps = {
     fullName: string;
     professionTitle: string;
+    showProfession: boolean;
+    hasUnderline: boolean;
     kind: "userInfo";
     email: string;
     phoneNumber: string;
@@ -59,9 +61,6 @@ export type EducationProps = {
     kind: "education";
     schoolName: string;
     degree: string;
-    fieldOfStudy: string;
-    monthStarted?: number;
-    yearStarted?: number;
     monthEnded?: number;
     yearEnded?: number;
     location?: string;
