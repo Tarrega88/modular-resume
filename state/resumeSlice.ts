@@ -217,7 +217,7 @@ const resumeSlice = createSlice({
         },
         editUserInfo(state, action: PayloadAction<{ field: keyof UserInfoProps; text: string; }>) {
             const { field, text } = action.payload;
-            if (field !== "kind" && field !== "userLink1" && field !== "userLink2" && field !== "showLink1" && field !== "showLink2" && field !== "showProfession") state.data.userInfo[field] = text;
+            if (field !== "kind" && field !== "userLink1" && field !== "userLink2" && field !== "showLink1" && field !== "showLink2" && field !== "showProfession" && field !== "hasUnderline") state.data.userInfo[field] = text;
         },
         toggleUserBool(state, action: PayloadAction<{ field: "showLink1" | "showLink2" | "hasUnderline" | "showProfession", show: boolean }>) {
             const { field, show } = action.payload;
