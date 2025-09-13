@@ -15,6 +15,7 @@ import SideLinkButton from "./SideLinkButton";
 function ResumeHeader({
   kind,
   fullName = "Full Name",
+  professionTitle,
   email = "email@email.com",
   phoneNumber = "(123) 123-4567",
   location = locationDefault,
@@ -38,6 +39,13 @@ UserInfoProps & {
   }) {
     dispatch(editShowUserLink({ field, show }));
   }
+
+  const gridClass =
+    showLink1 && showLink2
+      ? "grid-cols-[8fr_5fr_5fr_1fr_1fr]"
+      : showLink1 || showLink2
+      ? ""
+      : "";
   //TODO 9/12/2025: add in absolutely positioned buttons on the right to switch the links on/off
   return (
     <div className="mb-8 group">
@@ -68,14 +76,44 @@ UserInfoProps & {
             placeholderText="Enter name"
           />
         </div>
+        <div className="flex gap-4 text-nowrap">
+          {showLink1 ? (
+            <UserLink
+              id={userLink1}
+              inputWidth="char"
+              divWidth="full"
+              textAlign="right"
+            />
+          ) : null}
+          {showLink2 ? (
+            <UserLink
+              id={userLink2}
+              inputWidth="char"
+              divWidth="full"
+              textAlign="right"
+            />
+          ) : null}
+        </div>
       </div>
-      <div className="flex gap-4">
+      <div className="font-semibold border-b-1 pb-1">
+        <DynamicInput
+          text={professionTitle}
+          handleOnSubmit={(text: string) =>
+            dispatch(editUserInfo({ text, field: "professionTitle" }))
+          }
+          inputWidth="full"
+          placeholderText="Profession"
+        />
+      </div>
+      {/* <div className="flex mt-2 justify-between"> */}
+      <div className="flex justify-between gap-4 mt-2">
         <DynamicInput
           text={email}
           handleOnSubmit={(text: string) =>
             dispatch(editUserInfo({ text, field: "email" }))
           }
           inputWidth="full"
+          divWidth="full"
           placeholderText="Enter email"
         />
         <DynamicInput
@@ -84,6 +122,7 @@ UserInfoProps & {
             dispatch(editUserInfo({ text, field: "phoneNumber" }))
           }
           inputWidth="full"
+          divWidth="full"
           placeholderText="Enter phone number"
         />
         <DynamicInput
@@ -92,27 +131,26 @@ UserInfoProps & {
             dispatch(editUserInfo({ text, field: "location" }))
           }
           inputWidth="full"
+          divWidth="full"
           placeholderText="Enter location"
         />
 
-        <div className="flex gap-4">
-          {showLink1 ? (
-            <UserLink
-              id={userLink1}
-              inputWidth="char"
-              divWidth="max"
-              textAlign="left"
-            />
-          ) : null}
-          {showLink2 ? (
-            <UserLink
-              id={userLink2}
-              inputWidth="char"
-              divWidth="max"
-              textAlign="right"
-            />
-          ) : null}
-        </div>
+        {/* {showLink1 ? (
+          <UserLink
+            id={userLink1}
+            inputWidth="char"
+            divWidth="full"
+            textAlign="right"
+          />
+        ) : null}
+        {showLink2 ? (
+          <UserLink
+            id={userLink2}
+            inputWidth="char"
+            divWidth="full"
+            textAlign="right"
+          />
+        ) : null} */}
       </div>
     </div>
   );

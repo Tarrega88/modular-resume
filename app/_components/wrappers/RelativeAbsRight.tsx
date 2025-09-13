@@ -16,7 +16,7 @@ function RelativeAbsRight({
 
   const vPositions = {
     high: 0,
-    low: 40,
+    low: 32,
   };
 
   return (

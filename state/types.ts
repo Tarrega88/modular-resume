@@ -7,6 +7,7 @@ export type Kinds = "prevJob" | "education" | "bulletPoint" | "skill" | "userInf
 
 export type UserInfoProps = {
     fullName: string;
+    professionTitle: string;
     kind: "userInfo";
     email: string;
     phoneNumber: string;

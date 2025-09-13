@@ -42,6 +42,7 @@ function ResumeItemRenderer({
       return (
         <ResumeHeader
           kind={info.kind}
+          professionTitle={info.professionTitle}
           fullName={info.fullName}
           email={info.email}
           phoneNumber={info.phoneNumber}

@@ -7,8 +7,6 @@ type Props = {
 };
 
 function SideLinkButton({ id, handleOnClick, active }: Props) {
-  //   return Array.from({ length: max }, () => (
-
   const color = active
     ? "text-blue-600 hover:text-blue-700"
     : "text-gray-400 hover:text-blue-400";
@@ -20,7 +18,6 @@ function SideLinkButton({ id, handleOnClick, active }: Props) {
       />
     </button>
   );
-  //   ));
 }
 
 export default SideLinkButton;

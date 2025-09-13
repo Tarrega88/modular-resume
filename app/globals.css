@@ -6,8 +6,8 @@
 
 @theme {
   /* Global sans stack for ATS-friendly PDFs */
-  --font-sans: Arial, Helvetica, "Noto Sans", Roboto, ui-sans-serif, system-ui,
-    sans-serif;
+  --font-sans: "Inter", Arial, Helvetica, "Noto Sans", Roboto,
+    ui-sans-serif, system-ui, sans-serif;
 
   --text-xs: calc(0.75rem * var(--font-scale));
   --text-sm: calc(0.875rem * var(--font-scale));

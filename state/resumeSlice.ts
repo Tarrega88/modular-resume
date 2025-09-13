@@ -28,19 +28,17 @@ const initialState: ResumeState = {
     monthType: "short", //TODO 9/6/2025: store monthTypes in a "per resume" type of object
     data: {
         userInfo: {
-            fullName: "Full Name",
+            fullName: "Michael",
+            professionTitle: "Software Developer",
             kind: "userInfo",
             email: "email@gmail.com",
             phoneNumber: "(123) 456-7890",
             location: "City, ST",
             userLink1: "0",
             userLink2: "1",
-            showLink1: true,
-            showLink2: true
+            showLink1: false,
+            showLink2: false
         },
-        // userLinks: {
-        //     0: { id: "0", text: "Portfolio", url: "https://michaelthedev.com/" }
-        // },
         summaries: {
             0: {
                 id: "0", kind: "summary", text: `Results-driven professional with a proven ability to adapt quickly, solve problems, and contribute effectively in collaborative environments. Skilled at learning new technologies, managing multiple priorities, and delivering high-quality work under deadlines.`
