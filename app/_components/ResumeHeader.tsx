@@ -13,7 +13,11 @@ import RelativeAbsRight from "./wrappers/RelativeAbsRight";
 import SideLinkButton from "./SideLinkButton";
 import IconWrapper from "./wrappers/IconWrapper";
 import { FaPhone } from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
+import {
+  IoIosInformationCircle,
+  IoIosMail,
+  IoMdInformation,
+} from "react-icons/io";
 import { CiLocationOn, CiMail } from "react-icons/ci";
 import { FaLocationPin } from "react-icons/fa6";
 import { FiUnderline } from "react-icons/fi";
@@ -23,6 +27,7 @@ import { MdOutlineTitle } from "react-icons/md";
 function ResumeHeader({
   kind,
   fullName = "Full Name",
+  showIcons,
   professionTitle,
   showProfession,
   hasUnderline,
@@ -56,6 +61,14 @@ UserInfoProps & {
     ? "text-slate-800 hover:text-slate-600"
     : "text-gray-400 hover:text-slate-500";
 
+  const iconButtonStyle = showIcons
+    ? "text-sky-500 hover:text-sky-400"
+    : "text-gray-300 hover:text-sky-300";
+
+  const titleButtonStyle = showProfession
+    ? "text-neutral-800 hover:text-neutral-700"
+    : "text-neutral-300 hover:text-neutral-500";
+
   return (
     <div className="mb-8 group">
       <RelativeAbsRight vPosition="low" hPosition="normal">
@@ -74,9 +87,9 @@ UserInfoProps & {
           active={showLink2}
         />
       </RelativeAbsRight>
-      <RelativeAbsLeft hPosition="normal" vPosition="med">
+      <RelativeAbsLeft hPosition="far" vPosition="high">
         <MdOutlineTitle
-          className="text-xl"
+          className={`text-xl ${titleButtonStyle} transition-all duration-200`}
           onClick={() =>
             dispatch(
               toggleUserBool({ field: "showProfession", show: !showProfession })
@@ -84,9 +97,17 @@ UserInfoProps & {
           }
         />
       </RelativeAbsLeft>
+      <RelativeAbsLeft hPosition="far" vPosition="low">
+        <IoIosInformationCircle
+          onClick={() =>
+            dispatch(toggleUserBool({ field: "showIcons", show: !showIcons }))
+          }
+          className={`text-xl ${iconButtonStyle} transition-all duration-200`}
+        />
+      </RelativeAbsLeft>
       <RelativeAbsLeft hPosition="normal" vPosition="low">
         <FiUnderline
-          className={`text-xl translate-y-0.5 ${underlineButtonStyle}`}
+          className={`text-xl translate-y-0.5 ${underlineButtonStyle} transition-all duration-200`}
           onClick={() =>
             dispatch(
               toggleUserBool({ field: "hasUnderline", show: !hasUnderline })
@@ -140,9 +161,11 @@ UserInfoProps & {
       </div>
       <div className="flex justify-between mt-2">
         <div className="flex w-full">
-          <IconWrapper>
-            <CiMail className="text-xl" />
-          </IconWrapper>
+          {showIcons ? (
+            <IconWrapper>
+              <CiMail className="text-xl" />
+            </IconWrapper>
+          ) : null}
           <DynamicInput
             text={email}
             handleOnSubmit={(text: string) =>
@@ -154,9 +177,11 @@ UserInfoProps & {
           />
         </div>
         <div className="flex w-full">
-          <IconWrapper>
-            <FaPhone />
-          </IconWrapper>
+          {showIcons ? (
+            <IconWrapper>
+              <FaPhone />
+            </IconWrapper>
+          ) : null}
           <DynamicInput
             text={phoneNumber}
             handleOnSubmit={(text: string) =>
@@ -168,9 +193,11 @@ UserInfoProps & {
           />
         </div>
         <div className="flex w-full">
-          <IconWrapper>
-            <CiLocationOn className="text-xl" />
-          </IconWrapper>
+          {showIcons ? (
+            <IconWrapper>
+              <CiLocationOn className="text-xl" />
+            </IconWrapper>
+          ) : null}
           <DynamicInput
             text={location}
             handleOnSubmit={(text: string) =>

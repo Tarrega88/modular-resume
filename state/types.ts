@@ -7,6 +7,7 @@ export type Kinds = "prevJob" | "education" | "bulletPoint" | "skill" | "userInf
 
 export type UserInfoProps = {
     fullName: string;
+    showIcons: boolean;
     professionTitle: string;
     showProfession: boolean;
     hasUnderline: boolean;

@@ -9,6 +9,7 @@ import { ResumeItemProps } from "@/state/types";
 import SkillSection from "./skills/SkillSection";
 import Summary from "./summaries/Summary";
 import UserLink from "./UserLink";
+import EducationSection from "./education/EducationSection";
 
 function ResumeItemRenderer({
   id,
@@ -42,6 +43,7 @@ function ResumeItemRenderer({
       return (
         <ResumeHeader
           kind={info.kind}
+          showIcons={info.showIcons}
           professionTitle={info.professionTitle}
           showProfession={info.showProfession}
           hasUnderline={info.hasUnderline}
@@ -144,7 +146,19 @@ function ResumeItemRenderer({
       );
     }
     case "education":
-      return;
+      const educationData = data.education[elementId];
+      return (
+        <EducationSection
+          id={educationData.id}
+          kind={educationData.kind}
+          schoolName={educationData.schoolName}
+          degree={educationData.degree}
+          monthEnded={educationData.monthEnded}
+          yearEnded={educationData.yearEnded}
+          location={educationData.location}
+          gpa={educationData.location}
+        />
+      );
     default:
       return;
   }
