@@ -51,8 +51,7 @@ const initialState: ResumeState = {
             0: { id: "0", kind: "sectionHeader", text: "EXPERIENCE", underline: true },
             1: { id: "1", kind: "sectionHeader", text: "SKILLS", underline: true },
             2: { id: "2", kind: "sectionHeader", text: "SUMMARY", underline: true },
-
-
+            3: { id: "3", kind: "sectionHeader", text: "EDUCATION", underline: true }
         },
         prevJobs: {
             0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 6, yearStarted: 2023, monthEnded: 11, yearEnded: 2024 },
@@ -72,7 +71,11 @@ const initialState: ResumeState = {
             9: { id: "9", kind: "bulletPoint", text: "Designed responsive UI components using Tailwind CSS" },
 
         },
-        education: {},
+        education: {
+            0: {
+                id: "0", kind: "education", schoolName: "University of Alaska Anchorage", degree: "Bachelor of Music in Classical Guitar Performance and Music Education", monthEnded: 4, yearEnded: 2016, gpa: "3.5",
+            }
+        },
         skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Technology" }, 1: { id: "1", kind: "skill", list: ["Docker", "VSCode", "Excel", "Word"], showCategory: true, category: "Software" } },
         //Note: userLinks should remain hardcoded in with at least 0 and 1 at all times.
         userLinks: { 0: { id: "0", text: "", url: "" }, 1: { id: "1", text: "", url: "" } },
@@ -92,6 +95,8 @@ const initialState: ResumeState = {
         { id: "105", kind: "bulletPoint", elementId: "3" },
         { id: "106", kind: "bulletPoint", elementId: "4" },
         { id: "107", kind: "bulletPoint", elementId: "5" },
+        { id: "111", kind: "sectionHeader", elementId: "3" },
+        { id: "112", kind: "education", elementId: "0" },
         { id: "108", kind: "sectionHeader", elementId: "1" },
         { id: "109", kind: "skill", elementId: "0" },
         { id: "110", kind: "skill", elementId: "1" }

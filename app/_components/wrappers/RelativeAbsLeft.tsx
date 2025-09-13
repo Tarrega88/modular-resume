@@ -17,7 +17,7 @@ function RelativeAbsLeft({
 
   const vPositions = {
     high: 0,
-    med: 30,
+    med: 32,
     low: 52,
   };
 

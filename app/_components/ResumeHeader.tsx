@@ -97,7 +97,7 @@ UserInfoProps & {
           }
         />
       </RelativeAbsLeft>
-      <RelativeAbsLeft hPosition="far" vPosition="low">
+      <RelativeAbsLeft hPosition="far" vPosition="med">
         <IoIosInformationCircle
           onClick={() =>
             dispatch(toggleUserBool({ field: "showIcons", show: !showIcons }))
@@ -105,7 +105,7 @@ UserInfoProps & {
           className={`text-xl ${iconButtonStyle} transition-all duration-200`}
         />
       </RelativeAbsLeft>
-      <RelativeAbsLeft hPosition="normal" vPosition="low">
+      <RelativeAbsLeft hPosition="normal" vPosition="med">
         <FiUnderline
           className={`text-xl translate-y-0.5 ${underlineButtonStyle} transition-all duration-200`}
           onClick={() =>
