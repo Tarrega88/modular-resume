@@ -19,103 +19,147 @@ export const bulletPointDefault: BulletPointProps = { id: "0", kind: "bulletPoin
 
 //NOTE: id and object key will match except in the resumes object.
 
+// /state/resumeSlice.ts
 const initialState: ResumeState = {
-    scale: 75,
-    currentResumeId: "0",
+    scale: 100,              // unscaled preview
+    currentResumeId: "",         // set by setCurrentResume(...) on route mount
     dragFromIndex: -1,
     dragToIndex: -1,
     dragHigher: true,
-    monthType: "short", //TODO 9/6/2025: store monthTypes in a "per resume" type of object
+    monthType: "short",
+
     data: {
         userInfo: {
-            fullName: "Michael",
+            fullName: "",
+            professionTitle: "",
+            showProfession: false,
             showIcons: true,
-            professionTitle: "Software Developer",
-            showProfession: true,
             hasUnderline: true,
             kind: "userInfo",
-            email: "email@gmail.com",
-            phoneNumber: "(123) 456-7890",
-            location: "City, ST",
+            email: "",
+            phoneNumber: "",
+            location: "",
             userLink1: "0",
             userLink2: "1",
             showLink1: false,
             showLink2: false,
         },
-        summaries: {
-            0: {
-                id: "0", kind: "summary", text: `Results-driven professional with a proven ability to adapt quickly, solve problems, and contribute effectively in collaborative environments. Skilled at learning new technologies, managing multiple priorities, and delivering high-quality work under deadlines.`
-            }
-        },
-        sectionHeaders: {
-            0: { id: "0", kind: "sectionHeader", text: "EXPERIENCE", underline: true },
-            1: { id: "1", kind: "sectionHeader", text: "SKILLS", underline: true },
-            2: { id: "2", kind: "sectionHeader", text: "SUMMARY", underline: true },
-            3: { id: "3", kind: "sectionHeader", text: "EDUCATION", underline: true }
-        },
-        prevJobs: {
-            0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 6, yearStarted: 2023, monthEnded: 11, yearEnded: 2024 },
-            1: { id: "1", kind: "prevJob", companyName: "Microsoft", location: "Los Angeles, CA", jobTitle: "UI/UX Designer", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 },
-            // 2: { id: "2", kind: "prevJob", companyName: "Best Buy", location: "Los Angeles, CA", jobTitle: "Customer Support", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 }
-        },
-        bulletPoints: {
-            0: { id: "0", kind: "bulletPoint", text: "Built software for ABC company" },
-            1: { id: "1", kind: "bulletPoint", text: "Developed an internal application to reduce user friction" },
-            2: { id: "2", kind: "bulletPoint", text: "Wrote and used automated tests in Jest" },
-            3: { id: "3", kind: "bulletPoint", text: "Collaborated with cross-functional teams to launch new features" },
-            4: { id: "4", kind: "bulletPoint", text: "Optimized React components for faster load times" },
-            5: { id: "5", kind: "bulletPoint", text: "Created RESTful APIs to support front-end functionality" },
-            6: { id: "6", kind: "bulletPoint", text: "Implemented Redux for scalable state management" },
-            7: { id: "7", kind: "bulletPoint", text: "Reviewed code and mentored junior developers" },
-            8: { id: "8", kind: "bulletPoint", text: "Integrated third-party authentication services" },
-            9: { id: "9", kind: "bulletPoint", text: "Designed responsive UI components using Tailwind CSS" },
 
+        // keep two empty link slots so IDs referenced above exist
+        userLinks: {
+            "0": { id: "0", text: "", url: "" },
+            "1": { id: "1", text: "", url: "" },
         },
-        education: {
-            0: {
-                id: "0", kind: "education", schoolName: "University of Alaska Anchorage", degree: "B.A. in Music Education and Classical Guitar", monthEnded: 4, yearEnded: 2016
-            }
-        },
+
+        summaries: {},
+        sectionHeaders: {},
+        prevJobs: {},
+        bulletPoints: {},
+        education: {},
         projects: {},
-        skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Technology" }, 1: { id: "1", kind: "skill", list: ["Docker", "VSCode", "Excel", "Word"], showCategory: true, category: "Software" } },
-        //Note: userLinks should remain hardcoded in with at least 0 and 1 at all times.
-        userLinks: { 0: { id: "0", text: "", url: "" }, 1: { id: "1", text: "", url: "" } },
-    },
-    resumes: {
-        0: [{ id: "99", kind: "userInfo", elementId: "" },
-        // { id: "97", kind: "sectionHeader", elementId: "2" },
-        { id: "96", kind: "summary", elementId: "0" },
-        { id: "98", kind: "sectionHeader", elementId: "0" },
-        { id: "100", kind: "prevJob", elementId: "0" },
-
-        { id: "101", kind: "bulletPoint", elementId: "0" },
-        { id: "102", kind: "bulletPoint", elementId: "1" },
-        { id: "103", kind: "bulletPoint", elementId: "2" },
-
-        { id: "104", kind: "prevJob", elementId: "1" },
-        { id: "105", kind: "bulletPoint", elementId: "3" },
-        { id: "106", kind: "bulletPoint", elementId: "4" },
-        { id: "107", kind: "bulletPoint", elementId: "5" },
-        { id: "111", kind: "sectionHeader", elementId: "3" },
-        { id: "112", kind: "education", elementId: "0" },
-        { id: "108", kind: "sectionHeader", elementId: "1" },
-        { id: "109", kind: "skill", elementId: "0" },
-        { id: "110", kind: "skill", elementId: "1" }
-
-
-            // { id: "108", kind: "prevJob", elementId: "2" },
-            // { id: "109", kind: "bulletPoint", elementId: "6" },
-            // { id: "110", kind: "bulletPoint", elementId: "7" },
-            // { id: "111", kind: "bulletPoint", elementId: "8" },
-
-            // { id: "112", kind: "prevJob", elementId: "0" },
-            // { id: "113", kind: "bulletPoint", elementId: "9" },
-        ],
-        1: [], //the render order for resume1,
-        2: [], //the render order of resume2
+        skills: {},
     },
 
+    // no resumes yet; create on demand or guard when reading
+    resumes: {},
 };
+
+
+// const initialState: ResumeState = {
+//     scale: 75,
+//     currentResumeId: "0",
+//     dragFromIndex: -1,
+//     dragToIndex: -1,
+//     dragHigher: true,
+//     monthType: "short", //TODO 9/6/2025: store monthTypes in a "per resume" type of object
+//     data: {
+//         userInfo: {
+//             fullName: "Michael",
+//             showIcons: true,
+//             professionTitle: "Software Developer",
+//             showProfession: true,
+//             hasUnderline: true,
+//             kind: "userInfo",
+//             email: "email@gmail.com",
+//             phoneNumber: "(123) 456-7890",
+//             location: "City, ST",
+//             userLink1: "0",
+//             userLink2: "1",
+//             showLink1: false,
+//             showLink2: false,
+//         },
+//         summaries: {
+//             0: {
+//                 id: "0", kind: "summary", text: `Results-driven professional with a proven ability to adapt quickly, solve problems, and contribute effectively in collaborative environments. Skilled at learning new technologies, managing multiple priorities, and delivering high-quality work under deadlines.`
+//             }
+//         },
+//         sectionHeaders: {
+//             0: { id: "0", kind: "sectionHeader", text: "EXPERIENCE", underline: true },
+//             1: { id: "1", kind: "sectionHeader", text: "SKILLS", underline: true },
+//             2: { id: "2", kind: "sectionHeader", text: "SUMMARY", underline: true },
+//             3: { id: "3", kind: "sectionHeader", text: "EDUCATION", underline: true }
+//         },
+//         prevJobs: {
+//             0: { id: "0", kind: "prevJob", companyName: "Google", location: "Anchorage, AK", jobTitle: "Software Developer", monthStarted: 6, yearStarted: 2023, monthEnded: 11, yearEnded: 2024 },
+//             1: { id: "1", kind: "prevJob", companyName: "Microsoft", location: "Los Angeles, CA", jobTitle: "UI/UX Designer", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 },
+//             // 2: { id: "2", kind: "prevJob", companyName: "Best Buy", location: "Los Angeles, CA", jobTitle: "Customer Support", monthStarted: 0, yearStarted: 2022, monthEnded: 5, yearEnded: 2023 }
+//         },
+//         bulletPoints: {
+//             0: { id: "0", kind: "bulletPoint", text: "Built software for ABC company" },
+//             1: { id: "1", kind: "bulletPoint", text: "Developed an internal application to reduce user friction" },
+//             2: { id: "2", kind: "bulletPoint", text: "Wrote and used automated tests in Jest" },
+//             3: { id: "3", kind: "bulletPoint", text: "Collaborated with cross-functional teams to launch new features" },
+//             4: { id: "4", kind: "bulletPoint", text: "Optimized React components for faster load times" },
+//             5: { id: "5", kind: "bulletPoint", text: "Created RESTful APIs to support front-end functionality" },
+//             6: { id: "6", kind: "bulletPoint", text: "Implemented Redux for scalable state management" },
+//             7: { id: "7", kind: "bulletPoint", text: "Reviewed code and mentored junior developers" },
+//             8: { id: "8", kind: "bulletPoint", text: "Integrated third-party authentication services" },
+//             9: { id: "9", kind: "bulletPoint", text: "Designed responsive UI components using Tailwind CSS" },
+
+//         },
+//         education: {
+//             0: {
+//                 id: "0", kind: "education", schoolName: "University of Alaska Anchorage", degree: "B.A. in Music Education and Classical Guitar", monthEnded: 4, yearEnded: 2016
+//             }
+//         },
+//         projects: {},
+//         skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Technology" }, 1: { id: "1", kind: "skill", list: ["Docker", "VSCode", "Excel", "Word"], showCategory: true, category: "Software" } },
+//         //Note: userLinks should remain hardcoded in with at least 0 and 1 at all times.
+//         userLinks: { 0: { id: "0", text: "", url: "" }, 1: { id: "1", text: "", url: "" } },
+//     },
+//     resumes: {
+//         0: [{ id: "99", kind: "userInfo", elementId: "" },
+//         // { id: "97", kind: "sectionHeader", elementId: "2" },
+//         { id: "96", kind: "summary", elementId: "0" },
+//         { id: "98", kind: "sectionHeader", elementId: "0" },
+//         { id: "100", kind: "prevJob", elementId: "0" },
+
+//         { id: "101", kind: "bulletPoint", elementId: "0" },
+//         { id: "102", kind: "bulletPoint", elementId: "1" },
+//         { id: "103", kind: "bulletPoint", elementId: "2" },
+
+//         { id: "104", kind: "prevJob", elementId: "1" },
+//         { id: "105", kind: "bulletPoint", elementId: "3" },
+//         { id: "106", kind: "bulletPoint", elementId: "4" },
+//         { id: "107", kind: "bulletPoint", elementId: "5" },
+//         { id: "111", kind: "sectionHeader", elementId: "3" },
+//         { id: "112", kind: "education", elementId: "0" },
+//         { id: "108", kind: "sectionHeader", elementId: "1" },
+//         { id: "109", kind: "skill", elementId: "0" },
+//         { id: "110", kind: "skill", elementId: "1" },
+
+
+//         { id: "108", kind: "prevJob", elementId: "2" },
+//         { id: "109", kind: "bulletPoint", elementId: "6" },
+//         { id: "110", kind: "bulletPoint", elementId: "7" },
+//         { id: "111", kind: "bulletPoint", elementId: "8" },
+
+//         { id: "112", kind: "prevJob", elementId: "0" },
+//         { id: "113", kind: "bulletPoint", elementId: "9" },
+//         ],
+//     },
+
+// };
 //.data.bulletPoints
 
 const resumeSlice = createSlice({

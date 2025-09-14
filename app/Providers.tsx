@@ -1,42 +1,41 @@
 "use client";
 
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store, { RootState } from "@/state/store";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { hydrate } from "@/state/resumeSlice";
 import { loadState, saveState } from "@/app/_db/persistence";
 
-function DexieSync() {
-  const dispatch = useDispatch();
+function BootGate({ children }: { children: React.ReactNode }) {
+  const [ready, setReady] = useState(false);
+
   const resume = useSelector((s: RootState) => s.resume);
 
-  // avoid saving until we've attempted hydration
-  const bootstrappedRef = useRef(false);
+  const hydratedRef = useRef(false);
+  const timerRef = useRef<number | null>(null);
 
-  // 1) Hydrate once on mount
   useEffect(() => {
     let cancelled = false;
     (async () => {
       const saved = await loadState();
       if (cancelled) return;
       if (saved) {
-        dispatch(hydrate(saved));
+        store.dispatch(hydrate(saved));
       }
-      bootstrappedRef.current = true;
+      hydratedRef.current = true;
+      setReady(true);
     })();
     return () => {
       cancelled = true;
     };
-  }, [dispatch]);
+  }, []);
 
-  // 2) Persist on any state change (after hydration)
   useEffect(() => {
-    if (!bootstrappedRef.current) return;
+    if (!hydratedRef.current) return;
 
-    // light debounce to batch quick successive updates
-    const id = setTimeout(() => {
-      // prefer idle if available
-      if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+    if (timerRef.current) window.clearTimeout(timerRef.current);
+    timerRef.current = window.setTimeout(() => {
+      if ("requestIdleCallback" in window) {
         (window as any).requestIdleCallback(() => void saveState(resume), {
           timeout: 1000,
         });
@@ -45,17 +44,19 @@ function DexieSync() {
       }
     }, 120);
 
-    return () => clearTimeout(id);
+    return () => {
+      if (timerRef.current) window.clearTimeout(timerRef.current);
+    };
   }, [resume]);
 
-  return null;
+  if (!ready) return null;
+  return <>{children}</>;
 }
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <Provider store={store}>
-      <DexieSync />
-      {children}
+      <BootGate>{children}</BootGate>
     </Provider>
   );
 }
