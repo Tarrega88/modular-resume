@@ -31,7 +31,7 @@ export default function SideResumeInner() {
         position: "relative",
         backgroundColor: "white",
         width: `${pageWidth}px`,
-        minHeight: `${pageHeight}px`,
+        height: `${pageHeight}px`,
         lineHeight: 1.4,
         paddingLeft: `${pageMargin}px`,
         paddingRight: `${pageMargin}px`,
@@ -39,7 +39,7 @@ export default function SideResumeInner() {
       }}
     >
       <div className="h-[48px]"></div>
-      {renderOrder.map((e, i) => (
+      {renderOrder?.map((e, i) => (
         <Draggable key={e.id} renderIndex={i} kind={e.kind}>
           <ResumeItemRenderer
             renderIndex={i}
