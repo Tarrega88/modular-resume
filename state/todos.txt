@@ -1,3 +1,4 @@
+Look into react-to-print instead of playwright
 
 Main sections:
 
@@ -16,3 +17,5 @@ additional sections to consider:
 4. Volunteer Experience
 5. Languages
 6. Interests
+
+
