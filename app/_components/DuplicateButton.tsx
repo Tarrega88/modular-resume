@@ -44,7 +44,6 @@ function DuplicateButton({
             degree: "Degree",
             monthEnded: 4,
             yearEnded: 2004,
-            location: "City, ST",
           })
         );
         break;

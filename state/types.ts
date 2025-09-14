@@ -64,7 +64,6 @@ export type EducationProps = {
     degree: string;
     monthEnded: number;
     yearEnded: number;
-    location: string;
 };
 
 export type SectionHeaderProps = {

@@ -73,7 +73,7 @@ const initialState: ResumeState = {
         },
         education: {
             0: {
-                id: "0", kind: "education", schoolName: "University of Alaska Anchorage", degree: "B.A. in Music Education and Classical Guitar", monthEnded: 4, yearEnded: 2016, location: "Anchorage, AK"
+                id: "0", kind: "education", schoolName: "University of Alaska Anchorage", degree: "B.A. in Music Education and Classical Guitar", monthEnded: 4, yearEnded: 2016
             }
         },
         projects: {},
@@ -275,7 +275,7 @@ const resumeSlice = createSlice({
 
             state.data.education[id][field] = value;
         },
-        editEducationString(state, action: PayloadAction<{ id: string; field: "schoolName" | "degree" | "location", text: string; }>) {
+        editEducationString(state, action: PayloadAction<{ id: string; field: "schoolName" | "degree", text: string; }>) {
             const { id, text, field } = action.payload;
             state.data.education[id][field] = text;
         }

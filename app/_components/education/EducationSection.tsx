@@ -11,7 +11,6 @@ function EducationSection({
   degree,
   monthEnded,
   yearEnded,
-  location,
 }: EducationProps) {
   function handleOnSubmit() {
     //temp
@@ -32,15 +31,13 @@ function EducationSection({
             placeholderText="University Name"
           />
         </div>
-        <DynamicInput
-          text={location}
-          handleOnSubmit={(text: string) =>
-            dispatch(editEducationString({ id, field: "location", text }))
-          }
-          inputWidth="full"
-          textAlign="right"
-          placeholderText="University Location"
-        />
+        <div>
+          <EducationDate
+            id={id}
+            monthEnded={monthEnded}
+            yearEnded={yearEnded}
+          />
+        </div>
       </div>
       <div className="flex justify-between">
         <DynamicInput
@@ -51,13 +48,6 @@ function EducationSection({
           inputWidth="full"
           placeholderText="Degree, and optional honors/gpa"
         />
-        <div>
-          <EducationDate
-            id={id}
-            monthEnded={monthEnded}
-            yearEnded={yearEnded}
-          />
-        </div>
       </div>
     </div>
   );
