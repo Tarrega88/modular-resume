@@ -8,7 +8,6 @@ import { RootState } from "@/state/store";
 import { useDispatch, useSelector } from "react-redux";
 import RelativeAbsLeft from "./RelativeAbsLeft";
 import AddBelowButton from "../AddBelowButton";
-import { IoIosAdd } from "react-icons/io";
 import RelativeAbsRight from "./RelativeAbsRight";
 import DeleteElementButton from "../DeleteElementButton";
 import DuplicateButton from "../DuplicateButton";
@@ -54,9 +53,6 @@ function Draggable({
     dispatch(setDragToIndex(renderIndex));
   }
 
-  //if moving lower: dragToIndex <= renderIndex
-  //if moving higher: dragToIndex < renderIndex
-
   const outerDragStyle =
     dragFromIndex === renderIndex ? "hover:opacity-25" : "hover:opacity-100";
 
@@ -73,11 +69,6 @@ function Draggable({
       onDragEnd={handleDragEnd}
       onDragEnter={handleDragEnter}
     >
-      {/* <RelativeAbsLeft hPosition="normal">
-        <div className="flex">
-          <IoIosAdd />
-        </div>
-      </RelativeAbsLeft> */}
       <RelativeAbsLeft hPosition="normal">
         <DuplicateButton kind={kind} renderIndex={renderIndex} />
       </RelativeAbsLeft>
