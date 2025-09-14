@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MonthDropdown from "./MonthDropdown";
+import MonthDropdown from "../MonthDropdown";
 import { longMonths, months } from "@/app/_lib/utils/months";
 import { useDispatch } from "react-redux";
 import { updatePrevJobField } from "@/state/resumeSlice";

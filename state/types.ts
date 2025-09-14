@@ -62,10 +62,10 @@ export type EducationProps = {
     kind: "education";
     schoolName: string;
     degree: string;
-    monthEnded?: number;
-    yearEnded?: number;
-    location?: string;
-    gpa?: string;
+    monthEnded: number;
+    yearEnded: number;
+    location: string;
+    gpa: string;
 };
 
 export type SectionHeaderProps = {
