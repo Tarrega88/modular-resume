@@ -45,7 +45,6 @@ function DuplicateButton({
             monthEnded: 4,
             yearEnded: 2004,
             location: "City, ST",
-            gpa: "GPA",
           })
         );
         break;

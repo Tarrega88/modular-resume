@@ -12,7 +12,6 @@ function EducationSection({
   monthEnded,
   yearEnded,
   location,
-  gpa,
 }: EducationProps) {
   function handleOnSubmit() {
     //temp
@@ -22,14 +21,17 @@ function EducationSection({
 
   return (
     <div className="w-full">
-      <div className="flex justify-between">
-        <DynamicInput
-          text={schoolName}
-          handleOnSubmit={(text: string) =>
-            dispatch(editEducationString({ id, field: "schoolName", text }))
-          }
-          inputWidth="full"
-        />
+      <div className="flex justify-between mb-1">
+        <div className="w-full font-bold">
+          <DynamicInput
+            text={schoolName}
+            handleOnSubmit={(text: string) =>
+              dispatch(editEducationString({ id, field: "schoolName", text }))
+            }
+            inputWidth="full"
+            placeholderText="University Name"
+          />
+        </div>
         <DynamicInput
           text={location}
           handleOnSubmit={(text: string) =>
@@ -37,6 +39,7 @@ function EducationSection({
           }
           inputWidth="full"
           textAlign="right"
+          placeholderText="University Location"
         />
       </div>
       <div className="flex justify-between">
@@ -46,6 +49,7 @@ function EducationSection({
             dispatch(editEducationString({ id, field: "degree", text }))
           }
           inputWidth="full"
+          placeholderText="Degree, and optional honors/gpa"
         />
         <div>
           <EducationDate

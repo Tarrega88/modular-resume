@@ -156,7 +156,6 @@ function ResumeItemRenderer({
           monthEnded={educationData.monthEnded}
           yearEnded={educationData.yearEnded}
           location={educationData.location}
-          gpa={educationData.location}
         />
       );
     default:
