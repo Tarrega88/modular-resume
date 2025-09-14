@@ -12,32 +12,17 @@ export const pageHeight = 1100;
 export const widthWithoutMargin = pageWidth - pageMargin * 2;
 
 export default function SideResumeInner() {
-  //TODO 8/26/2025: reliably throw an error if there's no matching id between the params and resumeIds (right now it's based off of the lack of items in renderOrder)
-
-  const bullets = useSelector(
-    (state: RootState) => state.resume.data.bulletPoints
-  );
-
   const resumeState = useSelector((state: RootState) => state.resume);
 
   const params = useParams();
   const currentResume = params.resumeId as string;
-  const allData = resumeState.data;
   const renderOrder = resumeState.resumes[currentResume];
-
-  //TODO 8/23/2025: I am probably going to change this to be page-by-page editing.
-  //The problem with continuous editing is that the padding here would only apply to the first page
-  //all subsequent pages don't know they're new pages
 
   const ref = useRef<HTMLDivElement | null>(null);
   useLayoutEffect(() => {
     if (!ref.current) return;
-    // console.log("offsetHeight:", ref.current.offsetHeight); // integer, includes borders
-    // console.log("clientHeight:", ref.current.clientHeight); // excludes borders/scrollbar
-    // console.log("rect height:", ref.current.getBoundingClientRect().height); // precise, decimals
   });
 
-  //TODO 9/9/2025: Build in a global fontSize setting that scales the whole resume up or down
   return (
     <div
       className="resume-font text-base"
@@ -47,18 +32,12 @@ export default function SideResumeInner() {
         backgroundColor: "white",
         width: `${pageWidth}px`,
         height: `${pageHeight}px`,
-        // fontSize: "16px",
         lineHeight: 1.4,
         paddingLeft: `${pageMargin}px`,
         paddingRight: `${pageMargin}px`,
         overflow: "hidden",
-        // "--resume-fs": `${pageFontSize}px`,
-        // overflowY: "auto",
       }}
     >
-      {/*
-      TODO 8/29/2025: consider making the div below a component that's generated in new pages or attached to ResumeHeader
-      */}
       <div className="h-[48px]"></div>
       {renderOrder.map((e, i) => (
         <Draggable key={e.id} renderIndex={i} kind={e.kind}>
@@ -75,6 +54,17 @@ export default function SideResumeInner() {
     </div>
   );
 }
+
+{
+  /*
+      TODO 8/29/2025: consider making the div below a component that's generated in new pages or attached to ResumeHeader
+      */
+}
+
+//TODO 8/23/2025: I am probably going to change this to be page-by-page editing.
+//The problem with continuous editing is that the padding here would only apply to the first page
+//all subsequent pages don't know they're new pages
+//TODO 8/26/2025: reliably throw an error if there's no matching id between the params and resumeIds (right now it's based off of the lack of items in renderOrder)
 
 {
   //dotted line spacer:
