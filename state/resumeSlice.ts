@@ -76,6 +76,7 @@ const initialState: ResumeState = {
                 id: "0", kind: "education", schoolName: "University of Alaska Anchorage", degree: "B.A. in Music Education and Classical Guitar", monthEnded: 4, yearEnded: 2016, location: "Anchorage, AK"
             }
         },
+        projects: {},
         skills: { 0: { id: "0", kind: "skill", list: ["JavaScript", "TypeScript", "HTML", "CSS"], showCategory: true, category: "Technology" }, 1: { id: "1", kind: "skill", list: ["Docker", "VSCode", "Excel", "Word"], showCategory: true, category: "Software" } },
         //Note: userLinks should remain hardcoded in with at least 0 and 1 at all times.
         userLinks: { 0: { id: "0", text: "", url: "" }, 1: { id: "1", text: "", url: "" } },

@@ -82,6 +82,15 @@ export type SkillProps = {
     category: string;
 }
 
+export type ProjectProps = {
+    id: string;
+    kind: "project";
+    title: string;
+    description: string;
+    hasWebsite: boolean;
+    website: UserLinkData;
+}
+
 export type ResumeState = {
     scale: number;
     currentResumeId: string;
@@ -97,6 +106,7 @@ export type ResumeState = {
         prevJobs: Record<ID, PrevJobProps>;
         bulletPoints: Record<ID, BulletPointProps>;
         education: Record<ID, EducationProps>;
+        projects: Record<ID, ProjectProps>;
         skills: Record<ID, SkillProps>;
     };
     resumes: Record<ID, ResumeItemProps[]>;
