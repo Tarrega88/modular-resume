@@ -6,10 +6,15 @@ import { RootState } from "@/state/store";
 import { useEffect } from "react";
 import { useParams } from "next/navigation";
 import { setCurrentResume } from "@/state/resumeSlice";
+import { useReactToPrint } from "react-to-print";
+import { useRef } from "react";
 
 export default function SideResume() {
   const state = useSelector((state: RootState) => state.resume);
   const { scale } = state;
+
+  const contentRef = useRef<HTMLDivElement>(null);
+  const reactToPrintFn = useReactToPrint({ contentRef });
 
   const { data, resumes, currentResumeId } = state;
 
@@ -36,7 +41,10 @@ export default function SideResume() {
         height: `${1100 * decimalScale}px`,
       }}
     >
-      <SideResumeInner />
+      <button onClick={reactToPrintFn}>Print</button>
+      <div ref={contentRef}>
+        <SideResumeInner />
+      </div>
     </div>
   );
 }

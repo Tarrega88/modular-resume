@@ -31,7 +31,7 @@ export default function SideResumeInner() {
         position: "relative",
         backgroundColor: "white",
         width: `${pageWidth}px`,
-        height: `${pageHeight}px`,
+        minHeight: `${pageHeight}px`,
         lineHeight: 1.4,
         paddingLeft: `${pageMargin}px`,
         paddingRight: `${pageMargin}px`,
